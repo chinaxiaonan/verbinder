@@ -1,0 +1,26 @@
+/* You can add global styles to this file, and also import other style files */
+.ant-btn-hack {
+    background-color: orange;
+}
+
+body {
+    line-height: unset !important;
+}
+
+#wrap {z-index: 999; display:block;bottom:0px;right:1px!important;right:18px;    width:100%;height:80px;   
+     line-height:30px;position:fixed;border:1px solid #212121;text-align:center;color:#fff; background:#212121;font-family:SiemensSans-Roman}
+
+.ant-modal-body {
+    padding: 0px !important;
+}
+.ant-modal-content {
+    background-color: unset !important;
+    margin-top: -50px;
+    margin-left: -450px;
+}
+
+.ant-select-selection{
+    background-color:#131313  !important;
+    color:white  !important;
+    font-size:18px
+}

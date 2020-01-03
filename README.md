@@ -1,5 +1,5 @@
 <<<<<<< HEAD
-# hackathon
+# verbinder
 
 #### Description
 {**When you're done, you can delete the content in this README and update the file with details for others getting started with your repository**}
@@ -36,7 +36,7 @@ Software architecture description
 5. The manual of Gitee [https://gitee.com/help](https://gitee.com/help)
 6. The most popular members  [https://gitee.com/gitee-stars/](https://gitee.com/gitee-stars/)
 =======
-# Hackathon
+# verbinder
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.1.4.
 
