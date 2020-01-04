@@ -1,16 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import * as echarts from 'echarts';
 import { HttpClient } from '@angular/common/http';
+import {verbinderCharts} from '../charts/verbindercharts.model';
 
 @Component({
   selector: 'app-process',
   templateUrl: './process.component.html',
-  styleUrls: ['./process.component.css']
+  styleUrls: ['./process.component.css']  
 })
 export class ProcessComponent implements OnInit {
-
-
-  constructor(private http: HttpClient) { }
+  verbinderCharts = new verbinderCharts();
+  constructor(private http: HttpClient) {
+    
+  }
 
 
   ngOnInit() {
@@ -31,7 +33,7 @@ export class ProcessComponent implements OnInit {
 
   current = 0;
 
-  index = 'First-content';
+  index = this.verbinderCharts;
 
   pre(): void {
     this.current -= 1;
@@ -50,19 +52,19 @@ export class ProcessComponent implements OnInit {
   changeContent(): void {
     switch (this.current) {
       case 0: {
-        this.index = 'First-content';
+        this.index = this.verbinderCharts;
         break;
       }
       case 1: {
-        this.index = 'Second-content';
+        this.index = this.verbinderCharts;
         break;
       }
       case 2: {
-        this.index = 'third-content';
+        this.index = this.verbinderCharts;
         break;
       }
       default: {
-        this.index = 'error';
+        this.index = this.verbinderCharts;
       }
     }
   }

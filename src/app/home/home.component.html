@@ -5,8 +5,18 @@
   <!-- <div style="float: left">
       <img src="../assets/logo.png" width="90px" height="32px">
   </div> -->
-  <div>
-    This is Content
-    
-  </div>
+    <div style="position: relative; background-color: #fafafa;">
+      <nz-select  style="width: 120px;background-color: #fafafa;" nzShowSearch nzAllowClear nzPlaceHolder="筛选行业" [(ngModel)]="selectedValue">
+        <nz-option nzLabel="Jack" nzValue="jack"></nz-option>
+        <nz-option nzLabel="Lucy" nzValue="lucy"></nz-option>
+        <nz-option nzLabel="Tom" nzValue="tom"></nz-option>
+      </nz-select>
+      <nz-select style="width: 120px;" nzShowSearch nzAllowClear nzPlaceHolder="筛选需求类型" [(ngModel)]="selectedValue">
+        <nz-option nzLabel="Jack" nzValue="jack"></nz-option>
+        <nz-option nzLabel="Lucy" nzValue="lucy"></nz-option>
+        <nz-option nzLabel="Tom" nzValue="tom"></nz-option>
+      </nz-select>
+    </div>
+  
 </div>
+<div> <button (click)="redirect()">Next Step</button> </div>

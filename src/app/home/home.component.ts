@@ -10,9 +10,9 @@ export class HomeComponent implements OnInit {
 
   constructor(private router: Router){}
   
-  // redirect(){
-  //   this.router.navigate(["linechart"]);
-  // }
+  redirect(){
+    this.router.navigate(["process"]);
+  }
   ngOnInit() {
   }
 
