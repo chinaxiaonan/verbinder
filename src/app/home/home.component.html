@@ -5,18 +5,76 @@
   <!-- <div style="float: left">
       <img src="../assets/logo.png" width="90px" height="32px">
   </div> -->
-    <div style="position: relative; background-color: #fafafa;">
-      <nz-select  style="width: 120px;background-color: #fafafa;" nzShowSearch nzAllowClear nzPlaceHolder="筛选行业" [(ngModel)]="selectedValue">
-        <nz-option nzLabel="Jack" nzValue="jack"></nz-option>
-        <nz-option nzLabel="Lucy" nzValue="lucy"></nz-option>
-        <nz-option nzLabel="Tom" nzValue="tom"></nz-option>
-      </nz-select>
-      <nz-select style="width: 120px;" nzShowSearch nzAllowClear nzPlaceHolder="筛选需求类型" [(ngModel)]="selectedValue">
-        <nz-option nzLabel="Jack" nzValue="jack"></nz-option>
-        <nz-option nzLabel="Lucy" nzValue="lucy"></nz-option>
-        <nz-option nzLabel="Tom" nzValue="tom"></nz-option>
-      </nz-select>
-    </div>
+
+  <div style="position: center;">
+    
+  
+  <div style="margin-left:352px;margin-top:126px;">
+    <p style="margin-left:24.4%;width:203px;height:68px;color:#2D373C;font-family: ChalkboardSE-Regular;font-size: 48px;">
+      Verbinder
+      </p>
+      <p style="margin-left:24.4%;font-family: SiemensSans-Roman; font-size: 18px; color: #2D373C; letter-spacing: -0.36px;">
+        TypesomethingTypesomethingTypesomethingTypesomething
+      </p>
+  </div>
+  <div class="display-div">
+      <div style="display: flex;margin-left:3.3%">
+          <p class="title-name">Write a name of your requirement project</p>
+      </div>
+      <div class="text-style">
+          <input nz-input placeholder="clearly express your requirement" [(ngModel)]="requirement" />
+      </div>
+      <div style="display: flex;margin-left:3.3%">
+          <p class="title-name">Select Industry</p>
+      </div>    
+      <div class="text-style">
+          <nz-select class="nz-select" nzShowSearch nzAllowClear nzPlaceHolder="Industry could be like manufacture,building technology,mobility, etc." [(ngModel)]="selectedValue">
+              <nz-option nzLabel="Manufacture" nzValue="Manufacture"></nz-option>
+              <nz-option nzLabel="Building technology" nzValue="Building technology"></nz-option>
+              <nz-option nzLabel="Mobility" nzValue="Mobility"></nz-option>
+            </nz-select>
+      </div>    
+      <div style="display: flex;margin-left:3.3%">
+          <p class="title-name">Specify your requirement planning</p>
+      </div>
+      <div class="text-style">
+          <textarea rows="4" nz-input [(ngModel)]="reqPlan"></textarea>
+      </div>   
+  
+      <div style="display: flex;margin-left:3.3%">
+          <nz-upload
+          nzAction="https://jsonplaceholder.typicode.com/posts/"
+          [nzFileList]="fileList"
+          nzMultiple
+          [nzLimit]="2"
+          [nzFilter]="filters"
+          (nzChange)="handleChange($event)"
+        >
+          <button nz-button><i nz-icon nzType="upload"></i><span>Upload attachment</span></button>
+        </nz-upload>
+      </div>     
+      
+
+      <div style="display: flex;margin-left:3.3%">
+          <p class="title-name">Specify what kind of deliverables do you expect</p>
+      </div>
+      <div style="display: flex;margin-left:3.3%">
+          <p class="title-name">The kind of deliverable could be like <a>clearly understand the problems,specific ways of solution</a></p>           
+      </div>
+
+      <div class="text-style">
+          <input nz-input placeholder="E.g. Problem-define workshop, Equipment life forcast" [(ngModel)]="expectDelivery" />
+      </div>
+      <div style="display: flex;margin-left:3.3%">
+          <p class="title-name"> Deliverables you may interested in: <a>Problem-define workshop Equipment life forcast</a></p>           
+      </div>
+      <div style="display: flex;margin-left:3.3%" >   
+          <button *ngIf="!nextAvi" style="background: #E8E8E8; border: 1px solid #C5C5C5; border-radius: 4px;width:102px;height:40px">Next Step</button>
+          <button *ngIf="nextAvi" style="background: #41BECC; border: 1px solid #41BECC; border-radius: 4px;width:102px;height:40px">Next Step</button>
+        </div>
+   
+  </div>
   
 </div>
-<div> <button (click)="redirect()">Next Step</button> </div>
+  
+</div>
