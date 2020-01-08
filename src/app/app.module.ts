@@ -1,7 +1,7 @@
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { ProcessComponent } from './process/process.component';
+import { ResultComponent } from './result/result.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgZorroAntdModule, NZ_I18N, zh_CN } from 'ng-zorro-antd';
@@ -12,7 +12,7 @@ import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent,
-    ProcessComponent,
+    ResultComponent,
     HomeComponent,
     // CorrelationComponent,
     // LinechartComponent

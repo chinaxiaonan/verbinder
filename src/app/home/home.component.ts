@@ -14,13 +14,17 @@ export class HomeComponent implements OnInit {
   reqPlan:string;
   expection:string;
   expectDelivery:string;
+  public first:boolean;
   public nextAvi: boolean;
+  public second: boolean;
+
   constructor(private msg: NzMessageService,private router: Router){}
   
   redirect(){
-    this.router.navigate(["process"]);
+    this.router.navigate(["result"]);
   }
   ngOnInit() {
+    this.first = true;
     this.nextAvi = true;
   }
 
@@ -73,4 +77,16 @@ export class HomeComponent implements OnInit {
       return true;
     });
   }
+
+  //next page
+  redirect2next(){
+    this.first = false;
+    this.second = true;
+  }
+  
+   //result page
+ redirect2result(){
+  this.router.navigate(["result"]);
+}
+
 }

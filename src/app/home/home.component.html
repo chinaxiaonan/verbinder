@@ -1,23 +1,23 @@
-<div height="82px">
-  <div style="float: center ">
-    <img src="../assets/title bar.png" height="82px">
+  <div style="float: center;width:100%;height:70px">
+    <div>
+        <img src="../assets/title bar.png" height="70px">
+    </div>
+    
   </div>
-  <!-- <div style="float: left">
-      <img src="../assets/logo.png" width="90px" height="32px">
-  </div> -->
+
 
   <div style="position: center;">
     
   
-  <div style="margin-left:352px;margin-top:126px;">
-    <p style="margin-left:24.4%;width:203px;height:68px;color:#2D373C;font-family: ChalkboardSE-Regular;font-size: 48px;">
+  <div *ngIf="first" style="margin-left:24.4%;margin-top:10%;">
+    <p style="width:203px;color:#2D373C;font-family: ChalkboardSE-Regular;font-size: 48px;letter-spacing: -0.96px;">
       Verbinder
       </p>
-      <p style="margin-left:24.4%;font-family: SiemensSans-Roman; font-size: 18px; color: #2D373C; letter-spacing: -0.36px;">
+      <p style="margin-top:-3%;height:0.9%;font-family: SiemensSans-Roman; font-size: 18px; color: #2D373C; letter-spacing: -0.36px;">
         TypesomethingTypesomethingTypesomethingTypesomething
       </p>
   </div>
-  <div class="display-div">
+  <div *ngIf="first" class="display-div">
       <div style="display: flex;margin-left:3.3%">
           <p class="title-name">Write a name of your requirement project</p>
       </div>
@@ -54,27 +54,28 @@
         </nz-upload>
       </div>     
       
-
-      <div style="display: flex;margin-left:3.3%">
-          <p class="title-name">Specify what kind of deliverables do you expect</p>
-      </div>
-      <div style="display: flex;margin-left:3.3%">
-          <p class="title-name">The kind of deliverable could be like <a>clearly understand the problems,specific ways of solution</a></p>           
-      </div>
-
-      <div class="text-style">
-          <input nz-input placeholder="E.g. Problem-define workshop, Equipment life forcast" [(ngModel)]="expectDelivery" />
-      </div>
-      <div style="display: flex;margin-left:3.3%">
-          <p class="title-name"> Deliverables you may interested in: <a>Problem-define workshop Equipment life forcast</a></p>           
-      </div>
       <div style="display: flex;margin-left:3.3%" >   
           <button *ngIf="!nextAvi" style="background: #E8E8E8; border: 1px solid #C5C5C5; border-radius: 4px;width:102px;height:40px">Next Step</button>
-          <button *ngIf="nextAvi" style="background: #41BECC; border: 1px solid #41BECC; border-radius: 4px;width:102px;height:40px">Next Step</button>
+          <button *ngIf="nextAvi" style="background: #41BECC; border: 1px solid #41BECC; border-radius: 4px;width:102px;height:40px" (click)="redirect2next()">Next Step</button>
         </div>
-   
   </div>
-  
-</div>
+  <div *ngIf="second" class="center-backend">
+    <div style="display: flex;margin-left:3.3%">
+        <p class="title-name">Specify what kind of deliverables do you expect</p>
+    </div>
+    <div style="display: flex;margin-left:3.3%">
+        <p class="small-text2">The kind of deliverable could be like <a>clearly understand the problems,specific ways of solution</a></p>           
+    </div>
+
+    <div class="text-style">
+        <input nz-input placeholder="E.g. Problem-define workshop, Equipment life forcast" [(ngModel)]="expectDelivery" />
+    </div>
+    <div style="display: flex;margin-left:3.3%">
+        <p class="small-text2"> Deliverables you may interested in: <a>Problem-define workshop Equipment life forcast</a></p>           
+    </div>
+    <div style="display: flex;margin-left:3.3%" >
+        <button *ngIf="nextAvi" style="background: #41BECC; border: 1px solid #41BECC; border-radius: 4px;width:102px;height:40px" (click)="redirect2result()">Next Step</button>
+      </div>
+  </div>
   
 </div>

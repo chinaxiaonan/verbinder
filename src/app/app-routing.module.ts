@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { ProcessComponent } from './process/process.component';
+import { ResultComponent } from './result/result.component';
 import { HomeComponent } from './home/home.component';
 import { RequirementComponent } from './requirement/requirement.component';
 
@@ -15,8 +15,8 @@ const routes: Routes = [
     component: HomeComponent
   } ,
   {
-    path: 'process',
-    component: ProcessComponent
+    path: 'result',
+    component: ResultComponent
   }
   // ,{
   //   path: 'correlation',
