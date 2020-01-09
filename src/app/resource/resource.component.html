@@ -1,0 +1,46 @@
+<p class='section-title'>
+  Offer what resources you have now
+</p>
+<p>
+  <span class='section-normal-text'>Resources could be like </span><a class='section-link-text'>data generated from
+    equipment records and environment</a>, <a class='section-link-text'>previous
+    experiences</a>
+</p>
+<nz-select class='resource-select' [(ngModel)]='selectedValues' nzMode='tags' nzPlaceHolder="Please select" nzShowSearch nzServerSearch
+  (nzOnSearch)="search($event)">
+  <nz-option *ngFor="let option of listOfOption" [nzLabel]="option.label" [nzValue]="option.value"></nz-option>
+</nz-select>
+
+<p>Resources you may have</p>
+
+<nz-card style='width:75%' [nzExtra]='closeIconTpl' [nzBordered]='false'
+  nzTitle='For accurately analyze data, we highly recommend you define the data format'>
+  <nz-card-tab>
+    <nz-tabset>
+      <nz-tab nzTitle='数据实效'>
+        <div nz-row [nzGutter]='8'>
+          <div nz-col [nzSpan]='8'>
+            <nz-card style='text-align: center;'>
+              <p>Historical</p>
+            </nz-card>
+          </div>
+          <div nz-col [nzSpan]='8'>
+            <nz-card style='text-align: center;'>
+              <p>Real time</p>
+            </nz-card>
+          </div>
+          <div nz-col [nzSpan]='8'>
+            <nz-card style='text-align: center;'>
+              <p>Static</p>
+            </nz-card>
+          </div>
+        </div>
+      </nz-tab>
+      <nz-tab nzTitle='数据来源'></nz-tab>
+      <nz-tab nzTitle='数据格式'></nz-tab>
+    </nz-tabset>
+  </nz-card-tab>
+</nz-card>
+<ng-template #closeIconTpl>
+  aa
+</ng-template>
