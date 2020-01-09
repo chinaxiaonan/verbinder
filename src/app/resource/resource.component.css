@@ -1,0 +1,28 @@
+.section-title {
+  font-family: SiemensSans-Bold;
+  font-size: 18px;
+  color: #2D373C;
+  letter-spacing: -0.36px;
+  line-height: 40px;
+}
+
+.section-normal-text {
+  font-family: SiemensSans-Roman;
+  font-size: 12px;
+  color: #2D373C;
+  letter-spacing: -0.24px;
+  line-height: 20px;
+}
+
+.section-link-text {
+    font-family: SiemensSans-Roman;
+    font-size: 12px;
+    color: #00D9E3;
+    letter-spacing: -0.24px;
+    line-height: 20px;
+    text-decoration: underline;
+}
+
+.resource-select {
+    width: 650px;
+}
