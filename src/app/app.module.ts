@@ -8,12 +8,14 @@ import { NgZorroAntdModule, NZ_I18N, zh_CN } from 'ng-zorro-antd';
 import { HomeComponent } from './home/home.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { ResourceComponent } from './resource/resource.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ResultComponent,
     HomeComponent,
+    ResourceComponent,
     // CorrelationComponent,
     // LinechartComponent
   ],
