@@ -1,20 +1,24 @@
+<div style="margin-left: 3.3%;">
 <p class='section-title'>
   Offer what resources you have now
 </p>
 <p>
   <span class='section-normal-text'>Resources could be like </span><a class='section-link-text'>data generated from
-    equipment records and environment</a>, <a class='section-link-text'>previous
-    experiences</a>
+    equipment records and environment </a><i nz-icon nzType="question-circle" nzTheme="outline" style="font-size: 0.7em; color:#00D9E3"></i>, <a class='section-link-text'>previous
+    experiences </a><i nz-icon nzType="question-circle" nzTheme="outline" style="font-size: 0.7em;color:#00D9E3;"></i>
 </p>
-<nz-select class='resource-select' [(ngModel)]='selectedValues' nzMode='tags' nzPlaceHolder="Please select" nzShowSearch nzServerSearch
-  (nzOnSearch)="search($event)">
+<nz-select class='resource-select form-control' name='selectresource' [(ngModel)]='selectedValues' nzMode='tags' nzPlaceHolder="Please select" nzShowSearch nzServerSearch
+  (nzOnSearch)="search($event)" required #selectresource='ngModel'>
   <nz-option *ngFor="let option of listOfOption" [nzLabel]="option.label" [nzValue]="option.value"></nz-option>
 </nz-select>
+<div *ngIf="selectresource.invalid && (selectresource.dirty || selectresource.touched)" class="alert alert-danger text-style">
+  Resources are required.
+</div>
+<p>
+<span class='section-normal-text'>Resources you may also have: </span></p>
 
-<p>Resources you may have</p>
-
-<nz-card style='width:75%' [nzExtra]='closeIconTpl' [nzBordered]='false'
-  nzTitle='For accurately analyze data, we highly recommend you define the data format'>
+<nz-card style='width:650px' [nzExtra]='closeIconTpl' [nzBordered]='false'
+  [nzTitle]='titletext' *ngIf='showCard'>
   <nz-card-tab>
     <nz-tabset>
       <nz-tab nzTitle='数据实效'>
@@ -42,5 +46,9 @@
   </nz-card-tab>
 </nz-card>
 <ng-template #closeIconTpl>
-  aa
+  <i nz-icon nzType="close" nzTheme="outline" style="font-size: 0.8em;" (click)='closeCard()'></i>
 </ng-template>
+<ng-template #titletext>
+  <span class='card-title'>For accurately analyze data, we highly recommend you define the data format</span>
+</ng-template>
+</div>

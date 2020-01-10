@@ -9,10 +9,12 @@ import { HttpClient } from '@angular/common/http';
 export class ResourceComponent implements OnInit {
   listOfOption: Array<{ label: string; value: string }> = [];
   selectedValues = null;
+  showCard:boolean;
 
   constructor(private httpClient: HttpClient) { }
 
   ngOnInit() {
+    this.showCard = true;
   }
 
   search(value: string): void {
@@ -23,6 +25,10 @@ export class ResourceComponent implements OnInit {
       });
       this.listOfOption = listOfOption;
     });
+  }
+
+  closeCard(){
+    this.showCard = false;
   }
 
 }

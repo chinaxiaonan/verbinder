@@ -1,81 +1,103 @@
   <div style="float: center;width:100%;height:70px">
     <div>
-        <img src="../assets/title bar.png" height="70px">
+      <img src="../assets/title bar.png" height="70px">
     </div>
-    
+
   </div>
 
 
-  <div style="position: center;">
-    
-  
-  <div *ngIf="first" style="margin-left:24.4%;margin-top:10%;">
-    <p style="width:203px;color:#2D373C;font-family: ChalkboardSE-Regular;font-size: 48px;letter-spacing: -0.96px;">
-      Verbinder
+  <div style="position: center;background-image: url('/assets/Background.png');">
+    <div style="margin-left:24.4%;padding-top:7%;">
+      <p style="width:203px;color:#2D373C;font-family: ChalkboardSE-Regular;font-size: 48px;letter-spacing: -0.96px;">
+        Verbinder
       </p>
-      <p style="margin-top:-3%;height:0.9%;font-family: SiemensSans-Roman; font-size: 18px; color: #2D373C; letter-spacing: -0.36px;">
+      <p
+        style="margin-top:-3%;height:0.9%;font-family: SiemensSans-Roman; font-size: 18px; color: #2D373C; letter-spacing: -0.36px;">
         TypesomethingTypesomethingTypesomethingTypesomething
       </p>
-  </div>
-  <div *ngIf="first" class="display-div">
-      <div style="display: flex;margin-left:3.3%">
-          <p class="title-name">Write a name of your requirement project</p>
-      </div>
-      <div class="text-style">
-          <input nz-input placeholder="clearly express your requirement" [(ngModel)]="requirement" />
-      </div>
-      <div style="display: flex;margin-left:3.3%">
-          <p class="title-name">Select Industry</p>
-      </div>    
-      <div class="text-style">
-          <nz-select class="nz-select" nzShowSearch nzAllowClear nzPlaceHolder="Industry could be like manufacture,building technology,mobility, etc." [(ngModel)]="selectedValue">
+    </div>
+    <div class="display-div">
+      <form #projectForm='ngForm'>
+        <div class='form-group'>
+
+          <span class="title-name text-style">Write a name of your requirement project</span>
+
+          <div class="text-style">
+            <input nz-input name='name' placeholder="clearly express your requirement" [(ngModel)]="requirement"
+              class='form-control' required #name='ngModel' />
+
+          </div>
+          <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger text-style">
+            Name is required.
+          </div>
+        </div>
+        <div class='form-group'>
+
+          <label class="title-name text-style" for='industry'>Select Industry</label>
+
+          <div class="text-style">
+            <nz-select class="nz-select form-control" name='industry' nzShowSearch nzAllowClear
+              nzPlaceHolder="Industry could be like manufacture,building technology,mobility, etc."
+              [(ngModel)]="selectedValue" required #industry='ngModel'>
               <nz-option nzLabel="Manufacture" nzValue="Manufacture"></nz-option>
               <nz-option nzLabel="Building technology" nzValue="Building technology"></nz-option>
               <nz-option nzLabel="Mobility" nzValue="Mobility"></nz-option>
             </nz-select>
-      </div>    
-      <div style="display: flex;margin-left:3.3%">
-          <p class="title-name">Specify your requirement planning</p>
-      </div>
-      <div class="text-style">
-          <textarea rows="4" nz-input [(ngModel)]="reqPlan"></textarea>
-      </div>   
-  
-      <div style="display: flex;margin-left:3.3%">
-          <nz-upload
-          nzAction="https://jsonplaceholder.typicode.com/posts/"
-          [nzFileList]="fileList"
-          nzMultiple
-          [nzLimit]="2"
-          [nzFilter]="filters"
-          (nzChange)="handleChange($event)"
-        >
-          <button nz-button><i nz-icon nzType="upload"></i><span>Upload attachment</span></button>
-        </nz-upload>
-      </div>     
-      
-      <div style="display: flex;margin-left:3.3%" >   
-          <button *ngIf="!nextAvi" style="background: #E8E8E8; border: 1px solid #C5C5C5; border-radius: 4px;width:102px;height:40px">Next Step</button>
-          <button *ngIf="nextAvi" style="background: #41BECC; border: 1px solid #41BECC; border-radius: 4px;width:102px;height:40px" (click)="redirect2next()">Next Step</button>
+          </div>
+          <div *ngIf="industry.invalid && (industry.dirty || industry.touched)" class="alert alert-danger text-style">
+            Industry is required.
+          </div>
         </div>
-  </div>
-  <div *ngIf="second" class="center-backend">
-    <div style="display: flex;margin-left:3.3%">
-        <p class="title-name">Specify what kind of deliverables do you expect</p>
-    </div>
-    <div style="display: flex;margin-left:3.3%">
-        <p class="small-text2">The kind of deliverable could be like <a>clearly understand the problems,specific ways of solution</a></p>           
+        <div class='form-group'>
+          <label class="title-name text-style" for="plan">Specify your requirement planning</label>
+          <div class="text-style">
+            <textarea class='form-control' name='plan' rows="4" nz-input [(ngModel)]="reqPlan" required
+              #plan='ngModel'></textarea>
+          </div>
+
+          <div style="display: flex;margin-left:3.3%">
+            <nz-upload nzAction="https://jsonplaceholder.typicode.com/posts/" [nzFileList]="fileList" nzMultiple
+              [nzLimit]="2" [nzFilter]="filters" (nzChange)="handleChange($event)">
+              <button nz-button><i nz-icon nzType="upload"></i><span>Upload attachment</span></button>
+            </nz-upload>
+          </div>
+          <div *ngIf="plan.invalid && (plan.dirty || plan.touched)" class="alert alert-danger text-style">
+            Requirement planning is required.
+          </div>
+        </div>
+        <div *ngIf="step>0">
+
+
+          <label class="title-name text-style">Specify what kind of deliverables do you expect</label>
+
+          <div style="display: flex;margin-left:3.3%">
+            <p class="small-text2">The kind of deliverable could be like <a>clearly understand the problems,specific
+                ways of
+                solution</a></p>
+          </div>
+          <div class='form-group'>
+            <div class="text-style">
+              <input class='form-control' nz-input name='deliveryinput'
+                placeholder="E.g. Problem-define workshop, Equipment life forcast" [(ngModel)]="expectDelivery" required
+                #deliveryinput='ngModel' />
+            </div>
+            <div *ngIf="deliveryinput.invalid && (deliveryinput.dirty || deliveryinput.touched)"
+              class="alert alert-danger text-style">
+              Expected delivery is required.
+            </div>
+          </div>
+          <div style="display: flex;margin-left:3.3%">
+            <p class="small-text2"> Deliverables you may interested in: <a>Problem-define workshop Equipment life
+                forcast</a></p>
+          </div>
+        </div>
+        <app-resource *ngIf='step>1'></app-resource>
+        <div class='text-style'>
+          <button class='btn-next-invalid' *ngIf='projectForm.invalid' disabled>Next Step</button>
+          <button class='btn-next-valid' *ngIf='projectForm.valid' (click)='r2next()'>Next Step</button>
+        </div>
+
+      </form>
     </div>
 
-    <div class="text-style">
-        <input nz-input placeholder="E.g. Problem-define workshop, Equipment life forcast" [(ngModel)]="expectDelivery" />
-    </div>
-    <div style="display: flex;margin-left:3.3%">
-        <p class="small-text2"> Deliverables you may interested in: <a>Problem-define workshop Equipment life forcast</a></p>           
-    </div>
-    <div style="display: flex;margin-left:3.3%" >
-        <button *ngIf="nextAvi" style="background: #41BECC; border: 1px solid #41BECC; border-radius: 4px;width:102px;height:40px" (click)="redirect2result()">Next Step</button>
-      </div>
   </div>
-  <app-resource></app-resource>
-</div>
