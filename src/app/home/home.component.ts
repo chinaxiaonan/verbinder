@@ -14,6 +14,8 @@ export class HomeComponent implements OnInit {
   reqPlan:string;
   expection:string;
   expectDelivery:string;
+  step:number;  // 0: initial stage; 1: add deliverable stage; 2: add resource stage; 3: add technology stage
+  btnstatus:boolean;
   public first:boolean;
   public nextAvi: boolean;
   public second: boolean;
@@ -26,6 +28,9 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.first = true;
     this.nextAvi = true;
+    this.step = 0;
+    this.btnstatus = false;
+
   }
 
   filters: UploadFilter[] = [
@@ -82,6 +87,16 @@ export class HomeComponent implements OnInit {
   redirect2next(){
     this.first = false;
     this.second = true;
+  }
+
+  r2next(){
+    if(this.step < 3){
+      this.step += 1;
+    }
+    if(this.step==3){
+      this.router.navigate(["result"]);
+    }
+    console.log(this.step);
   }
   
    //result page
