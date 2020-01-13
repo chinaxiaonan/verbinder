@@ -1,60 +1,154 @@
-<div style="margin-left: 3.3%;">
-<p class='section-title'>
-  Offer what resources you have now
-</p>
-<p>
-  <span class='section-normal-text'>Resources could be like </span><a href='javascript:void(0);' class='section-link-text' (click)='clickExplain();'>data generated from
-    equipment records and environment </a><i nz-icon nzType="question-circle" nzTheme="outline" style="font-size: 0.7em; color:#00D9E3"></i>, <a class='section-link-text'>previous
-    experiences </a><i nz-icon nzType="question-circle" nzTheme="outline" style="font-size: 0.7em;color:#00D9E3;"></i>
-</p>
-<nz-card style="width: 650px;" [nzExtra]='closeIconTpl2' [nzBordered]='false' *ngIf='showExplain'>
-aaa
-</nz-card>
-<nz-select class='resource-select form-control' name='selectresource' [(ngModel)]='selectedValues' nzMode='tags' nzPlaceHolder="Please select" nzShowSearch nzServerSearch
-  (nzOnSearch)="search($event)" required #selectresource='ngModel'>
-  <nz-option *ngFor="let option of listOfOption" [nzLabel]="option.label" [nzValue]="option.value"></nz-option>
-</nz-select>
-<div *ngIf="selectresource.invalid && (selectresource.dirty || selectresource.touched)" class="alert alert-danger text-style">
-  Resources are required.
-</div>
-<p>
-<span class='section-normal-text'>Resources you may also have: </span></p>
+<div style="margin-left: 3.3%; padding-bottom: 3%;">
+  <p class='section-title'>
+    Offer what resources you have now
+  </p>
+  <p>
+    <span class='section-normal-text'>Resources could be like </span><a href='javascript:void(0);'
+      class='section-link-text' (click)='clickExplain();'>data generated from
+      equipment records and environment </a><i nz-icon nzType="question-circle" nzTheme="outline"
+      style="font-size: 0.7em; color:#00D9E3"></i>, <a class='section-link-text'>previous
+      experiences </a><i nz-icon nzType="question-circle" nzTheme="outline" style="font-size: 0.7em;color:#00D9E3;"></i>
+  </p>
+  <nz-card style="width: 650px;" [nzBordered]='false' *ngIf='showExplain'>
+    <img src="../../assets/dataexplain.png" width="600px">
+  </nz-card>
+  <p style='padding-bottom: 2%;'></p>
+  <nz-select class='resource-select form-control' name='selectresource' [(ngModel)]='projectResources' nzMode='tags'
+    nzPlaceHolder="Please select" nzShowSearch nzServerSearch (nzOnSearch)="search($event)" [nzMaxMultipleCount]='3'
+    required #selectresource='ngModel'>
+    <nz-option *ngFor="let option of listOfOption" [nzLabel]="option.label" [nzValue]="option.value"></nz-option>
+  </nz-select>
+  <div *ngIf="selectresource.invalid && (selectresource.dirty || selectresource.touched)" class="alert text-style">
+    Resources are required.
+  </div>
+  <p style='padding-top: 10px;'>
+    <span class='section-normal-text'>Resources you may classify: </span>
+    <nz-tag nzMode='checkable' [nzChecked]='showCard' (nzCheckedChange)='checkChange1($event)'>Data</nz-tag>
+    <nz-tag nzMode='checkable' [nzChecked]='!showCard' (nzCheckedChange)='checkChange2($event)'>Knowledge</nz-tag>
+  </p>
+  <nz-card style='width:650px' [nzExtra]='closeIconTpl' [nzBordered]='false' [nzTitle]='titletext' *ngIf='showCard'>
+    <nz-card-tab>
+      <nz-tabset>
+        <nz-tab nzTitle='数据实效'>
+          <div nz-row [nzGutter]='8'>
+            <div nz-col [nzSpan]='8'>
+              <nz-card [ngClass]='{"boxwhite": !boxColors[0], boxblue: boxColors[0]}' [nzType]='inner'
+                (click)='boxColors[0]=!boxColors[0]'>
+                <span class='box-text'>Historical</span>
+              </nz-card>
+            </div>
+            <div nz-col [nzSpan]='8'>
+              <nz-card [ngClass]='{"boxwhite": !boxColors[1], boxblue: boxColors[1]}'
+                (click)='boxColors[1]=!boxColors[1]'>
+                <span class='box-text'>Real time</span>
+              </nz-card>
+            </div>
+            <div nz-col [nzSpan]='8'>
+              <nz-card [ngClass]='{"boxwhite": !boxColors[2], boxblue: boxColors[2]}'
+                (click)='boxColors[2]=!boxColors[2]'>
+                <span class='box-text'>Static</span>
+              </nz-card>
+            </div>
+          </div>
+        </nz-tab>
+        <nz-tab nzTitle='数据来源'>
+          <div nz-row [nzGutter]='8'>
+            <div nz-col [nzSpan]='8'>
+              <nz-card [ngClass]='{"boxwhite": !boxColors[3], boxblue: boxColors[3]}' [nzType]='inner'
+                (click)='boxColors[3]=!boxColors[3]'>
+                <span class='box-text'>观察</span>
+              </nz-card>
+            </div>
+            <div nz-col [nzSpan]='8'>
+              <nz-card [ngClass]='{"boxwhite": !boxColors[4], boxblue: boxColors[4]}'
+                (click)='boxColors[4]=!boxColors[4]'>
+                <span class='box-text'>设定</span>
+              </nz-card>
+            </div>
+            <div nz-col [nzSpan]='8'>
+              <nz-card [ngClass]='{"boxwhite": !boxColors[5], boxblue: boxColors[5]}'
+                (click)='boxColors[5]=!boxColors[5]'>
+                <span class='box-text'>标准</span>
+              </nz-card>
+            </div>
+          </div>
+        </nz-tab>
+        <nz-tab nzTitle='数据格式'>
+          <div nz-row [nzGutter]='8'>
+            <div nz-col [nzSpan]='4'>
+              <nz-card [ngClass]='{"boxwhite": !boxColors[6], boxblue: boxColors[6]}' [nzType]='inner'
+                (click)='boxColors[6]=!boxColors[6]'>
+                <span class='box-text'>文本</span>
+              </nz-card>
+            </div>
+            <div nz-col [nzSpan]='4'>
+              <nz-card [ngClass]='{"boxwhite": !boxColors[7], boxblue: boxColors[7]}'
+                (click)='boxColors[7]=!boxColors[7]'>
+                <span class='box-text'>数值</span>
+              </nz-card>
+            </div>
+            <div nz-col [nzSpan]='4'>
+              <nz-card [ngClass]='{"boxwhite": !boxColors[8], boxblue: boxColors[8]}'
+                (click)='boxColors[8]=!boxColors[8]'>
+                <span class='box-text'>图像</span>
+              </nz-card>
+            </div>
+            <div nz-col [nzSpan]='4'>
+              <nz-card [ngClass]='{"boxwhite": !boxColors[9], boxblue: boxColors[9]}'
+                (click)='boxColors[9]=!boxColors[9]'>
+                <span class='box-text'>音频</span>
+              </nz-card>
+            </div>
+            <div nz-col [nzSpan]='4'>
+              <nz-card [ngClass]='{"boxwhite": !boxColors[10], boxblue: boxColors[10]}'
+                (click)='boxColors[10]=!boxColors[10]'>
+                <span class='box-text'>视频</span>
+              </nz-card>
+            </div>
+          </div>
+        </nz-tab>
+      </nz-tabset>
+    </nz-card-tab>
+  </nz-card>
+  <nz-card style='width:650px' [nzExtra]='closeIconTpl1' [nzBordered]='false' [nzTitle]='titletext' *ngIf='!showCard'>
+    <nz-card-tab>
+      <nz-tabset>
+        <nz-tab nzTitle='知识类别'>
+          <div nz-row [nzGutter]='8'>
+            <div nz-col [nzSpan]='8'>
+              <nz-card [ngClass]='{"boxwhite": !boxColors[11], boxblue: boxColors[11]}' [nzType]='inner'
+                (click)='boxColors[11]=!boxColors[11]'>
+                <span class='box-text'>主观意愿</span>
+              </nz-card>
+            </div>
+            <div nz-col [nzSpan]='8'>
+              <nz-card [ngClass]='{"boxwhite": !boxColors[12], boxblue: boxColors[12]}'
+                (click)='boxColors[12]=!boxColors[12]'>
+                <span class='box-text'>客观困难</span>
+              </nz-card>
+            </div>
+            <div nz-col [nzSpan]='8'>
+              <nz-card [ngClass]='{"boxwhite": !boxColors[13], boxblue: boxColors[13]}'
+                (click)='boxColors[13]=!boxColors[13]'>
+                <span class='box-text'>行业准则</span>
+              </nz-card>
+            </div>
+          </div>
+        </nz-tab>
+      </nz-tabset>
+    </nz-card-tab>
+  </nz-card>
 
-<nz-card style='width:650px' [nzExtra]='closeIconTpl' [nzBordered]='false'
-  [nzTitle]='titletext' *ngIf='showCard'>
-  <nz-card-tab>
-    <nz-tabset>
-      <nz-tab nzTitle='数据实效'>
-        <div nz-row [nzGutter]='8'>
-          <div nz-col [nzSpan]='8'>
-            <nz-card style='text-align: center;'>
-              <p>Historical</p>
-            </nz-card>
-          </div>
-          <div nz-col [nzSpan]='8'>
-            <nz-card style='text-align: center;'>
-              <p>Real time</p>
-            </nz-card>
-          </div>
-          <div nz-col [nzSpan]='8'>
-            <nz-card style='text-align: center;'>
-              <p>Static</p>
-            </nz-card>
-          </div>
-        </div>
-      </nz-tab>
-      <nz-tab nzTitle='数据来源'></nz-tab>
-      <nz-tab nzTitle='数据格式'></nz-tab>
-    </nz-tabset>
-  </nz-card-tab>
-</nz-card>
-<ng-template #closeIconTpl>
-  <i nz-icon nzType="close" nzTheme="outline" style="font-size: 0.8em;" (click)='closeCard()'></i>
-</ng-template>
-<ng-template #titletext>
-  <span class='card-title'>For accurately analyze data, we highly recommend you define the data format</span>
-</ng-template>
-<ng-template #closeIconTpl2>
-  <i nz-icon nzType="close" nzTheme="outline" style="font-size: 0.8em;" (click)='closeExplain()'></i>
-</ng-template>
+  <ng-template #closeIconTpl>
+    <i nz-icon nzType="close" nzTheme="outline" style="font-size: 0.8em;" (click)='changeCard()'></i>
+  </ng-template>
+  <ng-template #closeIconTpl1>
+    <i nz-icon nzType="close" nzTheme="outline" style="font-size: 0.8em;" (click)='changeCard()'></i>
+  </ng-template>
+  <ng-template #titletext>
+    <span class='card-title'>For accurately analyze data, we highly recommend you define the data format</span>
+  </ng-template>
+  <ng-template #closeIconTpl2>
+    <i nz-icon nzType="close" nzTheme="outline" style="font-size: 0.8em;" (click)='closeExplain()'></i>
+  </ng-template>
 </div>

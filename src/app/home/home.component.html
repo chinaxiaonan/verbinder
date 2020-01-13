@@ -1,4 +1,4 @@
-  <div style="float: center;width:100%;height:70px">
+  <div style="width:100%;height:70px">
     <div>
       <img src="../assets/title bar.png" height="70px">
     </div>
@@ -6,7 +6,7 @@
   </div>
 
 
-  <div style="position: center;background-image: url('/assets/Background.png');">
+  <div style="position: center;background-image: url('/assets/Background.png'); padding-bottom: 5%;">
     <div style="margin-left:24.4%;padding-top:7%;">
       <p style="width:203px;color:#2D373C;font-family: ChalkboardSE-Regular;font-size: 48px;letter-spacing: -0.96px;">
         Verbinder
@@ -35,8 +35,8 @@
 
           <label class="title-name text-style" for='industry'>Select Industry</label>
 
-          <div class="text-style">
-            <nz-select class="nz-select form-control" name='industry' nzShowSearch nzAllowClear
+          <div style="margin-left:3.3%; width:642px;">
+            <nz-select class="form-control" name='industry' nzShowSearch nzAllowClear 
               nzPlaceHolder="Industry could be like manufacture,building technology,mobility, etc."
               [(ngModel)]="project.industry" required #industry='ngModel'>
               <nz-option nzLabel="Manufacture" nzValue="Manufacture"></nz-option>
@@ -92,7 +92,6 @@
           </div>
         </div>
         <app-resource *ngIf='step>1'></app-resource>
-        <app-kgraph></app-kgraph>
         <div class='text-style'>
           <button class='btn-next-invalid' *ngIf='projectForm.invalid' disabled>Next Step</button>
           <button class='btn-next-valid' *ngIf='projectForm.valid' (click)='r2next()'>Next Step</button>
@@ -100,5 +99,4 @@
 
       </form>
     </div>
-
   </div>

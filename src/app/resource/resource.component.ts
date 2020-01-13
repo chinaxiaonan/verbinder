@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { CommunicationService } from '../communication.service';
+import { ElementRef } from '@angular/core';
 
 @Component({
   selector: 'app-resource',
@@ -11,12 +13,16 @@ export class ResourceComponent implements OnInit {
   selectedValues = null;
   showCard:boolean;
   showExplain:boolean;
+  projectResources: Array<{value: string}> = [];
+  boxColors:Array<boolean> = [];
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient, private comm: CommunicationService, private e:ElementRef) { }
 
   ngOnInit() {
     this.showCard = true;
-    this.showExplain = false;
+    this.showExplain = true;
+    console.log("inited..................");
+    this.boxColors = [false, false, false,false,false,false,false,false, false,false,false,false,false, false];
   }
 
   search(value: string): void {
@@ -30,13 +36,19 @@ export class ResourceComponent implements OnInit {
   }
 
   clickExplain(){
-    this.showExplain = true;
+    this.showExplain = !this.showExplain;
   }
-  closeExplain(){
-    this.showExplain = false;
+
+  changeCard(){
+    this.showCard = !this.showCard;
   }
-  closeCard(){
-    this.showCard = false;
+
+  checkChange1($event){
+    this.showCard = !this.showCard;
+  }
+  
+  checkChange2($event){
+    this.showCard = !this.showCard;
   }
 
 }
