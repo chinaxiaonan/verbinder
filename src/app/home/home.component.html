@@ -1,4 +1,4 @@
-  <div style="float: center;width:100%;height:70px">
+  <div style="width:100%;height:70px">
     <div>
       <img src="../assets/title bar.png" height="70px">
     </div>
@@ -6,7 +6,7 @@
   </div>
 
 
-  <div style="position: center;background-image: url('/assets/Background.png');">
+  <div style="position: center;background-image: url('/assets/Background.png'); padding-bottom: 5%;">
     <div style="margin-left:24.4%;padding-top:7%;">
       <p style="width:203px;color:#2D373C;font-family: ChalkboardSE-Regular;font-size: 48px;letter-spacing: -0.96px;">
         Verbinder
@@ -23,7 +23,7 @@
           <span class="title-name text-style">Write a name of your requirement project</span>
 
           <div class="text-style">
-            <input nz-input name='name' placeholder="clearly express your requirement" [(ngModel)]="requirement"
+            <input nz-input name='name' placeholder="clearly express your requirement" [(ngModel)]="project.name"
               class='form-control' required #name='ngModel' />
 
           </div>
@@ -35,10 +35,10 @@
 
           <label class="title-name text-style" for='industry'>Select Industry</label>
 
-          <div class="text-style">
-            <nz-select class="nz-select form-control" name='industry' nzShowSearch nzAllowClear
+          <div style="margin-left:3.3%; width:642px;">
+            <nz-select class="form-control" name='industry' nzShowSearch nzAllowClear 
               nzPlaceHolder="Industry could be like manufacture,building technology,mobility, etc."
-              [(ngModel)]="selectedValue" required #industry='ngModel'>
+              [(ngModel)]="project.industry" required #industry='ngModel'>
               <nz-option nzLabel="Manufacture" nzValue="Manufacture"></nz-option>
               <nz-option nzLabel="Building technology" nzValue="Building technology"></nz-option>
               <nz-option nzLabel="Mobility" nzValue="Mobility"></nz-option>
@@ -51,7 +51,7 @@
         <div class='form-group'>
           <label class="title-name text-style" for="plan">Specify your requirement planning</label>
           <div class="text-style">
-            <textarea class='form-control' name='plan' rows="4" nz-input [(ngModel)]="reqPlan" required
+            <textarea class='form-control' name='plan' rows="4" nz-input [(ngModel)]="project.requirement" required
               #plan='ngModel'></textarea>
           </div>
 
@@ -78,7 +78,7 @@
           <div class='form-group'>
             <div class="text-style">
               <input class='form-control' nz-input name='deliveryinput'
-                placeholder="E.g. Problem-define workshop, Equipment life forcast" [(ngModel)]="expectDelivery" required
+                placeholder="E.g. Problem-define workshop, Equipment life forcast" [(ngModel)]="project.deliverable" required
                 #deliveryinput='ngModel' />
             </div>
             <div *ngIf="deliveryinput.invalid && (deliveryinput.dirty || deliveryinput.touched)"
@@ -99,5 +99,4 @@
 
       </form>
     </div>
-
   </div>

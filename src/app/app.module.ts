@@ -9,6 +9,7 @@ import { HomeComponent } from './home/home.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ResourceComponent } from './resource/resource.component';
+import { KgraphComponent } from './kgraph/kgraph.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { ResourceComponent } from './resource/resource.component';
     ResultComponent,
     HomeComponent,
     ResourceComponent,
+    KgraphComponent,
     // CorrelationComponent,
     // LinechartComponent
   ],
