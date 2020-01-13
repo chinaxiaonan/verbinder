@@ -10,11 +10,13 @@ export class ResourceComponent implements OnInit {
   listOfOption: Array<{ label: string; value: string }> = [];
   selectedValues = null;
   showCard:boolean;
+  showExplain:boolean;
 
   constructor(private httpClient: HttpClient) { }
 
   ngOnInit() {
     this.showCard = true;
+    this.showExplain = false;
   }
 
   search(value: string): void {
@@ -27,6 +29,12 @@ export class ResourceComponent implements OnInit {
     });
   }
 
+  clickExplain(){
+    this.showExplain = true;
+  }
+  closeExplain(){
+    this.showExplain = false;
+  }
   closeCard(){
     this.showCard = false;
   }

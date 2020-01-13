@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { UploadFile, UploadFilter } from 'ng-zorro-antd/upload';
 import { Observable, Observer } from 'rxjs';
 import { NzMessageService } from 'ng-zorro-antd/message';
+import {CommunicationService} from '../communication.service';
 
 @Component({
   selector: 'app-home',
@@ -16,11 +17,12 @@ export class HomeComponent implements OnInit {
   expectDelivery:string;
   step:number;  // 0: initial stage; 1: add deliverable stage; 2: add resource stage; 3: add technology stage
   btnstatus:boolean;
+  project:any={};
   public first:boolean;
   public nextAvi: boolean;
   public second: boolean;
 
-  constructor(private msg: NzMessageService,private router: Router){}
+  constructor(private msg: NzMessageService,private router: Router, private comm:CommunicationService){}
   
   redirect(){
     this.router.navigate(["result"]);
@@ -28,7 +30,7 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.first = true;
     this.nextAvi = true;
-    this.step = 0;
+    this.step = 3;
     this.btnstatus = false;
 
   }
@@ -94,6 +96,7 @@ export class HomeComponent implements OnInit {
       this.step += 1;
     }
     if(this.step==3){
+      this.comm.setProj(this.project);
       this.router.navigate(["result"]);
     }
     console.log(this.step);
@@ -102,6 +105,6 @@ export class HomeComponent implements OnInit {
    //result page
  redirect2result(){
   this.router.navigate(["result"]);
-}
+ }
 
 }

@@ -3,10 +3,13 @@
   Offer what resources you have now
 </p>
 <p>
-  <span class='section-normal-text'>Resources could be like </span><a class='section-link-text'>data generated from
+  <span class='section-normal-text'>Resources could be like </span><a href='javascript:void(0);' class='section-link-text' (click)='clickExplain();'>data generated from
     equipment records and environment </a><i nz-icon nzType="question-circle" nzTheme="outline" style="font-size: 0.7em; color:#00D9E3"></i>, <a class='section-link-text'>previous
     experiences </a><i nz-icon nzType="question-circle" nzTheme="outline" style="font-size: 0.7em;color:#00D9E3;"></i>
 </p>
+<nz-card style="width: 650px;" [nzExtra]='closeIconTpl2' [nzBordered]='false' *ngIf='showExplain'>
+aaa
+</nz-card>
 <nz-select class='resource-select form-control' name='selectresource' [(ngModel)]='selectedValues' nzMode='tags' nzPlaceHolder="Please select" nzShowSearch nzServerSearch
   (nzOnSearch)="search($event)" required #selectresource='ngModel'>
   <nz-option *ngFor="let option of listOfOption" [nzLabel]="option.label" [nzValue]="option.value"></nz-option>
@@ -50,5 +53,8 @@
 </ng-template>
 <ng-template #titletext>
   <span class='card-title'>For accurately analyze data, we highly recommend you define the data format</span>
+</ng-template>
+<ng-template #closeIconTpl2>
+  <i nz-icon nzType="close" nzTheme="outline" style="font-size: 0.8em;" (click)='closeExplain()'></i>
 </ng-template>
 </div>
