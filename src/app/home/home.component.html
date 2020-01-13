@@ -50,14 +50,14 @@
         </div>
         <div class='form-group'>
           <label class="title-name text-style" for="plan">Specify your requirement planning</label>
-          <div class="text-style">
-            <textarea class='form-control' name='plan' rows="4" nz-input [(ngModel)]="project.requirement" required
+          <div style="margin-left:3.3%;height:80px;width:642px;">
+            <textarea class='form-control' name='plan' rows="3" nz-input [(ngModel)]="project.requirement" required
               #plan='ngModel'></textarea>
           </div>
 
-          <div style="display: flex;margin-left:3.3%">
+          <div style="display: flex;margin-left:3.3%;margin-top:1.1%">
             <nz-upload nzAction="https://jsonplaceholder.typicode.com/posts/" [nzFileList]="fileList" nzMultiple
-              [nzLimit]="2" [nzFilter]="filters" (nzChange)="handleChange($event)">
+              [nzLimit]="2"  [nzFilter]="filters" (nzChange)="handleChange($event)">
               <button nz-button><i nz-icon nzType="upload"></i><span>Upload attachment</span></button>
             </nz-upload>
           </div>
@@ -93,8 +93,8 @@
         </div>
         <app-resource *ngIf='step>1'></app-resource>
         <div class='text-style'>
-          <button class='btn-next-invalid' *ngIf='projectForm.invalid' disabled>Next Step</button>
-          <button class='btn-next-valid' *ngIf='projectForm.valid' (click)='r2next()'>Next Step</button>
+          <button class='btn-next-invalid' *ngIf='step!=3' disabled>Next Step</button>
+          <button class='btn-next-valid' *ngIf='step==3' (click)='r2next()'>Next Step</button>
         </div>
 
       </form>

@@ -23,7 +23,7 @@
         <p class="text">{{project.deliverable}}</p>
         <p class="small-text">Offered Resources</p>
         <button *ngFor="let r of project.resources" class="result-button1"><img src="../assets/icon.png">{{r}}</button>
-        <p class="text">Expected Techologies</p>
+        <p class="small-text">Expected Techologies</p>
         <button *ngFor="let t of project.technologies" class="result-button2">{{t}}</button>
       </div>
       <button class="result-submit" (click)='queryKG();'>Submit</button>

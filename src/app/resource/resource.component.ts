@@ -16,6 +16,8 @@ export class ResourceComponent implements OnInit {
   showExplain:boolean;
   showTechs: boolean;
   boxColors:Array<boolean> = [];
+  selectresource=null;
+  selecttechnologies=null;
 
   constructor(private httpClient: HttpClient, private comm: CommunicationService, private home:HomeComponent) { }
 

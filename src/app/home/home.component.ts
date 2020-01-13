@@ -18,9 +18,7 @@ export class HomeComponent implements OnInit {
   step:number;  // 0: initial stage; 1: add deliverable stage; 2: add resource stage; 3: add technology stage
   btnstatus:boolean;
   project:any={};
-  public first:boolean;
   public nextAvi: boolean;
-  public second: boolean;
 
   constructor(private msg: NzMessageService,private router: Router, private comm:CommunicationService){}
   
@@ -28,7 +26,6 @@ export class HomeComponent implements OnInit {
     this.router.navigate(["result"]);
   }
   ngOnInit() {
-    this.first = true;
     this.nextAvi = true;
     this.step = 3;
     this.btnstatus = false;
@@ -39,11 +36,11 @@ export class HomeComponent implements OnInit {
     {
       name: 'type',
       fn: (fileList: UploadFile[]) => {
-        const filterFiles = fileList.filter(w => ~['image/png'].indexOf(w.type));
-        if (filterFiles.length !== fileList.length) {
-          this.msg.error(`包含文件格式不正确，只支持 png 格式`);
-          return filterFiles;
-        }
+        const filterFiles = fileList.filter(w => ~['txt'].indexOf(w.type));
+        // if (filterFiles.length !== fileList.length) {
+        //   this.msg.error(`包含文件格式不正确，只支持 png 格式`);
+        //   return filterFiles;
+        // }
         return fileList;
       }
     },
@@ -62,9 +59,9 @@ export class HomeComponent implements OnInit {
   fileList = [
     {
       uid: -1,
-      name: 'xxx.png',
+      name: 'test.txt',
       status: 'done',
-      url: 'http://www.baidu.com/xxx.png'
+      url:""
     }
   ];
 
@@ -86,10 +83,10 @@ export class HomeComponent implements OnInit {
   }
 
   //next page
-  redirect2next(){
-    this.first = false;
-    this.second = true;
-  }
+  // redirect2next(){
+  //   this.step1 = false;
+  //   this.step2 = true;
+  // }
 
   r2next(){
     if(this.step < 3){
