@@ -11,13 +11,14 @@ import { Router } from '@angular/router';
   styleUrls: ['./result.component.css']  
 })
 export class ResultComponent implements OnInit {
+  project: any;
   constructor(private http: HttpClient, private comm: CommunicationService, private route:Router) {
     
   }
 
 
   ngOnInit() {
-
+    this.project = this.comm.getProj();
   }
 
   queryKG(){
@@ -27,7 +28,7 @@ export class ResultComponent implements OnInit {
     let project = {
       name:"es",industry:"Manufacture",requirement:"aa",deliverable:"bb",resources:['t1','t2'],technologies:['tt1','tt2','tt3']
     }
-    this.http.get('http://localhost:4500/api/getkgstruct?q='+JSON.stringify(project)).subscribe(data=> {
+    this.http.get('http://localhost:4500/api/getkgstruct?q='+JSON.stringify(this.project)).subscribe(data=> {
       console.log(data);
       this.comm.setDatas(data['result']);
       this.route.navigate(["kgraph"]);

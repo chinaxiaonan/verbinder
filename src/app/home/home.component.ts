@@ -30,7 +30,7 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.first = true;
     this.nextAvi = true;
-    this.step = 0;
+    this.step = 3;
     this.btnstatus = false;
 
   }

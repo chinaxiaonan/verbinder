@@ -39,6 +39,19 @@
   text-align: center;background-color: white;
 }
 
+.boxwhite .box-text {
+  color: #2D373C;
+}
+.boxwhite .section-normal-text {
+  color: #2D373C;
+}
+.boxblue .box-text{
+  color: white;
+}
+.boxblue .section-normal-text {
+  color: white;
+}
+
 .boxblue {
   text-align: center;background-color: #41BECC;
 }
@@ -48,4 +61,12 @@
 font-size: 16px;
 color: #2D373C;
 letter-spacing: -0.32px;
+}
+
+.tag-box {
+  background: #FFFFFF;
+border: 1px solid #41BECC;
+border-radius: 4px;
+width: 6rem;
+text-align: center;
 }

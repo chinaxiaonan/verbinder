@@ -33,7 +33,7 @@ export class KgraphComponent implements OnInit {
 
         this.simulation = d3.forceSimulation()
             //.force('link', d3.forceLink().id(d=>d.id).distance(180))
-            .force('charge_force', d3.forceManyBody().strength(-1000))
+            .force('charge_force', d3.forceManyBody().strength(-700))
             .force('center_force', d3.forceCenter(window.innerWidth / 2, window.innerHeight / 2));
         //.on("tick", this.ticked);
         const resp = this.fillData();
@@ -42,7 +42,7 @@ export class KgraphComponent implements OnInit {
 
         this.simulation.nodes(this.nodes);
 
-        const linkforce = d3.forceLink(this.links).distance(180);
+        const linkforce = d3.forceLink(this.links).distance(150);
         this.simulation.force('link', linkforce);
         const drawedLinks = this.drawLinks(this.links);
         const drawedNodes = this.drawNodes(this.nodes);

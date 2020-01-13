@@ -13,8 +13,8 @@
     <img src="../../assets/dataexplain.png" width="600px">
   </nz-card>
   <p style='padding-bottom: 2%;'></p>
-  <nz-select class='resource-select form-control' name='selectresource' [(ngModel)]='projectResources' nzMode='tags'
-    nzPlaceHolder="Please select" nzShowSearch nzServerSearch (nzOnSearch)="search($event)" [nzMaxMultipleCount]='3'
+  <nz-select class='resource-select form-control' name='selectresource' [(ngModel)]='home.project.resources' nzMode='tags'
+    nzPlaceHolder="Please select resources" nzShowSearch nzServerSearch (nzOnSearch)="searchRes($event)" [nzMaxMultipleCount]='3'
     required #selectresource='ngModel'>
     <nz-option *ngFor="let option of listOfOption" [nzLabel]="option.label" [nzValue]="option.value"></nz-option>
   </nz-select>
@@ -23,10 +23,12 @@
   </div>
   <p style='padding-top: 10px;'>
     <span class='section-normal-text'>Resources you may classify: </span>
-    <nz-tag nzMode='checkable' [nzChecked]='showCard' (nzCheckedChange)='checkChange1($event)'>Data</nz-tag>
-    <nz-tag nzMode='checkable' [nzChecked]='!showCard' (nzCheckedChange)='checkChange2($event)'>Knowledge</nz-tag>
+    <nz-radio-group [(ngModel)]='sourceVal' [nzButtonStyle]="'solid'">
+      <label class='tag-box' nz-radio-button nzValue='data'>具体数值</label>
+      <label class='tag-box' nz-radio-button nzValue='knowledge'>抽象知识</label>
+    </nz-radio-group>
   </p>
-  <nz-card style='width:650px' [nzExtra]='closeIconTpl' [nzBordered]='false' [nzTitle]='titletext' *ngIf='showCard'>
+  <nz-card style='width:650px' [nzExtra]='closeIconTpl' [nzBordered]='false' [nzTitle]='titletext' *ngIf="sourceVal==='data'">
     <nz-card-tab>
       <nz-tabset>
         <nz-tab nzTitle='数据实效'>
@@ -34,19 +36,22 @@
             <div nz-col [nzSpan]='8'>
               <nz-card [ngClass]='{"boxwhite": !boxColors[0], boxblue: boxColors[0]}' [nzType]='inner'
                 (click)='boxColors[0]=!boxColors[0]'>
-                <span class='box-text'>Historical</span>
+                <div><span class='box-text'>历史</span></div>
+                <div><span class='section-normal-text'>历史数据，例如过去的数据记录、故障报告</span></div>
               </nz-card>
             </div>
             <div nz-col [nzSpan]='8'>
               <nz-card [ngClass]='{"boxwhite": !boxColors[1], boxblue: boxColors[1]}'
                 (click)='boxColors[1]=!boxColors[1]'>
-                <span class='box-text'>Real time</span>
+                <div><span class='box-text'>实时</span></div>
+                <div><span class='section-normal-text'>实时数据，比如正在运行中的传感器返回的数值</span></div>
               </nz-card>
             </div>
             <div nz-col [nzSpan]='8'>
               <nz-card [ngClass]='{"boxwhite": !boxColors[2], boxblue: boxColors[2]}'
                 (click)='boxColors[2]=!boxColors[2]'>
-                <span class='box-text'>Static</span>
+                <div><span class='box-text'>静态</span></div>
+                <div><span class='section-normal-text'>外部数据，无时效性，比如一些领域知识</span></div>
               </nz-card>
             </div>
           </div>
@@ -56,19 +61,22 @@
             <div nz-col [nzSpan]='8'>
               <nz-card [ngClass]='{"boxwhite": !boxColors[3], boxblue: boxColors[3]}' [nzType]='inner'
                 (click)='boxColors[3]=!boxColors[3]'>
-                <span class='box-text'>观察</span>
+                <div><span class='box-text'>观察</span></div>
+                <div><span class='section-normal-text'>通过传感器客观记录，或人主观记录等，只能记不能改</span></div>
               </nz-card>
             </div>
             <div nz-col [nzSpan]='8'>
               <nz-card [ngClass]='{"boxwhite": !boxColors[4], boxblue: boxColors[4]}'
                 (click)='boxColors[4]=!boxColors[4]'>
-                <span class='box-text'>设定</span>
+                <div><span class='box-text'>设定</span></div>
+                <div><span class='section-normal-text'>配置数据，可人工设定，如设定空调，产线吞吐量等</span></div>
               </nz-card>
             </div>
             <div nz-col [nzSpan]='8'>
               <nz-card [ngClass]='{"boxwhite": !boxColors[5], boxblue: boxColors[5]}'
                 (click)='boxColors[5]=!boxColors[5]'>
-                <span class='box-text'>标准</span>
+                <div><span class='box-text'>标准</span></div>
+                <div><span class='section-normal-text'>硬性规定，比如生产规范等必须执行的限制条件</span></div>
               </nz-card>
             </div>
           </div>
@@ -78,31 +86,31 @@
             <div nz-col [nzSpan]='4'>
               <nz-card [ngClass]='{"boxwhite": !boxColors[6], boxblue: boxColors[6]}' [nzType]='inner'
                 (click)='boxColors[6]=!boxColors[6]'>
-                <span class='box-text'>文本</span>
+                <div><span class='box-text'>文本</span></div>
               </nz-card>
             </div>
             <div nz-col [nzSpan]='4'>
               <nz-card [ngClass]='{"boxwhite": !boxColors[7], boxblue: boxColors[7]}'
                 (click)='boxColors[7]=!boxColors[7]'>
-                <span class='box-text'>数值</span>
+                <div><span class='box-text'>数值</span></div>
               </nz-card>
             </div>
             <div nz-col [nzSpan]='4'>
               <nz-card [ngClass]='{"boxwhite": !boxColors[8], boxblue: boxColors[8]}'
                 (click)='boxColors[8]=!boxColors[8]'>
-                <span class='box-text'>图像</span>
+                <div><span class='box-text'>图像</span></div>
               </nz-card>
             </div>
             <div nz-col [nzSpan]='4'>
               <nz-card [ngClass]='{"boxwhite": !boxColors[9], boxblue: boxColors[9]}'
                 (click)='boxColors[9]=!boxColors[9]'>
-                <span class='box-text'>音频</span>
+                <div><span class='box-text'>音频</span></div>
               </nz-card>
             </div>
             <div nz-col [nzSpan]='4'>
               <nz-card [ngClass]='{"boxwhite": !boxColors[10], boxblue: boxColors[10]}'
                 (click)='boxColors[10]=!boxColors[10]'>
-                <span class='box-text'>视频</span>
+                <div><span class='box-text'>视频</span></div>
               </nz-card>
             </div>
           </div>
@@ -110,7 +118,7 @@
       </nz-tabset>
     </nz-card-tab>
   </nz-card>
-  <nz-card style='width:650px' [nzExtra]='closeIconTpl1' [nzBordered]='false' [nzTitle]='titletext' *ngIf='!showCard'>
+  <nz-card style='width:650px' [nzExtra]='closeIconTpl1' [nzBordered]='false' [nzTitle]='titletext' *ngIf="sourceVal==='knowledge'">
     <nz-card-tab>
       <nz-tabset>
         <nz-tab nzTitle='知识类别'>
@@ -118,19 +126,22 @@
             <div nz-col [nzSpan]='8'>
               <nz-card [ngClass]='{"boxwhite": !boxColors[11], boxblue: boxColors[11]}' [nzType]='inner'
                 (click)='boxColors[11]=!boxColors[11]'>
-                <span class='box-text'>主观意愿</span>
+                <div><span class='box-text'>主观意愿</span></div>
+                <div><span class='section-normal-text'>对于所属行业或业务流程进行何种改善的主观期望</span></div>
               </nz-card>
             </div>
             <div nz-col [nzSpan]='8'>
               <nz-card [ngClass]='{"boxwhite": !boxColors[12], boxblue: boxColors[12]}'
                 (click)='boxColors[12]=!boxColors[12]'>
-                <span class='box-text'>客观困难</span>
+                <div><span class='box-text'>客观困难</span></div>
+                <div><span class='section-normal-text'>目前所属行业或业务流程中存在的痛点</span></div>
               </nz-card>
             </div>
             <div nz-col [nzSpan]='8'>
               <nz-card [ngClass]='{"boxwhite": !boxColors[13], boxblue: boxColors[13]}'
                 (click)='boxColors[13]=!boxColors[13]'>
-                <span class='box-text'>行业准则</span>
+                <div><span class='box-text'>行业准则</span></div>
+                <div><span class='section-normal-text'>所属行业或业务流程中硬性限制条件，如法律法规</span></div>
               </nz-card>
             </div>
           </div>
@@ -138,15 +149,23 @@
       </nz-tabset>
     </nz-card-tab>
   </nz-card>
-
+  <p><a class='section-link-text'>Any technologies you want to be involved? </a></p>
+  <nz-select class='resource-select form-control' name='selecttechnologies' [(ngModel)]='home.project.technologies' nzMode='tags'
+    nzPlaceHolder="Please select technologies" nzShowSearch nzServerSearch (nzOnSearch)="searchTechs($event)" [nzMaxMultipleCount]='3'
+    required #selecttechnologies='ngModel'>
+    <nz-option *ngFor="let option of listOfTechs" [nzLabel]="option.label" [nzValue]="option.value"></nz-option>
+  </nz-select>
+  <div *ngIf="selecttechnologies.invalid && (selecttechnologies.dirty || selecttechnologies.touched)" class="alert text-style">
+    Technologies are required.
+  </div>
   <ng-template #closeIconTpl>
-    <i nz-icon nzType="close" nzTheme="outline" style="font-size: 0.8em;" (click)='changeCard()'></i>
+    <i nz-icon nzType="close" nzTheme="outline" style="font-size: 0.8em;" (click)="sourceVal=''"></i>
   </ng-template>
   <ng-template #closeIconTpl1>
-    <i nz-icon nzType="close" nzTheme="outline" style="font-size: 0.8em;" (click)='changeCard()'></i>
+    <i nz-icon nzType="close" nzTheme="outline" style="font-size: 0.8em;" (click)="sourceVal=''"></i>
   </ng-template>
   <ng-template #titletext>
-    <span class='card-title'>For accurately analyze data, we highly recommend you define the data format</span>
+    <span class='card-title'>For accurately analyze data, we highly recommend you define the data details</span>
   </ng-template>
   <ng-template #closeIconTpl2>
     <i nz-icon nzType="close" nzTheme="outline" style="font-size: 0.8em;" (click)='closeExplain()'></i>
