@@ -25,9 +25,12 @@ export class ResultComponent implements OnInit {
     console.log("---------");
     //let project = this.comm.getObj();
     //console.log(project);
-    let project = {
+    /* let project = {
       name:"es",industry:"Manufacture",requirement:"aa",deliverable:"bb",resources:['t1','t2'],technologies:['tt1','tt2','tt3']
     }
+    project = {
+      name:"tttt1",industry:"Manufacture",requirement:"aaaa",deliverable:"故障解决方案",resources:['领域设备列表'],technologies:['机器学习']
+    } */
     this.http.get('http://localhost:4500/api/getkgstruct?q='+JSON.stringify(this.project)).subscribe(data=> {
       console.log(data);
       this.comm.setDatas(data['result']);

@@ -26,14 +26,11 @@ export class KgraphComponent implements OnInit {
     }
 
     drawGraph() {
-        const svg = d3.select('svg').attr('width', window.innerWidth).attr('height', window.innerHeight).call(d3.zoom().scaleExtent([0.2, 3]).on('zoom', () => {
-            d3.zoomTransform(d3.selectAll());
-        }));
-        console.log(svg);
-
+        const svg = d3.select('svg').attr('width', window.innerWidth).attr('height', window.innerHeight).call(d3.zoom().scaleExtent([0.2, 3]).on('zoom', this.zoomed));
+        //console.log(d3.select('g'));
         this.simulation = d3.forceSimulation()
             //.force('link', d3.forceLink().id(d=>d.id).distance(180))
-            .force('charge_force', d3.forceManyBody().strength(-700))
+            .force('charge_force', d3.forceManyBody().strength(-200))
             .force('center_force', d3.forceCenter(window.innerWidth / 2, window.innerHeight / 2));
         //.on("tick", this.ticked);
         const resp = this.fillData();
@@ -57,28 +54,28 @@ export class KgraphComponent implements OnInit {
         var temp_links = [];
         var temp = {};
         this.datas.forEach(function (data) {
-            if (!temp[data.source]) {
+            if (!temp[data.source.name]) {
                 temp_nodes.push({
-                    name: data.source
+                    n: data.source
                 });
-                temp[data.source] = 1;
+                temp[data.source.name] = 1;
             }
-            if (!temp[data.target]) {
+            if (!temp[data.target.name]) {
                 temp_nodes.push({
-                    name: data.target
+                    n: data.target
                 });
-                temp[data.target] = 1;
+                temp[data.target.name] = 1;
             }
         });
         this.simulation.nodes(temp_nodes);
         temp = {};
         temp_nodes.forEach(function (node) {
-            temp[node.name] = node.index;
+            temp[node.n.name] = node.index;
         });
         this.datas.forEach(function (data) {
             temp_links.push({
-                source: temp[data.source],
-                target: temp[data.target],
+                source: temp[data.source.name],
+                target: temp[data.target.name],
                 rela: data.rela
             })
         });
@@ -88,6 +85,7 @@ export class KgraphComponent implements OnInit {
     }
 
     drawLinks(links) {
+        console.log(links)
         return d3.select('svg').append('g').selectAll('.link').data(links).enter().append('path').attr("class", "link")
             .attr("id", function (d, i) {
                 return 'linkpath' + i;
@@ -99,7 +97,7 @@ export class KgraphComponent implements OnInit {
 
     drawLinkText(links) {
         const linklabels = d3.select('svg').append("g").selectAll(".linklabel").data(links).enter().append("text").attr("class",
-            "linklabel").attr("dx", 80)
+            "linklabel").attr("dx", 65)
             .attr("dy", 0).attr("id", function (d, i) {
                 return 'linkpath' + i;
             });
@@ -113,18 +111,22 @@ export class KgraphComponent implements OnInit {
     }
 
     drawCircleText(nodes) {
-        return d3.select('svg').append("g").selectAll("circletext").data(nodes).enter().append("text").attr("dy", ".35em")
-            .attr("text-anchor", "middle").attr("x", function (d) {
-                if (d.name.length <= 4) {
+        return d3.select('svg').append("g").selectAll("circletext").data(nodes).enter().append("text").attr("dy", d=>{
+            switch(d.n.type){
+                case 0: return ".4em";
+                default: return ".35em";
+            }
+        }).attr("text-anchor", "middle").attr("x", function (d) {
+                if (d.n.name.length <= 4) {
                     d3.select(this).append('tspan')
                         .attr('x', 0)
                         .attr('y', 2)
                         .text(function () {
-                            return d.name;
+                            return d.n.name;
                         });
                 } else {
-                    var top = d.name.substring(0, 4);
-                    var bot = d.name.substring(4, d.name.length);
+                    var top = d.n.name.substring(0, 4);
+                    var bot = d.n.name.substring(4, d.n.name.length);
                     d3.select(this).text(function () {
                         return '';
                     });
@@ -146,8 +148,18 @@ export class KgraphComponent implements OnInit {
 
     drawNodes(nodes) {
         //const svg = this.state.svg;
-        return d3.select('svg').append("g").selectAll("circle").data(nodes).enter().append("circle").attr("r", 30).attr("class",
-            "circle").call(d3.drag().on("start", this.dragstart.bind(this))
+        console.log(nodes);
+        return d3.select('svg').append("g").selectAll("circle").data(nodes).enter().append("circle").attr("r", d=>{
+            switch(d.n.type){
+                case 0: return 50;
+                default: return 30;
+            }
+        }).attr("class",  d=>{
+            switch(d.n.type){
+                case 0: return "circle-1";
+                default: return "circle-2";
+            }
+        } ).call(d3.drag().on("start", this.dragstart.bind(this))
                 .on("drag", this.dragmove.bind(this))
                 .on("end", this.dragend.bind(this)));
     }
@@ -190,6 +202,10 @@ export class KgraphComponent implements OnInit {
         if (!d3.event.active) this.simulation.alphaTarget(0);
         d3.event.subject.fx = null;
         d3.event.subject.fy = null;
+    }
+
+    zoomed() {
+        d3.selectAll('g').attr('transform', d3.event.transform);
     }
 
 }
