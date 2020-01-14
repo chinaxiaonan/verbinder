@@ -6,8 +6,8 @@
   </div>
 
 
-  <div style="position: center;background-image: url('/assets/Background.png'); padding-bottom: 5%;">
-    <div style="margin-left:24.4%;padding-top:7%;">
+  <div id="backgroundPic" style="background-image: url('/assets/Background.png'); padding-bottom: 2.5%;background-size:no-repeat;">
+    <div style="margin-left:24.4%;padding-top:3%;">
       <p style="width:203px;color:#2D373C;font-family: ChalkboardSE-Regular;font-size: 48px;letter-spacing: -0.96px;">
         Verbinder
       </p>
@@ -18,11 +18,11 @@
     </div>
     <div class="display-div">
       <form #projectForm='ngForm'>
+        <div *ngIf="step==0">
         <div class='form-group'>
-
           <span class="title-name text-style">Write a name of your requirement project</span>
 
-          <div class="text-style">
+          <div style="margin-left:3.3%; width:642px;">
             <input nz-input name='name' placeholder="clearly express your requirement" [(ngModel)]="project.name"
               class='form-control' required #name='ngModel' />
 
@@ -31,8 +31,8 @@
             Name is required.
           </div>
         </div>
-        <div class='form-group'>
 
+        <div class='form-group'>
           <label class="title-name text-style" for='industry'>Select Industry</label>
 
           <div style="margin-left:3.3%; width:642px;">
@@ -48,6 +48,7 @@
             Industry is required.
           </div>
         </div>
+
         <div class='form-group'>
           <label class="title-name text-style" for="plan">Specify your requirement planning</label>
           <div style="margin-left:3.3%;height:80px;width:642px;">
@@ -65,7 +66,8 @@
             Requirement planning is required.
           </div>
         </div>
-        <div *ngIf="step>0">
+      </div>
+        <div *ngIf="step==1">
 
 
           <label class="title-name text-style">Specify what kind of deliverables do you expect</label>
@@ -93,8 +95,8 @@
         </div>
         <app-resource *ngIf='step>1'></app-resource>
         <div class='text-style'>
-          <button class='btn-next-invalid' *ngIf='step!=3' disabled>Next Step</button>
-          <button class='btn-next-valid' *ngIf='step==3' (click)='r2next()'>Next Step</button>
+          <!-- <button class='btn-next-invalid' *ngIf='step==0' disabled>Next Step</button> -->
+          <button class='btn-next-valid' *ngIf='step>=0' (click)='r2next()'>Next Step</button>
         </div>
 
       </form>

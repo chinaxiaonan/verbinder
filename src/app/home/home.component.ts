@@ -27,7 +27,7 @@ export class HomeComponent implements OnInit {
   }
   ngOnInit() {
     this.nextAvi = true;
-    this.step = 3;
+    this.step = 0;
     this.btnstatus = false;
 
   }
@@ -58,10 +58,10 @@ export class HomeComponent implements OnInit {
 
   fileList = [
     {
-      uid: -1,
-      name: 'test.txt',
-      status: 'done',
-      url:""
+      // uid: -1,
+      // name: 'test.txt',
+      // status: 'done',
+      // url:""
     }
   ];
 
@@ -82,20 +82,23 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  //next page
-  // redirect2next(){
-  //   this.step1 = false;
-  //   this.step2 = true;
-  // }
 
   r2next(){
+    var obj = document.getElementById("backgroundPic");
     if(this.step < 3){
       this.step += 1;
+    }
+    if(this.step==1){
+      obj.style.paddingBottom="15.5%";
+    }
+    if(this.step==2){
+      obj.style.paddingBottom="5.5%";
     }
     if(this.step==3){
       this.comm.setProj(this.project);
       this.router.navigate(["result"]);
     }
+    
     console.log(this.step);
   }
   

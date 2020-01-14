@@ -20,6 +20,7 @@ body {
 }
 .text-style{
     display: flex;
+    margin-top:3.3%;
     margin-left:3.3%;
     width:642px;
     height:40px;

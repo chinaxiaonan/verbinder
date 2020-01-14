@@ -7,28 +7,38 @@
       <img src="../assets/logo.png" width="90px" height="32px">
     </div> -->
   </div>
+  <div id="backgroundPic" style="background-image: url('/assets/Background.png'); padding-bottom: 2.5%;background-size:no-repeat;">
+    <div style="margin-left:24.4%;padding-top:3%;">
+        <p style="width:203px;color:#2D373C;font-family: ChalkboardSE-Regular;font-size: 48px;letter-spacing: -0.96px;">
+          Verbinder
+        </p>
+        <p
+          style="margin-top:-3%;height:0.9%;font-family: SiemensSans-Roman; font-size: 18px; color: #2D373C; letter-spacing: -0.36px;">
+          TypesomethingTypesomethingTypesomethingTypesomething
+        </p>
+      </div>
+    <div style="position: center;">
+      <div class="center-backend">
+        <div style="display: flex;margin-left:3.3%">
+          <p class="title-name">Review what you have done</p>        
+        </div>
+        <div class="result-div">
+          <p style="font-family: PingFangSC-Medium; font-size: 16px; color: #2D373C; letter-spacing: -0.32px; line-height: 40px;margin-left:3.3%;">{{project.name}}</p>
+          <p class="small-text">Industry</p>
+          <p class="text">{{project.industry}}</p>
+          <p class="small-text">Project background introduction</p>
+          <p class="text">{{project.requirement}}</p>
+          <p class="small-text">Expectation of deliverlables</p>
+          <p class="text">{{project.deliverable}}</p>
+          <p class="small-text">Offered Resources</p>
+          <button *ngFor="let r of project.resources" class="result-button1"><img src="../assets/icon.png">{{r}}</button>
+          <p class="small-text">Expected Techologies</p>
+          <button *ngFor="let t of project.technologies" class="result-button2">{{t}}</button>
+        </div>
+        <button class="result-submit" (click)='queryKG();'>Submit</button>
+      </div>
 
-  <div style="position: center;">
-    <div class="center-backend">
-      <div style="display: flex;margin-left:3.3%">
-        <p class="title-name">Review what you have done</p>        
-      </div>
-      <div class="result-div">
-        <p style="font-family: PingFangSC-Medium; font-size: 16px; color: #2D373C; letter-spacing: -0.32px; line-height: 40px;margin-left:3.3%;">优化机床加工零件质量</p>
-        <p class="small-text">Industry</p>
-        <p class="text">{{project.industry}}</p>
-        <p class="small-text">Project background introduction</p>
-        <p class="text">{{project.requirement}}</p>
-        <p class="small-text">Expectation of deliverlables</p>
-        <p class="text">{{project.deliverable}}</p>
-        <p class="small-text">Offered Resources</p>
-        <button *ngFor="let r of project.resources" class="result-button1"><img src="../assets/icon.png">{{r}}</button>
-        <p class="small-text">Expected Techologies</p>
-        <button *ngFor="let t of project.technologies" class="result-button2">{{t}}</button>
-      </div>
-      <button class="result-submit" (click)='queryKG();'>Submit</button>
+
     </div>
-
-
-  </div>
+</div>
 </div>
