@@ -34,9 +34,10 @@ body {
   }
 .center-backend{
     background: #F2F5E7;
-    width: 100%;
+    width: 51.2%;
     border-radius: 4px;
     border: solid 1px #e5e5e5;
+    margin-left:24.4%;
 }
 .small-text {
     margin-left:3.3%;

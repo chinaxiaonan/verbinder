@@ -14,15 +14,15 @@
         </p>
         <p
           style="margin-top:-3%;height:0.9%;font-family: SiemensSans-Roman; font-size: 18px; color: #2D373C; letter-spacing: -0.36px;">
-          TypesomethingTypesomethingTypesomethingTypesomething
+          WE CONNECT YOU
         </p>
       </div>
     <div style="position: center;">
       <div class="center-backend">
-        <div style="display: flex;margin-left:24.4%">
+        <div style="display: flex;margin-left:3.3%">
           <p class="title-name">Review what you have done</p>        
         </div>
-        <div style="margin-left:24.4%">
+        <div style="margin-left:3.3%">
           <p style="font-family: PingFangSC-Medium; font-size: 16px; color: #2D373C; letter-spacing: -0.32px; line-height: 40px;margin-left:3.3%;">{{project.name}}</p>
           <p class="small-text">Industry</p>
           <p class="text">{{project.industry}}</p>
@@ -32,39 +32,46 @@
           <p class="text">{{project.deliverable}}</p>
           <p class="small-text">Offered Resources</p>
           <button *ngFor="let r of project.resources" class="result-button1"><img src="../assets/icon.png">{{r}}</button>
-          <p class="small-text">Expected Techologies</p>
+          <p style="margin-left:3.3%;margin-top:1.3%;font-family: SiemensSans-Bold;font-size: 12px;color: #41BECC;letter-spacing: -0.16px;">Expected Techologies</p>
           <button *ngFor="let t of project.technologies" class="result-button2">{{t}}</button>
         </div>
-        <div style="margin-top:20px;height:171px; display: flex;">
-            <img src="../assets/br1.png" style="margin-left:3.3%;">
-            <img src="../assets/br1.png" style="margin-left:3.3%;">
-            <img src="../assets/br1.png" style="margin-left:3.3%;">
+        <div style="margin-left:3.3%;font-family: PingFangSC-Medium;
+        font-size: 18px;
+        color: #2D373C;
+        letter-spacing: -0.36px;
+        line-height: 40px;">
+          Matched Solutions
+        </div>
+        <div style="margin-top:0.6%;">
+            <img src="../assets/br1.png" style="margin-left:3.3%;width:642px">
+            <img src="../assets/br2.png" style="margin-left:3.3%;width:642px">
+            <img src="../assets/br3.png" style="margin-left:3.3%;width:642px">
         </div>
         <!-- <div>
-            <nz-card style='width:497px;' [nzExtra]='closeIconTpl1' [nzBordered]='false' [nzTitle]='titletext' >
+            <nz-card style='width:662px' [nzExtra]='closeIconTpl1' [nzBordered]='false' [nzTitle]='titletext' >
                 <nz-card-tab>
                   <nz-tabset>
                     <nz-tab nzTitle='专家匹配详情'>
-                      <div nz-row [nzGutter]='18'>
+                      <div nz-row [nzGutter]='50'>
                         
-                        <div nz-col [nzSpan]='18'>
-                          <nz-card style="height:171px;">
-                            <div style="height:40px; display: flex;">
-                              <img src="../assets/boss.png" style="margin-left:0px;height:50px">
-
-                              <div style="margin-right:auto">
-                                  <span style="margin-left:20px;font-size:16px;font-family:SiemensSans-Bold">田鹏伟</span>
+                        <div nz-col [nzSpan]='50'>
+                          <nz-card style="height:145px">
+                            <div style="height:33px; display: flex;">
+                              <span class="solution-title">生产质量管理软件设计</span>
+                              <img src="../assets/boss.png" style="margin-left:46.3%;margin-top:5px;">
+                              <div style="margin-left:3.3%;">
+                                  <span class="blue-text">contact</span>
                                   <br />
-                                  <span style="margin-left:20px;font-size:16px;font-family:SiemensSans-Bold"> CT RDA BAM</span>
+                                  <span class="solution-contact">CT RDA BAM ExpertB</span>
                               </div>                             
-                              <img src="../assets/contact.png" style="margin-right:-14px;margin-top:-22px;height:40px">
+                              <img src="../assets/contact.png" style="margin-left:3%;margin-top:7px;height:15px">
                             </div> 
 
-                            <div style="margin-top:7%;height:100px; ">
-                                <span style="font-size:12px;font-weight:bold">匹配内容介绍</span>
+                            <div style="height:105px; ">
+                                <span class="blue-text">Project brief introduction</span>
                                 <br />
                                 <div style="margin-right:auto">
-                                    <span style="font-size:12px;">从历史案</span>
+                                    <span style="font-size:12px;">通过与客户一同对车间生产现有流程和痛点的分析，明确客户的需求，提出管理和提高生产质量的设计概念。设计了供工程师使用的生产质量监控界面，并给出生产计划的改进意见。</span>
                                 </div>
                             </div>
                           </nz-card>

@@ -64,3 +64,23 @@
     color: #fff;
     overflow: hidden;
   }
+.solution-title{
+  font-family: PingFangSC-Medium;
+  font-size: 16px;
+  color: #2D373C;
+  letter-spacing: -0.32px;
+  line-height: 40px;
+}
+.solution-contact{
+  font-family: PingFangSC-Medium;
+  font-size: 12px;
+  color: #2D373C;
+  letter-spacing: -0.24px;
+  line-height: 15px;
+}
+.blue-text{
+  font-family: PingFangSC-Medium; 
+  font-size: 8px; 
+  color: #41BECC; 
+  letter-spacing: -0.16px;
+}
