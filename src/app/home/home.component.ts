@@ -4,6 +4,7 @@ import { UploadFile, UploadFilter } from 'ng-zorro-antd/upload';
 import { Observable, Observer } from 'rxjs';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import {CommunicationService} from '../communication.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-home',
@@ -19,8 +20,9 @@ export class HomeComponent implements OnInit {
   btnstatus:boolean;
   project:any={};
   public nextAvi: boolean;
+  listOfIndustry: Array<{ label: string; value: string }> = [];
 
-  constructor(private msg: NzMessageService,private router: Router, private comm:CommunicationService){}
+  constructor(private httpClient: HttpClient, private msg: NzMessageService,private router: Router, private comm:CommunicationService){}
   
   redirect(){
     this.router.navigate(["result"]);
@@ -29,7 +31,17 @@ export class HomeComponent implements OnInit {
     this.nextAvi = true;
     this.step = 0;
     this.btnstatus = false;
+    this.searchIndustry("");
+  }
 
+  searchIndustry(value: string): void {
+    this.httpClient.get('http://localhost:4500/api/industry?q='+value.trim()).subscribe(data => {
+      const listOfIndustry: Array<{ label: string; value: string }> = [];
+      data['result'].forEach(element => {
+        listOfIndustry.push({ label: element.name, value: element.name });
+      });
+      this.listOfIndustry = listOfIndustry;
+    });
   }
 
   filters: UploadFilter[] = [

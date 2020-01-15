@@ -19,10 +19,10 @@
       </div>
     <div style="position: center;">
       <div class="center-backend">
-        <div style="display: flex;margin-left:3.3%">
+        <div style="display: flex;margin-left:24.4%">
           <p class="title-name">Review what you have done</p>        
         </div>
-        <div class="result-div">
+        <div style="margin-left:24.4%">
           <p style="font-family: PingFangSC-Medium; font-size: 16px; color: #2D373C; letter-spacing: -0.32px; line-height: 40px;margin-left:3.3%;">{{project.name}}</p>
           <p class="small-text">Industry</p>
           <p class="text">{{project.industry}}</p>
@@ -35,10 +35,50 @@
           <p class="small-text">Expected Techologies</p>
           <button *ngFor="let t of project.technologies" class="result-button2">{{t}}</button>
         </div>
-        <button class="result-submit" (click)='queryKG();'>Submit</button>
+        <div style="margin-top:20px;height:171px; display: flex;">
+            <img src="../assets/br1.png" style="margin-left:3.3%;">
+            <img src="../assets/br1.png" style="margin-left:3.3%;">
+            <img src="../assets/br1.png" style="margin-left:3.3%;">
+        </div>
+        <!-- <div>
+            <nz-card style='width:497px;' [nzExtra]='closeIconTpl1' [nzBordered]='false' [nzTitle]='titletext' >
+                <nz-card-tab>
+                  <nz-tabset>
+                    <nz-tab nzTitle='专家匹配详情'>
+                      <div nz-row [nzGutter]='18'>
+                        
+                        <div nz-col [nzSpan]='18'>
+                          <nz-card style="height:171px;">
+                            <div style="height:40px; display: flex;">
+                              <img src="../assets/boss.png" style="margin-left:0px;height:50px">
+
+                              <div style="margin-right:auto">
+                                  <span style="margin-left:20px;font-size:16px;font-family:SiemensSans-Bold">田鹏伟</span>
+                                  <br />
+                                  <span style="margin-left:20px;font-size:16px;font-family:SiemensSans-Bold"> CT RDA BAM</span>
+                              </div>                             
+                              <img src="../assets/contact.png" style="margin-right:-14px;margin-top:-22px;height:40px">
+                            </div> 
+
+                            <div style="margin-top:7%;height:100px; ">
+                                <span style="font-size:12px;font-weight:bold">匹配内容介绍</span>
+                                <br />
+                                <div style="margin-right:auto">
+                                    <span style="font-size:12px;">从历史案</span>
+                                </div>
+                            </div>
+                          </nz-card>
+                        </div>
+                      </div>
+                    </nz-tab>
+                  </nz-tabset>
+                </nz-card-tab>
+              </nz-card>
+        </div> -->
+        <button class="result-submit" (click)='queryKG();'>Show KnowledgeGraph</button>
       </div>
-
-
-    </div>
+        
+        
+      </div>
 </div>
 </div>

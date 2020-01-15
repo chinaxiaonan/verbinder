@@ -14,7 +14,7 @@
   </nz-card>
   <p style='padding-bottom: 2%;'></p>
   <nz-select class='resource-select form-control' name='selectresource' [(ngModel)]='home.project.resources' nzMode='tags'
-    nzPlaceHolder="Please select resources" nzShowSearch nzServerSearch (nzOnSearch)="searchRes($event)" [nzMaxMultipleCount]='3'
+    nzPlaceHolder="Please select resources" nzShowSearch nzServerSearch (nzOnSearch)="searchRes($event)" [nzMaxMultipleCount]='20'
     required #selectresource='ngModel'>
     <nz-option *ngFor="let option of listOfOption" [nzLabel]="option.label" [nzValue]="option.value"></nz-option>
   </nz-select>
@@ -151,7 +151,7 @@
   </nz-card>
   <p><a class='section-link-text'>Any technologies you want to be involved? </a></p>
   <nz-select class='resource-select form-control' name='selecttechnologies' [(ngModel)]='home.project.technologies' nzMode='tags'
-    nzPlaceHolder="Please select technologies" nzShowSearch nzServerSearch (nzOnSearch)="searchTechs($event)" [nzMaxMultipleCount]='3'
+    nzPlaceHolder="Please select technologies" nzShowSearch nzServerSearch (nzOnSearch)="searchTechs($event)" [nzMaxMultipleCount]='20'
     required #selecttechnologies='ngModel'>
     <nz-option *ngFor="let option of listOfTechs" [nzLabel]="option.label" [nzValue]="option.value"></nz-option>
   </nz-select>

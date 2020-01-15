@@ -18,7 +18,7 @@
     </div>
     <div class="display-div">
       <form #projectForm='ngForm'>
-        <div *ngIf="step==0">
+        <div >
         <div class='form-group'>
           <span class="title-name text-style">Write a name of your requirement project</span>
 
@@ -36,13 +36,14 @@
           <label class="title-name text-style" for='industry'>Select Industry</label>
 
           <div style="margin-left:3.3%; width:642px;">
-            <nz-select class="form-control" name='industry' nzShowSearch nzAllowClear 
-              nzPlaceHolder="Industry could be like manufacture,building technology,mobility, etc."
-              [(ngModel)]="project.industry" required #industry='ngModel'>
-              <nz-option nzLabel="Manufacture" nzValue="Manufacture"></nz-option>
-              <nz-option nzLabel="Building technology" nzValue="Building technology"></nz-option>
-              <nz-option nzLabel="Mobility" nzValue="Mobility"></nz-option>
+            
+
+            <nz-select class='resource-select form-control' name='industry'  [(ngModel)]="project.industry" nzMode='default' [nzShowArrow]="false"
+              nzPlaceHolder="Industry could be like manufacture,building technology,mobility, etc." nzShowSearch nzServerSearch (nzOnSearch)="searchIndustry($event)" [nzMaxMultipleCount]='1'
+              required #industry='ngModel'>
+              <nz-option *ngFor="let option of listOfIndustry" [nzLabel]="option.label" [nzValue]="option.value"></nz-option>
             </nz-select>
+
           </div>
           <div *ngIf="industry.invalid && (industry.dirty || industry.touched)" class="alert alert-danger text-style">
             Industry is required.
@@ -67,7 +68,7 @@
           </div>
         </div>
       </div>
-        <div *ngIf="step==1">
+        <div *ngIf="step>1">
 
 
           <label class="title-name text-style">Specify what kind of deliverables do you expect</label>

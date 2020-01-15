@@ -19,15 +19,15 @@
   .result-div{
     margin-top:0.3%;
     margin-left:3.3%;
-    width:642px;
-    height:506px;
+    width:100%;
+    height:100%;
     background: #FFFFFF;
     border: 1px solid #FFFFFF;
   }
   .text{
     font-family: PingFangSC-Regular;
     margin-left:3.3%;
-    font-size: 12px;
+    font-size: 18px;
     color: #2D373C;
     letter-spacing: -0.24px;
     line-height: 20px;
@@ -52,8 +52,15 @@
     background: #41BECC;
     border: 1px solid #41BECC;
     border-radius: 4px;
-    width:102px;
+    width:200px;
     height:40px;
     margin-top:3.3%;
-    margin-left:3.3%;
+    margin-left:27.7%;
+  }
+  .nz-carousel-content {
+    text-align: center;
+    height: 160px;
+    line-height: 160px;
+    color: #fff;
+    overflow: hidden;
   }
