@@ -1,15 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { CommunicationService } from '../communication.service';
 import * as d3 from 'd3';
 
 @Component({
     selector: 'app-kgraph',
     templateUrl: './kgraph.component.html',
-    styleUrls: ['./kgraph.component.css']
+    styleUrls: ['./kgraph.component.css'],
+    encapsulation: ViewEncapsulation.None
 })
 export class KgraphComponent implements OnInit {
-    nodes: Array<string>;
-    links: Array<string>;
+    nodes: Array<any>;
+    links: Array<any>;
     datas: any;
     simulation: any;
 
@@ -19,6 +20,7 @@ export class KgraphComponent implements OnInit {
         this.nodes = [];
         this.links = [];
         this.datas = this.comm.getDatas();
+        //this.datas = JSON.parse('[{"source":{"name":"tttt1","type":0},"target":{"name":"aaaa","type":1},"rela":"Requires"},{"source":{"name":"tttt1","type":0},"target":{"name":"BU","type":2},"rela":"Contacts"},{"source":{"name":"tttt1","type":0},"target":{"name":"Manufacture","type":3},"rela":"Belongs"},{"source":{"name":"tttt1","type":0},"target":{"name":"故障解决方案","type":4},"rela":"Expects"},{"source":{"name":"tttt1","type":0},"target":{"name":"领域设备列表","type":5},"rela":"Has"},{"source":{"name":"tttt1","type":0},"target":{"name":"机器学习","type":6},"rela":"Uses"},{"source":{"name":"预测性维护","type":0},"target":{"name":"制造业","type":3},"rela":"Belongs"},{"source":{"name":"预测性维护","type":0},"target":{"name":"机械故障告警","type":4},"rela":"Expects"},{"source":{"name":"预测性维护","type":0},"target":{"name":"测点历史数据","type":5},"rela":"Has"},{"source":{"name":"预测性维护","type":0},"target":{"name":"测点实时数据","type":5},"rela":"Has"},{"source":{"name":"预测性维护","type":0},"target":{"name":"传感器拓扑图","type":6},"rela":"Uses"},{"source":{"name":"预测性维护","type":0},"target":{"name":"机器学习","type":6},"rela":"Uses"},{"source":{"name":"智能工业诊断","type":0},"target":{"name":"火力发电","type":3},"rela":"Belongs"},{"source":{"name":"智能工业诊断","type":0},"target":{"name":"故障解决方案","type":4},"rela":"Expects"},{"source":{"name":"智能工业诊断","type":0},"target":{"name":"故障案例文档","type":5},"rela":"Has"},{"source":{"name":"智能工业诊断","type":0},"target":{"name":"领域设备列表","type":5},"rela":"Has"},{"source":{"name":"智能工业诊断","type":0},"target":{"name":"机器学习","type":6},"rela":"Uses"},{"source":{"name":"智能工业诊断","type":0},"target":{"name":"自然语言处理","type":6},"rela":"Uses"},{"source":{"name":"智能工业诊断","type":0},"target":{"name":"信息检索","type":6},"rela":"Uses"},{"source":{"name":"工件寿命预测","type":0},"target":{"name":"制造业","type":3},"rela":"Belongs"},{"source":{"name":"工件寿命预测","type":0},"target":{"name":"工件寿命数值","type":4},"rela":"Expects"},{"source":{"name":"工件寿命预测","type":0},"target":{"name":"设备更换记录","type":5},"rela":"Has"},{"source":{"name":"工件寿命预测","type":0},"target":{"name":"设备工艺参数","type":5},"rela":"Has"},{"source":{"name":"工件寿命预测","type":0},"target":{"name":"设备价值","type":5},"rela":"Has"},{"source":{"name":"工件寿命预测","type":0},"target":{"name":"生产利润","type":5},"rela":"Has"},{"source":{"name":"工件寿命预测","type":0},"target":{"name":"机器学习","type":6},"rela":"Uses"},{"source":{"name":"工件寿命预测","type":0},"target":{"name":"对抗生成网络","type":6},"rela":"Uses"},{"source":{"name":"空气质量预测","type":0},"target":{"name":"环境保护","type":3},"rela":"Belongs"},{"source":{"name":"空气质量预测","type":0},"target":{"name":"空气质量数值","type":4},"rela":"Expects"},{"source":{"name":"空气质量预测","type":0},"target":{"name":"历史气象数据","type":5},"rela":"Has"},{"source":{"name":"空气质量预测","type":0},"target":{"name":"实时环境监测数据","type":5},"rela":"Has"},{"source":{"name":"空气质量预测","type":0},"target":{"name":"污染物来源数据","type":5},"rela":"Has"},{"source":{"name":"空气质量预测","type":0},"target":{"name":"机器学习","type":6},"rela":"Uses"},{"source":{"name":"空气质量预测","type":0},"target":{"name":"深度神经网络","type":6},"rela":"Uses"},{"source":{"name":"产品质量优化","type":0},"target":{"name":"制造业","type":3},"rela":"Belongs"},{"source":{"name":"产品质量优化","type":0},"target":{"name":"最优生产参数","type":4},"rela":"Expects"},{"source":{"name":"产品质量优化","type":0},"target":{"name":"生产参数记录","type":5},"rela":"Has"},{"source":{"name":"产品质量优化","type":0},"target":{"name":"产品质量记录","type":5},"rela":"Has"},{"source":{"name":"产品质量优化","type":0},"target":{"name":"机器学习","type":6},"rela":"Uses"},{"source":{"name":"楼宇暖风节能","type":0},"target":{"name":"建筑","type":3},"rela":"Belongs"},{"source":{"name":"楼宇暖风节能","type":0},"target":{"name":"最优配置参数","type":4},"rela":"Expects"},{"source":{"name":"楼宇暖风节能","type":0},"target":{"name":"环境数据","type":5},"rela":"Has"},{"source":{"name":"楼宇暖风节能","type":0},"target":{"name":"楼宇信息","type":5},"rela":"Has"},{"source":{"name":"楼宇暖风节能","type":0},"target":{"name":"参数控制","type":5},"rela":"Has"},{"source":{"name":"楼宇暖风节能","type":0},"target":{"name":"机器学习","type":6},"rela":"Uses"},{"source":{"name":"楼宇暖风节能","type":0},"target":{"name":"强化学习","type":6},"rela":"Uses"},{"source":{"name":"工业节能","type":0},"target":{"name":"制造业","type":3},"rela":"Belongs"},{"source":{"name":"工业节能","type":0},"target":{"name":"最优配置参数","type":4},"rela":"Expects"},{"source":{"name":"工业节能","type":0},"target":{"name":"环境数据","type":5},"rela":"Has"},{"source":{"name":"工业节能","type":0},"target":{"name":"设备相关数据","type":5},"rela":"Has"},{"source":{"name":"工业节能","type":0},"target":{"name":"系统控制参数","type":5},"rela":"Has"},{"source":{"name":"工业节能","type":0},"target":{"name":"机器学习","type":6},"rela":"Uses"},{"source":{"name":"工业节能","type":0},"target":{"name":"强化学习","type":6},"rela":"Uses"},{"source":{"name":"设计思维研讨会","type":0},"target":{"name":"建筑","type":3},"rela":"Belongs"},{"source":{"name":"设计思维研讨会","type":0},"target":{"name":"未来工作方向","type":4},"rela":"Expects"},{"source":{"name":"设计思维研讨会","type":0},"target":{"name":"行业现状介绍","type":5},"rela":"Has"},{"source":{"name":"设计思维研讨会","type":0},"target":{"name":"从业者远期目标","type":5},"rela":"Has"},{"source":{"name":"设计思维研讨会","type":0},"target":{"name":"从业者具体问题讨论","type":5},"rela":"Has"},{"source":{"name":"设计思维研讨会","type":0},"target":{"name":"讨论","type":6},"rela":"Uses"},{"source":{"name":"工业产品交互设计","type":0},"target":{"name":"制造业","type":3},"rela":"Belongs"},{"source":{"name":"工业产品交互设计","type":0},"target":{"name":"新交互界面","type":4},"rela":"Expects"},{"source":{"name":"工业产品交互设计","type":0},"target":{"name":"产品信息","type":5},"rela":"Has"},{"source":{"name":"工业产品交互设计","type":0},"target":{"name":"目标使用群体","type":5},"rela":"Has"},{"source":{"name":"工业产品交互设计","type":0},"target":{"name":"当前痛点","type":5},"rela":"Has"},{"source":{"name":"工业产品交互设计","type":0},"target":{"name":"设计","type":6},"rela":"Uses"}]');
     }
 
     ngAfterViewInit() {
@@ -27,12 +29,10 @@ export class KgraphComponent implements OnInit {
 
     drawGraph() {
         const svg = d3.select('svg').attr('width', window.innerWidth).attr('height', window.innerHeight).call(d3.zoom().scaleExtent([0.2, 3]).on('zoom', this.zoomed));
-        //console.log(d3.select('g'));
         this.simulation = d3.forceSimulation()
             //.force('link', d3.forceLink().id(d=>d.id).distance(180))
             .force('charge_force', d3.forceManyBody().strength(-200))
             .force('center_force', d3.forceCenter(window.innerWidth / 2, window.innerHeight / 2));
-        //.on("tick", this.ticked);
         const resp = this.fillData();
         this.nodes = resp.nodes;
         this.links = resp.links;
@@ -47,6 +47,59 @@ export class KgraphComponent implements OnInit {
         const drawedCircleTexts = this.drawCircleText(this.nodes);
         this.simulation.on('tick', this.ticked.bind(this, drawedLinks, drawedNodes, drawedLinkTexts, drawedCircleTexts));
 
+        d3.selectAll('.circle-1').on('click',(d)=>{
+            for(let i=0; i<this.nodes.length; i++){
+                d3.select('#circle'+i).attr('class', 'circle-1');
+            }
+            for(let i=0; i<this.links.length; i++){
+                d3.select('#linkpath'+i).attr('class', 'link');
+            }
+            
+            this.links.forEach(l=>{
+                if(l.source.n.name===d.n.name||l.target.n.name===d.n.name){
+                    d3.select('#linkpath'+l.index).attr('class','link-select');
+                    if(l.source.n.type===0){
+                        d3.select('#circle'+l.source.index).attr('class', 'circle-select-1');
+                    }
+                    else {
+                        d3.select('#circle'+l.source.index).attr('class', 'circle-select-2');
+                    }
+                    if(l.target.n.type===0){
+                        d3.select('#circle'+l.target.index).attr('class', 'circle-select-1');
+                    }
+                    else {
+                        d3.select('#circle'+l.target.index).attr('class', 'circle-select-2');
+                    }
+                }
+            })
+        });
+        d3.selectAll('.circle-2').on('click', d=>{
+            for(let i=0; i<this.nodes.length; i++){
+                d3.select('#circle'+i).attr('class', 'circle-2');
+            }
+            for(let i=0; i<this.links.length; i++){
+                d3.select('#linkpath'+i).attr('class', 'link');
+            }
+            this.links.forEach(l=>{
+                if(l.source.n.name===d.n.name||l.target.n.name===d.n.name){
+                    d3.select('#linkpath'+l.index).attr('class','link-select');
+                    if(l.source.n.type===0){
+                        d3.select('#circle'+l.source.index).attr('class', 'circle-select-1');
+                    }
+                    else {
+                        d3.select('#circle'+l.source.index).attr('class', 'circle-select-2');
+                    }
+                    if(l.target.n.type===0){
+                        d3.select('#circle'+l.target.index).attr('class', 'circle-select-1');
+                    }
+                    else {
+                        d3.select('#circle'+l.target.index).attr('class', 'circle-select-2');
+                    }
+                   
+                }
+            });
+            
+        });
     }
 
     fillData() {
@@ -111,10 +164,10 @@ export class KgraphComponent implements OnInit {
     }
 
     drawCircleText(nodes) {
-        return d3.select('svg').append("g").selectAll("circletext").data(nodes).enter().append("text").attr("dy", d=>{
+        return d3.select('svg').append("g").selectAll("circletext").data(nodes).enter().append("text").attr("class","circle-text-style").attr("dy", d=>{
             switch(d.n.type){
-                case 0: return ".4em";
-                default: return ".35em";
+                case 0: return ".2em";
+                default: return ".3em";
             }
         }).attr("text-anchor", "middle").attr("x", function (d) {
                 if (d.n.name.length <= 4) {
@@ -159,7 +212,9 @@ export class KgraphComponent implements OnInit {
                 case 0: return "circle-1";
                 default: return "circle-2";
             }
-        } ).call(d3.drag().on("start", this.dragstart.bind(this))
+        }).attr("id", d=>{
+            return "circle"+d.index;
+        }).call(d3.drag().on("start", this.dragstart.bind(this))
                 .on("drag", this.dragmove.bind(this))
                 .on("end", this.dragend.bind(this)));
     }
@@ -183,10 +238,6 @@ export class KgraphComponent implements OnInit {
 
     transform(d) {
         return "translate(" + d.x + "," + d.y + ")";
-    }
-
-    transform2(d) {
-        return "translate(" + (d.x) + "," + d.y + ")";
     }
 
     dragstart() {

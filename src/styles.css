@@ -58,21 +58,7 @@ line-height: 20px;
     font-size:18px
 } */
 
-.link {
-    fill: none;
-    stroke: #666;
-    stroke-width: 1.5px;
-  }
-  .circle-1 {
-    fill: rgb(230, 132, 20);
-    stroke: #333;
-    stroke-width: 1.5px;
-  }
-  .circle-2 {
-    fill: rgb(12, 247, 118);
-    stroke: #333;
-    stroke-width: 1.5px;
-  }
+
   
   .linetext {
     font-size: 12px;
