@@ -1,0 +1,60 @@
+.kgbackground {
+  opacity: 0.85;
+  background: #879BAA;
+  border: 5px solid #FFFFFF;
+  box-shadow: 4px 4px 14px 0 rgba(0, 0, 0, 0.24);
+}
+
+.link {
+  fill: none;
+  stroke: #666;
+  stroke-width: 2.5px;
+}
+
+.link-select{
+    fill: none;
+    stroke: rgb(224, 55, 55);
+    stroke-width: 5px;
+}
+
+.linklabel {
+  font-family: ArialMT;
+  font-size: 0.85em;
+  color: #697882;
+}
+
+.circle-1 {
+  fill: #FFFFFF;
+  box-shadow: 5px 5px 13px 0 rgba(0, 0, 0, 0.05);
+  stroke: #333;
+  stroke-width: 1.5px;
+}
+
+.circle-select-1 {
+    fill: #FFFFFF;
+    box-shadow: 5px 5px 13px 0 rgba(54, 39, 39, 0.5);
+    stroke: rgb(224, 55, 55);
+    stroke-width: 5px;
+}
+
+.circle-2 {
+  fill: #FFFFFF;
+  box-shadow: 5px 5px 13px 0 rgba(0, 0, 0, 0.05);
+  stroke: #333;
+  stroke-width: 1.5px;
+}
+
+.circle-select-2 {
+    fill: #FFFFFF;
+    box-shadow: 5px 5px 13px 0 rgba(0, 0, 0, 0.5);
+    stroke: rgb(224, 55, 55);
+    stroke-width: 5px;
+}
+
+.circle-text-style {
+  font-family: ArialMT;
+  font-size: 1em;
+  color: #697882;
+  letter-spacing: 0;
+  text-align: center;
+}
