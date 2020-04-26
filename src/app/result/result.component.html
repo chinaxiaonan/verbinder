@@ -9,11 +9,11 @@
   </div>
   <div id="backgroundPic" style="background-image: url('/assets/Background.png'); padding-bottom: 2.5%;background-size:no-repeat;">
     <div style="margin-left:24.4%;padding-top:3%;">
-        <p style="width:203px;color:#2D373C;font-family: ChalkboardSE-Regular;font-size: 48px;letter-spacing: -0.96px;">
-          Verbinder
+        <p style="width:203px;color:#2D373C;font-family: monospace;font-size: 48px;letter-spacing: -0.96px;">
+          VerBinder
         </p>
         <p
-          style="margin-top:-3%;height:0.9%;font-family: SiemensSans-Roman; font-size: 18px; color: #2D373C; letter-spacing: -0.36px;">
+          style="margin-top:-3%;height:0.9%;font-family: monospace; font-size: 18px; color: #2D373C; letter-spacing: -0.36px;">
           WE CONNECT YOU
         </p>
       </div>
@@ -43,9 +43,15 @@
           Matched Solutions
         </div>
         <div style="margin-top:0.6%;">
-            <img src="../assets/br1.png" style="margin-left:3.3%;width:642px">
-            <img src="../assets/br2.png" style="margin-left:3.3%;width:642px">
-            <img src="../assets/br3.png" style="margin-left:3.3%;width:642px">
+            <img *ngIf="flag==1 || flag==4" src="../assets/br1.png" style="margin-left:3.3%;width:642px">
+            <img *ngIf="flag==1" src="../assets/br2.png" style="margin-left:3.3%;width:642px">
+            <img *ngIf="flag==1||flag==3" src="../assets/br3.png" style="margin-left:3.3%;width:642px">
+            <img *ngIf="flag==1||flag==4" src="../assets/br4.png" style="margin-left:3.3%;width:642px">
+            <img *ngIf="flag==2||flag==3" src="../assets/br5.png" style="margin-left:3.3%;width:642px">
+            <img *ngIf="flag==2||flag==5" src="../assets/br6.png" style="margin-left:3.3%;width:642px">
+            <img *ngIf="flag==3||flag==6" src="../assets/br7.png" style="margin-left:3.3%;width:642px">
+            <img *ngIf="flag==3||flag==5||flag==6" src="../assets/br8.png" style="margin-left:3.3%;width:642px">
+            <img *ngIf="flag==1||flag==4||flag==3" src="../assets/br9.png" style="margin-left:3.3%;width:642px">
         </div>
         <!-- <div>
             <nz-card style='width:662px' [nzExtra]='closeIconTpl1' [nzBordered]='false' [nzTitle]='titletext' >
@@ -57,12 +63,12 @@
                         <div nz-col [nzSpan]='50'>
                           <nz-card style="height:145px">
                             <div style="height:33px; display: flex;">
-                              <span class="solution-title">生产质量管理软件设计</span>
+                              <span class="solution-title">设计思维研讨会</span>
                               <img src="../assets/boss.png" style="margin-left:46.3%;margin-top:5px;">
                               <div style="margin-left:3.3%;">
                                   <span class="blue-text">contact</span>
                                   <br />
-                                  <span class="solution-contact">CT RDA BAM ExpertB</span>
+                                  <span class="solution-contact">CT RDA UXD Expert B</span>
                               </div>                             
                               <img src="../assets/contact.png" style="margin-left:3%;margin-top:7px;height:15px">
                             </div> 
@@ -71,7 +77,9 @@
                                 <span class="blue-text">Project brief introduction</span>
                                 <br />
                                 <div style="margin-right:auto">
-                                    <span style="font-size:12px;">通过与客户一同对车间生产现有流程和痛点的分析，明确客户的需求，提出管理和提高生产质量的设计概念。设计了供工程师使用的生产质量监控界面，并给出生产计划的改进意见。</span>
+                                    <span style="font-size:12px;">
+                                        通过跨领域专家创新型头脑风暴，激发设计火花，创造新的研究方向。
+                                      </span>
                                 </div>
                             </div>
                           </nz-card>
