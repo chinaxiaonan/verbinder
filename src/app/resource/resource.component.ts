@@ -16,15 +16,19 @@ export class ResourceComponent implements OnInit {
   showExplain:boolean;
   showTechs: boolean;
   boxColors:Array<boolean> = [];
+  selectresource:string;
+  selecttechnologies:string;
 
   constructor(private httpClient: HttpClient, private comm: CommunicationService, private home:HomeComponent) { }
 
   ngOnInit() {
     this.showCard = true;
-    this.showExplain = true;
+    this.showExplain = false;
     this.showTechs = true;
     console.log("inited..................");
     this.boxColors = [false, false, false,false,false,false,false,false, false,false,false,false,false, false];
+    this.searchRes("");
+    this.searchTechs("");
   }
 
   searchRes(value: string): void {

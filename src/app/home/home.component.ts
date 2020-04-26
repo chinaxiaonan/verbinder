@@ -4,6 +4,7 @@ import { UploadFile, UploadFilter } from 'ng-zorro-antd/upload';
 import { Observable, Observer } from 'rxjs';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import {CommunicationService} from '../communication.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-home',
@@ -12,38 +13,47 @@ import {CommunicationService} from '../communication.service';
 })
 export class HomeComponent implements OnInit {
   requirement: string;
-  reqPlan:string;
+  plan:string;
   expection:string;
   expectDelivery:string;
   step:number;  // 0: initial stage; 1: add deliverable stage; 2: add resource stage; 3: add technology stage
   btnstatus:boolean;
   project:any={};
-  public first:boolean;
   public nextAvi: boolean;
-  public second: boolean;
+  listOfIndustry: Array<{ label: string; value: string }> = [];
 
-  constructor(private msg: NzMessageService,private router: Router, private comm:CommunicationService){}
+  constructor(private httpClient: HttpClient, private msg: NzMessageService,private router: Router, private comm:CommunicationService){}
   
   redirect(){
     this.router.navigate(["result"]);
   }
   ngOnInit() {
-    this.first = true;
     this.nextAvi = true;
-    this.step = 3;
+    this.step = 0;
     this.btnstatus = false;
+    this.searchIndustry("");
+  }
 
+  searchIndustry(value: string): void {
+    this.httpClient.get('http://localhost:4500/api/industry?q='+value.trim()).subscribe(data => {
+      const listOfIndustry: Array<{ label: string; value: string }> = [];
+      data['result'].forEach(element => {
+        listOfIndustry.push({ label: element.name, value: element.name });
+      });
+      this.listOfIndustry = listOfIndustry;
+    });
   }
 
   filters: UploadFilter[] = [
     {
       name: 'type',
       fn: (fileList: UploadFile[]) => {
-        const filterFiles = fileList.filter(w => ~['image/png'].indexOf(w.type));
-        if (filterFiles.length !== fileList.length) {
-          this.msg.error(`包含文件格式不正确，只支持 png 格式`);
-          return filterFiles;
-        }
+        const filterFiles = fileList.filter(w => ~['txt'].indexOf(w.type));
+        
+        // if (filterFiles.length !== fileList.length) {
+        //   this.msg.error(`包含文件格式不正确，只支持 png 格式`);
+        //   return filterFiles;
+        // }
         return fileList;
       }
     },
@@ -61,10 +71,10 @@ export class HomeComponent implements OnInit {
 
   fileList = [
     {
-      uid: -1,
-      name: 'xxx.png',
-      status: 'done',
-      url: 'http://www.baidu.com/xxx.png'
+      // uid: -1,
+      // name: 'test.txt',
+      // status: 'done',
+      // url:""
     }
   ];
 
@@ -78,6 +88,7 @@ export class HomeComponent implements OnInit {
     // 3. filter successfully uploaded files according to response from server
     // tslint:disable-next-line:no-any
     this.fileList = fileList.filter((item: any) => {
+      this.project.requirement="我们可否研发一套智能化系统，从历史案例库中挖掘知识脉络，行程自动化的案例检索、原因分析与方案推荐，从而吸住相关人员进行故障诊断。根据专家经验及从案例数据中提取的领域知识建智能化分析模型，着重通过检索相似历史案例或匹配标准故障描述的方式推荐可能的故障原因及解决方案。";
       if (item.response) {
         return item.response.status === 'success';
       }
@@ -85,20 +96,23 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  //next page
-  redirect2next(){
-    this.first = false;
-    this.second = true;
-  }
 
   r2next(){
+    var obj = document.getElementById("backgroundPic");
     if(this.step < 3){
       this.step += 1;
+    }
+    if(this.step==1){
+      obj.style.paddingBottom="15.5%";
+    }
+    if(this.step==2){
+      obj.style.paddingBottom="5.5%";
     }
     if(this.step==3){
       this.comm.setProj(this.project);
       this.router.navigate(["result"]);
     }
+    
     console.log(this.step);
   }
   

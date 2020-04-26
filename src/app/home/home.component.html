@@ -6,23 +6,23 @@
   </div>
 
 
-  <div style="position: center;background-image: url('/assets/Background.png'); padding-bottom: 5%;">
-    <div style="margin-left:24.4%;padding-top:7%;">
-      <p style="width:203px;color:#2D373C;font-family: ChalkboardSE-Regular;font-size: 48px;letter-spacing: -0.96px;">
-        Verbinder
+  <div id="backgroundPic" style="background-image: url('/assets/Background.png'); padding-bottom: 2.5%;background-size:no-repeat;">
+    <div style="margin-left:24.4%;padding-top:3%;">
+      <p style="width:203px;color:#2D373C;font-family:monospace;font-size: 48px;letter-spacing: -0.96px;">
+        VerBinder
       </p>
       <p
-        style="margin-top:-3%;height:0.9%;font-family: SiemensSans-Roman; font-size: 18px; color: #2D373C; letter-spacing: -0.36px;">
-        TypesomethingTypesomethingTypesomethingTypesomething
+        style="margin-top:-3%;height:0.9%;font-family: monospace; font-size: 18px; color: #2D373C; letter-spacing: -0.36px;">
+        WE CONNECT YOU
       </p>
     </div>
     <div class="display-div">
       <form #projectForm='ngForm'>
+        <div >
         <div class='form-group'>
-
           <span class="title-name text-style">Write a name of your requirement project</span>
 
-          <div class="text-style">
+          <div style="margin-left:3.3%; width:642px;">
             <input nz-input name='name' placeholder="clearly express your requirement" [(ngModel)]="project.name"
               class='form-control' required #name='ngModel' />
 
@@ -31,33 +31,35 @@
             Name is required.
           </div>
         </div>
-        <div class='form-group'>
 
+        <div class='form-group'>
           <label class="title-name text-style" for='industry'>Select Industry</label>
 
           <div style="margin-left:3.3%; width:642px;">
-            <nz-select class="form-control" name='industry' nzShowSearch nzAllowClear 
-              nzPlaceHolder="Industry could be like manufacture,building technology,mobility, etc."
-              [(ngModel)]="project.industry" required #industry='ngModel'>
-              <nz-option nzLabel="Manufacture" nzValue="Manufacture"></nz-option>
-              <nz-option nzLabel="Building technology" nzValue="Building technology"></nz-option>
-              <nz-option nzLabel="Mobility" nzValue="Mobility"></nz-option>
+            
+
+            <nz-select class='resource-select form-control' name='industry'  [(ngModel)]="project.industry" nzMode='default' [nzShowArrow]="false"
+              nzPlaceHolder="Industry could be like manufacture,building technology,mobility, etc." nzShowSearch nzServerSearch (nzOnSearch)="searchIndustry($event)" [nzMaxMultipleCount]='1'
+              required #industry='ngModel'>
+              <nz-option *ngFor="let option of listOfIndustry" [nzLabel]="option.label" [nzValue]="option.value"></nz-option>
             </nz-select>
+
           </div>
           <div *ngIf="industry.invalid && (industry.dirty || industry.touched)" class="alert alert-danger text-style">
             Industry is required.
           </div>
         </div>
+
         <div class='form-group'>
           <label class="title-name text-style" for="plan">Specify your requirement planning</label>
-          <div class="text-style">
-            <textarea class='form-control' name='plan' rows="4" nz-input [(ngModel)]="project.requirement" required
+          <div style="margin-left:3.3%;height:80px;width:642px;">
+            <textarea class='form-control' name='plan' rows="3" nz-input [(ngModel)]="project.requirement" required
               #plan='ngModel'></textarea>
           </div>
 
-          <div style="display: flex;margin-left:3.3%">
+          <div style="display: flex;margin-left:3.3%;margin-top:1.1%">
             <nz-upload nzAction="https://jsonplaceholder.typicode.com/posts/" [nzFileList]="fileList" nzMultiple
-              [nzLimit]="2" [nzFilter]="filters" (nzChange)="handleChange($event)">
+              [nzLimit]="2"  [nzFilter]="filters" (nzChange)="handleChange($event)">
               <button nz-button><i nz-icon nzType="upload"></i><span>Upload attachment</span></button>
             </nz-upload>
           </div>
@@ -65,6 +67,7 @@
             Requirement planning is required.
           </div>
         </div>
+      </div>
         <div *ngIf="step>0">
 
 
@@ -93,8 +96,8 @@
         </div>
         <app-resource *ngIf='step>1'></app-resource>
         <div class='text-style'>
-          <button class='btn-next-invalid' *ngIf='projectForm.invalid' disabled>Next Step</button>
-          <button class='btn-next-valid' *ngIf='projectForm.valid' (click)='r2next()'>Next Step</button>
+          <!-- <button class='btn-next-invalid' *ngIf='step==0' disabled>Next Step</button> -->
+          <button class='btn-next-valid' *ngIf='step>=0' (click)='r2next()'>Next Step</button>
         </div>
 
       </form>

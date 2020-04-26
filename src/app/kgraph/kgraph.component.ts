@@ -180,6 +180,9 @@ export class KgraphComponent implements OnInit {
                 } else {
                     var top = d.n.name.substring(0, 4);
                     var bot = d.n.name.substring(4, d.n.name.length);
+                    if(d.n.name.length>10){
+                        bot = d.n.name.substring(4,9)+"...";
+                    }
                     d3.select(this).text(function () {
                         return '';
                     });
