@@ -1,105 +1,97 @@
-  <div style="width:100%;height:70px">
-    <div>
-      <img src="../assets/title bar.png" height="70px">
+<div class="top-div">
+  <div nz-row class="top-div-content">
+    <div nz-col [nzSpan]="15" class="top-div-content-text">
+      <div class="ver-app-title"><span style="font-size: 48px;">VerBinder</span><br/><span>- Ver</span><span style="opacity: 0.7;">tical </span><span>B</span><span style="opacity: 0.7;">usiness F</span><span>inder</span> </div>
+      <div class="search-hint-title">{{'ver.main.searchlabel'|translate}}</div>
+      <div class="row-btn-search"><button nz-button class="btn-search" (click)="toSearch()">{{'ver.main.btnsearch'|translate}}</button></div>
     </div>
-
+    <div nz-col [nzSpan]="9" class="div-slogans">
+        <nz-carousel nzAutoPlay [nzDots]=false [nzAutoPlaySpeed]=3500 style="height:125px;">
+          <div nz-carousel-content style="display: flex;" class="slogan-text" [innerHTML]="'ver.main.slogan.en'|translate"></div>
+          <div nz-carousel-content style="display: flex;" class="slogan-text" [innerHTML]="'ver.main.slogan.cn1'|translate"></div>
+          <div nz-carousel-content style="display: flex;" class="slogan-text" [innerHTML]="'ver.main.slogan.de'|translate"></div>
+          <div nz-carousel-content style="display: flex;" class="slogan-text" [innerHTML]="'ver.main.slogan.cn2'|translate"></div>
+        </nz-carousel>
+    </div>
   </div>
-
-
-  <div id="backgroundPic" style="background-image: url('/assets/Background.png'); padding-bottom: 2.5%;background-size:no-repeat;">
-    <div style="margin-left:24.4%;padding-top:3%;">
-      <p style="width:203px;color:#2D373C;font-family:monospace;font-size: 48px;letter-spacing: -0.96px;">
-        VerBinder
-      </p>
-      <p
-        style="margin-top:-3%;height:0.9%;font-family: monospace; font-size: 18px; color: #2D373C; letter-spacing: -0.36px;">
-        WE CONNECT YOU
-      </p>
-    </div>
-    <div class="display-div">
-      <form #projectForm='ngForm'>
-        <div >
-        <div class='form-group'>
-          <span class="title-name text-style">Write a name of your requirement project</span>
-
-          <div style="margin-left:3.3%; width:642px;">
-            <input nz-input name='name' placeholder="clearly express your requirement" [(ngModel)]="project.name"
-              class='form-control' required #name='ngModel' />
-
+</div>
+<div class="industry-div">
+  <div nz-row class="section-title"><label>{{'ver.main.industrylabel'|translate}}</label></div>
+  <nz-list class="industry-list" [nzDataSource]="industrieslist" [nzRenderItem]="industry" [nzGrid]="{gutter:24, span:6}">
+    <ng-template #industry let-industry>
+      <nz-list-item [nzContent]="nzContent">
+        <ng-template #nzContent>
+          <div class="industry-card" id="cad_{{industry.tag}}" (mouseover)="onhover($event);" (mouseleave)="onleave($event)" (click)="toIndustry(industry.id)">
+            <img [src]='industry.img' id="img_{{industry.tag}}">
+            <label id="lbl_{{industry.tag}}" class="industry-text-name">{{industry.name|translate}}</label>
           </div>
-          <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger text-style">
-            Name is required.
-          </div>
-        </div>
-
-        <div class='form-group'>
-          <label class="title-name text-style" for='industry'>Select Industry</label>
-
-          <div style="margin-left:3.3%; width:642px;">
-            
-
-            <nz-select class='resource-select form-control' name='industry'  [(ngModel)]="project.industry" nzMode='default' [nzShowArrow]="false"
-              nzPlaceHolder="Industry could be like manufacture,building technology,mobility, etc." nzShowSearch nzServerSearch (nzOnSearch)="searchIndustry($event)" [nzMaxMultipleCount]='1'
-              required #industry='ngModel'>
-              <nz-option *ngFor="let option of listOfIndustry" [nzLabel]="option.label" [nzValue]="option.value"></nz-option>
-            </nz-select>
-
-          </div>
-          <div *ngIf="industry.invalid && (industry.dirty || industry.touched)" class="alert alert-danger text-style">
-            Industry is required.
-          </div>
-        </div>
-
-        <div class='form-group'>
-          <label class="title-name text-style" for="plan">Specify your requirement planning</label>
-          <div style="margin-left:3.3%;height:80px;width:642px;">
-            <textarea class='form-control' name='plan' rows="3" nz-input [(ngModel)]="project.requirement" required
-              #plan='ngModel'></textarea>
-          </div>
-
-          <div style="display: flex;margin-left:3.3%;margin-top:1.1%">
-            <nz-upload nzAction="https://jsonplaceholder.typicode.com/posts/" [nzFileList]="fileList" nzMultiple
-              [nzLimit]="2"  [nzFilter]="filters" (nzChange)="handleChange($event)">
-              <button nz-button><i nz-icon nzType="upload"></i><span>Upload attachment</span></button>
-            </nz-upload>
-          </div>
-          <div *ngIf="plan.invalid && (plan.dirty || plan.touched)" class="alert alert-danger text-style">
-            Requirement planning is required.
-          </div>
+        </ng-template>
+      </nz-list-item>
+    </ng-template>
+  </nz-list>
+  <div nz-row class="div-checkmore"><button nz-button class="btn-checkmore">{{"ver.main.checkmore"|translate}}</button>
+  </div>
+</div>
+<div class="tech-div">
+  <div nz-row class="section-title"><label>{{'ver.main.techlabel'|translate}}</label></div>
+  <div class="swiper-container tech-container">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide" *ngFor="let tech of technologieslist">
+        <div class="tech-card">
+          <img [src]="tech.img">
+          <label class="tech-name-text">{{tech.name|translate}}</label>
+          <label class="tech-desc-text">{{tech.desciption}}</label>
         </div>
       </div>
-        <div *ngIf="step>0">
-
-
-          <label class="title-name text-style">Specify what kind of deliverables do you expect</label>
-
-          <div style="display: flex;margin-left:3.3%">
-            <p class="small-text2">The kind of deliverable could be like <a>clearly understand the problems,specific
-                ways of
-                solution</a></p>
-          </div>
-          <div class='form-group'>
-            <div class="text-style">
-              <input class='form-control' nz-input name='deliveryinput'
-                placeholder="E.g. Problem-define workshop, Equipment life forcast" [(ngModel)]="project.deliverable" required
-                #deliveryinput='ngModel' />
-            </div>
-            <div *ngIf="deliveryinput.invalid && (deliveryinput.dirty || deliveryinput.touched)"
-              class="alert alert-danger text-style">
-              Expected delivery is required.
-            </div>
-          </div>
-          <div style="display: flex;margin-left:3.3%">
-            <p class="small-text2"> Deliverables you may interested in: <a>Problem-define workshop Equipment life
-                forcast</a></p>
-          </div>
-        </div>
-        <app-resource *ngIf='step>1'></app-resource>
-        <div class='text-style'>
-          <!-- <button class='btn-next-invalid' *ngIf='step==0' disabled>Next Step</button> -->
-          <button class='btn-next-valid' *ngIf='step>=0' (click)='r2next()'>Next Step</button>
-        </div>
-
-      </form>
     </div>
   </div>
+  <div nz-row class="div-checkmore"><button nz-button class="btn-checkmore">{{"ver.main.checkmore"|translate}}</button></div>
+</div>
+<div class="case-div">
+  <div nz-row class="section-title"><label>{{'ver.main.caselabel'|translate}}</label></div>
+  <div nz-row style="margin-top: 70px;">
+    <div nz-col [nzSpan]="6">
+      <ul nz-menu #casemenu (nzClick)="changemenuselect($event)">
+        <li nz-menu-item #casemenuitem class="case-menu-item" *ngFor="let case of caseslist; let i=index"
+          id="item_{{i}}">
+            <img class="case-icon element-hide" id="caseicon_{{i}}">
+            <img class="case-arrow-icon" id="casearrow_{{i}}">
+            <label class="case-menu-item-text" id="casetext_{{i}}">{{case.name}}</label>
+            <img id="casebigarrow_{{i}}" class="element-hide case-big-arrow">
+        </li>
+      </ul>
+    </div>
+    <div nz-col [nzSpan]="18" class="case-detail-body">
+      <div nz-row>
+        <div class="case-detail-title"> <label>具体案例1</label></div>
+      </div>
+      <div nz-row class="case-detail-intro">
+        <label>具体案例1介绍具体案例，1介绍具体案例1介绍具体案例1介绍具体，案例1介绍具体案例1介绍具体案例1介绍具体案例1介绍具体案例1，介绍具体案例1介绍具体案例1介绍具体案，例1介绍具体案，例1介绍具体案例1介绍具体案例1介绍，具体案例1介绍具体，案例1介绍具体案例1介绍具体案例1介绍具体案例1介绍具体案例1介绍具体案例1</label>
+      </div>
+      <nz-divider></nz-divider>
+      <div nz-row style="margin-top: 30px;">
+        <div nz-col [nzSpan]="7" style="text-align: center;">
+          <div class="caseintro-text-sub1">设备制造</div>
+          <div class="caseintro-text-sub2">行业</div>
+        </div>
+        <div nz-col [nzSpan]="1">
+          <nz-divider nzType="vertical"></nz-divider>
+        </div>
+        <div nz-col [nzSpan]="7" style="text-align: center;">
+          <div class="caseintro-text-sub1">数字化工厂</div>
+          <div class="caseintro-text-sub2">技术</div>
+        </div>
+        <div nz-col [nzSpan]="1">
+          <nz-divider nzType="vertical"></nz-divider>
+        </div>
+        <div nz-col [nzSpan]="7" style="text-align: center;">
+          <div class="caseintro-text-sub1">生产效率提升30%</div>
+          <div class="caseintro-text-sub2">效益</div>
+        </div>
+      </div>
+      <div nz-row class="caseintro-checkdetail">{{'ver.main.checkdetail'|translate}}</div>
+
+    </div>
+  </div>
+</div>
+<div class="footer-div"></div>

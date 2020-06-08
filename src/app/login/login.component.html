@@ -1,0 +1,77 @@
+<div style="padding: 20px 30px;" *ngIf="curlogin">
+<form nz-form [formGroup]="validateLoginForm" class="login-form" (ngSubmit)="login()">
+  <nz-form-item>
+    <label>{{'ver.main.login.login'|translate}}</label>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-control nzErrorTip="{{'ver.main.login.errorusername'|translate}}">
+      <nz-input-group nzPrefixIcon="user">
+        <input type="text" nz-input formControlName="controlUserName" placeholder="{{'ver.main.login.namehint'|translate}}" />
+      </nz-input-group>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-control nzErrorTip="{{'ver.main.login.erroruserpwd'|translate}}">
+      <nz-input-group nzPrefixIcon="lock">
+        <input type="password" nz-input formControlName="controlUserPwd" placeholder="{{'ver.main.login.pwdhint'|translate}}" />
+      </nz-input-group>
+    </nz-form-control>
+  </nz-form-item>
+  <ng-container *ngIf="loginfail">
+    <span style="color: red;">{{'ver.main.login.loginfail'|translate}}</span>
+  </ng-container>
+  <nz-form-item>
+    <nz-form-control>
+      <button nz-button class="login-form-button" [nzType]="'primary'">{{'ver.main.login.login'|translate}}</button>
+      Or
+      <a href="javascript:void(0);" (click)="toggleForm()">{{'ver.main.login.tosignin'|translate}}</a>
+    </nz-form-control>
+  </nz-form-item>
+</form>
+</div>
+<div style="padding: 20px 30px;" *ngIf="!curlogin">
+  <form nz-form [formGroup]="validateSigninForm" class="login-form" (ngSubmit)="createUser()">
+    <nz-form-item>
+      <label>{{'ver.main.login.signin'|translate}}</label>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-control nzErrorTip="{{'ver.main.login.errorusername'|translate}}">
+        <nz-input-group nzPrefixIcon="user">
+          <input type="text" nz-input formControlName="controlUserName" placeholder="{{'ver.main.login.namehint'|translate}}" />
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-control nzErrorTip="{{'ver.main.login.erroruserpwd'|translate}}">
+        <nz-input-group nzPrefixIcon="lock">
+          <input type="password" nz-input formControlName="controlUserPwd" placeholder="{{'ver.main.login.pwdhint'|translate}}" />
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-control [nzErrorTip]="errorTpl">
+        <nz-input-group nzPrefixIcon="lock">
+          <input type="password" nz-input formControlName="controlUserPwdRepeat" placeholder="{{'ver.main.login.pwdaghint'|translate}}" />
+        </nz-input-group>
+        <ng-template #errorTpl let-control>
+          <ng-container *ngIf="control.hasError('required')">
+            {{'ver.main.login.erroruserpwd'|translate}}
+          </ng-container>
+          <ng-container *ngIf="control.hasError('notsame')">
+            {{'ver.main.login.errornotsame'|translate}}
+          </ng-container>
+        </ng-template>
+      </nz-form-control>
+    </nz-form-item>
+    <ng-container *ngIf="userexist">
+      <span style="color: red;">{{'ver.main.login.userexist'|translate}}</span>
+    </ng-container>
+    <nz-form-item>
+      <nz-form-control>
+        <button nz-button class="login-form-button" [nzType]="'primary'">{{'ver.main.login.signin'|translate}}</button>
+        Or
+        <a href="javascript:void(0);" (click)="toggleForm()">{{'ver.main.login.tologin'|translate}}</a>
+      </nz-form-control>
+    </nz-form-item>
+  </form>
+</div>

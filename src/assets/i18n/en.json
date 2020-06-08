@@ -1,0 +1,26 @@
+{
+    "ver":{
+        "main":{
+            "login":"Login",
+            "searchlabel":"",
+            "searchlabelformat":"",
+            "searchinputholder":"",
+            "btnsearch":"Search",
+            "industrylabel":"",
+            "industry":"行业",
+            "techlabel":"",
+            "caselabel":"",
+            "casetype":"案例类别"
+        },
+        "industry":{
+            "assocase":"",
+            "cust":"Customer",
+            "value":"Value",
+            "assorg":""
+        },
+        "case":{
+            "home":"Home",
+            "contacttitle":""
+        }
+    }
+}

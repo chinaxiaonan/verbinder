@@ -4,6 +4,8 @@ import { ResultComponent } from './result/result.component';
 import { HomeComponent } from './home/home.component';
 import { KgraphComponent } from './kgraph/kgraph.component';
 import { RequirementComponent } from './requirement/requirement.component';
+import { IndustryComponent } from './industry/industry.component';
+import { SearchComponent } from './search/search.component';
 
 const routes: Routes = [
   {
@@ -15,6 +17,14 @@ const routes: Routes = [
     path: 'home',
     component: HomeComponent
   } ,
+  {
+    path: 'search',
+    component: SearchComponent
+  },
+  {
+    path: 'industry',
+    component: IndustryComponent
+  },
   {
     path: 'result',
     component: ResultComponent

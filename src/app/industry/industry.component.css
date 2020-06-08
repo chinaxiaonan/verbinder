@@ -1,0 +1,58 @@
+.industry-top {
+  background-image: url(../../assets/prod/second-top-bg.png);
+  background-repeat: no-repeat;
+  height: 360px;
+  padding: 68px 160px;
+  display: flex;
+}
+
+.top-intro {
+  flex-direction: column;
+  width: 720px;
+  padding-right: 79px;
+}
+
+.top-thumb {
+    max-width: 400px;
+    max-height: 225px;
+}
+
+.top-intro-title {
+  font-family: SiemensSansGlobal-Bold;
+  font-size: 24px;
+  color: #FFFFFF;
+  letter-spacing: 0;
+}
+
+.top-intro-desc {
+  font-family: SiemensSansGlobal-Regular;
+  font-size: 14px;
+  color: #FFFFFF;
+  letter-spacing: 0;
+  line-height: 24px;
+}
+
+.industry-cases {
+  padding: 30px 160px;
+}
+
+.industry-cases-title {
+  font-family: SiemensSansGlobal-Bold;
+  font-size: 16px;
+  color: #6A6A6A;
+  letter-spacing: 0;
+}
+
+.case-cust {
+  font-family: SiemensSansGlobal-Bold;
+  font-size: 14px;
+  color: #6A6A6A;
+  letter-spacing: 0;
+}
+
+.case-intro {
+  font-family: SiemensSansGlobal-Regular;
+  font-size: 14px;
+  color: #999999;
+  letter-spacing: 0;
+}

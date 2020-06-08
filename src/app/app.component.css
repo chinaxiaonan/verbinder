@@ -1,0 +1,15 @@
+@media screen {
+  .main-layout {
+    display: flex;
+    flex-direction: column;
+    background-image: url('../assets/prod/bg.png');
+    width: 1440px;
+    margin: 0 auto;
+  }
+
+  .top-header {
+    width: 1440px;
+    position: fixed;
+    z-index: 99;
+  }
+}

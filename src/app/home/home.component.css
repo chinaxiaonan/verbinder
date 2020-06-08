@@ -1,36 +1,336 @@
-.nz-select {
-  width: 100%;
-}
+@media screen {
+  .top-div {
+    background-image: url('../../assets/prod/top-bg.png');
+    background-repeat: no-repeat;
+    height: 436px;
+  }
 
-.display-div {
-  width: 737px;
-  height: 67.6%;
-  border-radius: 4px;
-  border: solid 1px #e5e5e5;
-  background: #F2F5E7;
-  margin-left: 24.4%;
-  margin-top: 1.6%;
-  padding-bottom: 4%;
-}
+  .top-div-content {
+    margin: 0px 225px 0px 270px;
+  }
 
-.small-button {
-  width: 132px;
-  height: 20px;
-  background: #FFFFFF;
-}
+  .top-div-content-text {
+    margin-top: 36px;
+  }
 
-.btn-next-invalid {
-  background: #E8E8E8;
-  border: 1px solid #C5C5C5;
-  border-radius: 4px;
-  width: 102px;
-  height: 40px;
-}
+  .div-slogans {
+    margin-top: 46px;
+    padding: 0px 40px 0px 30px;
+    width: 235px;
+    height: 154px;
+    background-image: url(../../assets/prod/icon-dialog@1x.png);
+  }
 
-.btn-next-valid {
-  background: #41BECC;
-  border: 1px solid #41BECC;
-  border-radius: 4px;
-  width: 102px;
-  height: 40px
+  .slogan-text {
+    align-items: center;
+    justify-content: center;
+    font-family: SiemensSansGlobal-Bold;
+    font-size: 18px;
+    color: #FAFAFA;
+    letter-spacing: 0;
+    text-align: center;
+  }
+
+  .ver-app-greeting {
+    opacity: 0.7;
+    font-family: SiemensSansGlobal-Bold;
+    font-size: 32px;
+    color: #FAFAFA;
+    letter-spacing: 0;
+  }
+
+  .ver-app-title {
+    font-family: SiemensSansGlobal-Bold;
+    font-size: 32px;
+    color: #FAFAFA;
+    letter-spacing: 0;
+  }
+
+  .search-hint-title {
+    margin-top: 24px;
+    font-family: "SiemensSansGlobal-Bold";
+    font-size: 14px;
+    color: #FFFFFF;
+    letter-spacing: 0;
+    line-height: 28px;
+  }
+
+  .row-btn-search {
+    margin-top: 10px;
+  }
+
+  .ver-title-slogans {
+    text-align: center;
+    height: 50px;
+    margin-bottom: 25px;
+  }
+
+  .ver-slogan-text {
+    font-family: "SiemensSansGlobal-Bold";
+    font-size: 36px;
+    color: #FAFAFA;
+  }
+
+
+
+
+
+  .btn-search {
+    background-image: linear-gradient(225deg, #F5696A 0%, #FFB900 100%);
+    box-shadow: 0 2px 10px 0 #DDDDDD;
+    border-radius: 17px;
+    width: 136px;
+    height: 34px;
+    font-family: SiemensSansGlobal-Bold;
+    font-size: 14px;
+    color: #FAFAFA;
+    letter-spacing: -0.28px;
+  }
+
+  .industry-div {
+    margin-top: 90px;
+  }
+
+  .section-title {
+    font-family: SiemensSansGlobal-Bold;
+    font-size: 28px;
+    text-align: center;
+    color: #4A4A4A;
+  }
+
+  .industry-card {
+    background: #FFFFFF;
+    box-shadow: 0 2px 18px 0 rgba(238, 238, 238, 0.40);
+    border-radius: 10px;
+    border-radius: 10px;
+    display: flex;
+    display: -webkit-flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 220px;
+    width: 262px;
+  }
+
+  .industry-card:hover {
+    background: #4FD3E4;
+    box-shadow: 0 2px 18px 0 rgba(238, 238, 238, 0.40);
+    border-radius: 10px;
+    border-radius: 10px;
+    display: flex;
+    display: -webkit-flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 220px;
+    width: 262px;
+  }
+
+  .industry-card:hover .industry-text-name {
+    font-family: SiemensSansGlobal-Bold;
+    font-size: 18px;
+    color: #FFFFFF;
+    letter-spacing: -0.36px;
+    text-align: center;
+  }
+
+  .industry-list {
+    margin: 70px 160px 0px;
+  }
+
+  .industry-text-name {
+    font-family: SiemensSansGlobal-Bold;
+    font-size: 18px;
+    color: #6A6A6A;
+    letter-spacing: -0.36px;
+    text-align: center;
+  }
+
+
+
+  .div-checkmore {
+    text-align: center;
+    margin-top: 50px;
+  }
+
+  .btn-checkmore {
+    background: #FFFFFF;
+    box-shadow: 0 2px 18px 0 rgba(221, 221, 221, 0.40);
+    border-radius: 20px;
+    width: 165px;
+    height: 40px;
+    font-size: 14px;
+    color: #78CDCD;
+    letter-spacing: -0.28px;
+  }
+
+  .tech-div {
+    margin-top: 110px;
+    height: 680px;
+    background-image: url('../../assets/prod/middle-bg.png');
+    background-position: bottom;
+    background-repeat: no-repeat;
+  }
+
+  .tech-container {
+    margin-top: 70px;
+  }
+  .tech-card {
+    background: #FFFFFF;
+    box-shadow: 0 1px 24px 0 rgba(221, 221, 221, 0.40);
+    border-radius: 4px;
+    border-radius: 4px;
+    display: flex;
+    display: -webkit-flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 240px;
+    height: 300px;
+    z-index: 999;
+  }
+
+  .tech-name-text {
+    font-family: SiemensSansGlobal-Bold;
+    font-size: 18px;
+    color: #6A6A6A;
+    letter-spacing: -0.36px;
+    text-align: center;
+    margin-top: 30px;
+  }
+
+  .tech-desc-text {
+    font-family: SiemensSansGlobal-Regular;
+    font-size: 14px;
+    color: #999999;
+    letter-spacing: -0.28px;
+    line-height: 20px;
+    width: 180px;
+    margin-top: 22px;
+  }
+
+  .case-div {
+    margin: 110px 160px 0px 160px;
+  }
+
+  .case-icon{
+    margin-left: 55px;
+  }
+
+  img.case-icon{
+    content: url(../../assets/prod/icon-case@1x.png);
+  }
+
+  img.case-arrow-icon {
+    content: url(../../assets/prod/icon-case-arrow@1x.png);
+  }
+
+  img.case-big-arrow {
+    content: url(../../assets/prod/icon-case-bigarrow@1x.png);
+  }
+
+  .case-arrow-icon{
+    margin-left: 57px;
+  }
+  .case-menu-item {
+    width: 320px;
+    height: 80px;
+    display: flex;
+    display: -webkit-flex;
+    flex-direction: row;
+    align-items: center;
+    z-index: 999;
+
+  }
+
+  .ant-menu-item.ant-menu-item-selected {
+    background-image: linear-gradient(127deg, #78E2E2 0%, #01B8DB 100%);
+  }
+
+  .case-menu-item-text {
+    font-family: SiemensSansGlobal-Bold;
+    font-size: 18px;
+    color: #6A6A6A;
+    letter-spacing: -0.36px;
+    text-align: center;
+    margin-left: 10px;
+  }
+
+  .case-menu-item-text-selected {
+    font-family: SiemensSansGlobal-Bold;
+    font-size: 18px;
+    color: #FFFFFF;
+    letter-spacing: -0.36px;
+    text-align: center;
+    margin-left: 10px;
+  }
+
+  .case-big-arrow {
+    margin-left: auto;
+  }
+
+  .element-hide {
+    display: none;
+  }
+
+  .case-detail-title {
+    float: right;
+    font-family: SiemensSansGlobal-Bold;
+    font-size: 24px;
+    color: #4BB2C2;
+    letter-spacing: -0.48px;
+  }
+
+  .case-detail-body {
+    background: #FAFAFA;
+    box-shadow: 0 1px 24px 0 rgba(238, 238, 238, 0.30);
+    padding: 50px 80px 0px 80px;
+    height: 480px;
+  }
+
+  .case-detail-intro {
+    font-family: SiemensSansGlobal-Bold;
+    font-size: 14px;
+    color: #999999;
+    letter-spacing: -0.28px;
+    line-height: 24px;
+    margin-top: 25px;
+  }
+
+  .caseintro-text-sub1 {
+    font-family: SiemensSansGlobal-Bold;
+    font-size: 18px;
+    color: #4BB2C2;
+    letter-spacing: -0.36px;
+  }
+
+  .caseintro-text-sub2 {
+    font-family: SiemensSansGlobal-Bold;
+    font-size: 14px;
+    color: #999999;
+    letter-spacing: -0.28px;
+    line-height: 24px;
+    margin-top: 10px;
+  }
+
+  .caseintro-checkdetail {
+    float: right;
+    margin-top: 70px;
+    font-family: SiemensSansGlobal-Bold;
+    font-size: 14px;
+    color: #78CDCD;
+    letter-spacing: -0.28px;
+    text-align: center;
+  }
+
+  .test-class {
+    width: 110px;
+    background-color: #F5696A;
+  }
+
+  .footer-div {
+    height: 240px;
+    background: rgba(200,245,255, 0.2);
+    z-index: 999;
+  }
 }

@@ -7,9 +7,24 @@ import { AppComponent } from './app.component';
 import { NgZorroAntdModule, NZ_I18N, zh_CN } from 'ng-zorro-antd';
 import { HomeComponent } from './home/home.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { ResourceComponent } from './resource/resource.component';
 import { KgraphComponent } from './kgraph/kgraph.component';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { SearchComponent } from './search/search.component';
+import { TopheaderComponent } from './topheader/topheader.component';
+import { RequirementComponent } from './requirement/requirement.component';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { CaseComponent } from './case/case.component';
+import { IndustryComponent } from './industry/industry.component';
+import { BookmarkComponent } from './bookmark/bookmark.component';
+import { LoginComponent } from './login/login.component';
+
+export function createTranslateLoader(http: HttpClient){
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+}
 
 @NgModule({
   declarations: [
@@ -18,20 +33,38 @@ import { KgraphComponent } from './kgraph/kgraph.component';
     HomeComponent,
     ResourceComponent,
     KgraphComponent,
+    SearchComponent,
+    TopheaderComponent,
+    RequirementComponent,
+    CaseComponent,
+    IndustryComponent,
+    BookmarkComponent,
+    LoginComponent
     // CorrelationComponent,
     // LinechartComponent
   ],
   imports: [
     BrowserAnimationsModule,
     BrowserModule,
+    TranslateModule.forRoot({
+      loader: {
+          provide: TranslateLoader,
+          useFactory: (createTranslateLoader),
+          deps: [HttpClient]
+      },
+      defaultLanguage: 'zh'
+    }),
     FormsModule, 
     ReactiveFormsModule,
     AppRoutingModule,
     /** 导入 ng-zorro-antd 模块 **/
     NgZorroAntdModule,
-    HttpClientModule
+    HttpClientModule,
+    BsDropdownModule.forRoot(),
+    ModalModule.forRoot()
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [BookmarkComponent, LoginComponent]
 })
 export class AppModule { }
