@@ -1,0 +1,35 @@
+<div>
+  <div class="industry-top">
+    <div class="top-intro">
+      <div class="top-intro-title">{{industry.namekey|translate}}</div>
+      <nz-divider></nz-divider>
+      <div class="top-intro-desc">{{industry.desctext}}</div>
+    </div>
+    <div>
+      <img class="top-thumb" [src]="industry.img">
+    </div>
+  </div>
+  <div class="industry-cases">
+    <div class="industry-cases-title">{{'ver.industry.assocase'|translate}}</div>
+    <nz-list [nzDataSource]="cases" [nzRenderItem]="itemlayout" [nzGrid]="{gutter: 16, span: 6}"
+      [nzLoadMore]="loadMore">
+      <ng-template #itemlayout let-item>
+        <nz-list-item [nzContent]="itemcontent">
+          <ng-template #itemcontent>
+            <nz-card [nzCover]="casethumb">
+              <div class="case-cust">客户：{{item.cust}}</div>
+              <div class="case-intro">{{item.intro}}</div>
+              <div>
+
+              </div>
+            </nz-card>
+          </ng-template>
+          <ng-template #casethumb>
+            <img [src]='item.img'>
+          </ng-template>
+        </nz-list-item>
+      </ng-template>
+    </nz-list>
+    
+  </div>
+</div>

@@ -1,0 +1,94 @@
+{
+    "ver":{
+        "main":{
+            "login":{
+                "login":"登录",
+                "logout":"登出",
+                "signin":"注册",
+                "tosignin":"注册用户 >>",
+                "tologin":"用户登录 >>",
+                "namehint":"用户名",
+                "pwdhint":"密码",
+                "pwdaghint":"请确认密码",
+                "errorusername":"请输入用户名",
+                "erroruserpwd":"请输入密码",
+                "loginfail":"用户名或密码错误",
+                "errornotsame":"输入密码不匹配！",
+                "userexist":"用户名已存在！"
+            } ,
+            "apptitle":"Verbinder - Vertical Business Finder",
+            "searchlabel":"如果您想直接搜索匹配您需求的技术案例",
+            "searchlabelformat":"了解输入格式",
+            "searchinputholder":"请以简短句式输入您的需求",
+            "btnsearch":"请点击  ->",
+            "industrylabel":"了解我们涉足的行业",
+            "industry":"行业",
+            "techlabel":"了解我们精研的技术",
+            "caselabel":"了解我们的成熟案例",
+            "casetype":"案例类别",
+            "slogan":{
+                "en":"Find your business opportunities vertically!",
+                "de":"...damit verbinden wir Sie!",
+                "cn1":"逢山开商路，<br/>遇水架金桥！",
+                "cn2":"互通有无，<br/>天堑通途！"
+            },
+            "checkmore":"查看更多 >>",
+            "checkdetail":"查看详情 >>"
+        },
+        "industry":{
+            "assocase":"相关案例详解",
+            "cust":"客户",
+            "value":"价值",
+            "assorg":"相关RG介绍"
+        },
+        "case":{
+            "home":"< 首页",
+            "contacttitle":"可联系的CT同事介绍",
+            "create":"创建案例"
+        },
+        "search":{
+            "industryhint":"所属行业",
+            "requirementhint":"请以简短句式输入您的要求",
+            "btnsearch":"搜索",
+            "exactsearch":"精准搜索",
+            "btnexactsearch":"匹配",
+            "filterlisttitle":"选择您感兴趣的技术",
+            "addexisttag":"添加已知数据标签",
+            "customerfield":"客户",
+            "valuefield":"价值",
+            "changetaghint":"双击标签可修改文字",
+            "industrytag":"行业标签",
+            "requirementtag":"痛点及要求"
+        },
+        "bookmark":{
+            "myfolder":"我的收藏夹",
+            "foldertitle":"收藏夹标题",
+            "folderdesc":"收藏夹描述",
+            "btncreate":"创建",
+            "mybookmark":"我的收藏"
+        }
+    },
+    "industry":{
+        "name": {
+            "equip":"设备制造",
+            "fire":"火力发电",
+            "car":"汽车制造",
+            "city":"数字城市",
+            "build":"楼宇暖风",
+            "ass":"资产管理",
+            "env":"环境保护",
+            "soft":"软件开发",
+            "powerprovide":"供能网络",
+            "mold":"模具浇铸"
+        }
+    },
+    "technology":{
+        "name": {
+            "robo":"工业机器人",
+            "savepow":"节能优化",
+            "fact":"数字化工厂",
+            "diagnostic":"故障诊断",
+            "dataplatform":"数据中台"
+        }
+    }
+}

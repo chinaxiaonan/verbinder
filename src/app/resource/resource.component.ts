@@ -12,6 +12,7 @@ export class ResourceComponent implements OnInit {
   listOfOption: Array<{ label: string; value: string }> = [];
   listOfTechs: Array<{label: string; value: string}> = [];
   selectedValues = null;
+  sourceVal;
   showCard:boolean;
   showExplain:boolean;
   showTechs: boolean;

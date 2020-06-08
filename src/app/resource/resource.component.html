@@ -13,14 +13,10 @@
     <img src="../../assets/dataexplain.png" width="600px">
   </nz-card>
   <p style='padding-bottom: 2%;'></p>
-  <nz-select class='resource-select form-control' name='selectresource' [(ngModel)]='home.project.resources' nzMode='tags'
-    nzPlaceHolder="Please select resources" nzShowSearch nzServerSearch (nzOnSearch)="searchRes($event)" [nzMaxMultipleCount]='20'
-    required #selectresource='ngModel'>
-    <nz-option *ngFor="let option of listOfOption" [nzLabel]="option.label" [nzValue]="option.value"></nz-option>
-  </nz-select>
-  <div *ngIf="selectresource.invalid && (selectresource.dirty || selectresource.touched)" class="alert text-style">
+
+ <!-- <div *ngIf="selectresource.invalid && (selectresource.dirty || selectresource.touched)" class="alert text-style">
     Resources are required.
-  </div>
+  </div>-->
   <p style='padding-top: 10px;'>
     <span class='section-normal-text'>Resources you may classify: </span>
     <nz-radio-group [(ngModel)]='sourceVal' [nzButtonStyle]="'solid'">
@@ -150,14 +146,10 @@
     </nz-card-tab>
   </nz-card>
   <p><a class='section-link-text'>Any technologies you want to be involved? </a></p>
-  <nz-select class='resource-select form-control' name='selecttechnologies' [(ngModel)]='home.project.technologies' nzMode='tags'
-    nzPlaceHolder="Please select technologies" nzShowSearch nzServerSearch (nzOnSearch)="searchTechs($event)" [nzMaxMultipleCount]='20'
-    required #selecttechnologies='ngModel'>
-    <nz-option *ngFor="let option of listOfTechs" [nzLabel]="option.label" [nzValue]="option.value"></nz-option>
-  </nz-select>
-  <div *ngIf="selecttechnologies.invalid && (selecttechnologies.dirty || selecttechnologies.touched)" class="alert text-style">
+
+ <!-- <div *ngIf="selecttechnologies.invalid && (selecttechnologies.dirty || selecttechnologies.touched)" class="alert text-style">
     Technologies are required.
-  </div>
+  </div>-->
   <ng-template #closeIconTpl>
     <i nz-icon nzType="close" nzTheme="outline" style="font-size: 0.8em;" (click)="sourceVal=''"></i>
   </ng-template>

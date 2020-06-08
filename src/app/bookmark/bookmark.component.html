@@ -1,0 +1,16 @@
+<div style="padding: 30px;">
+  <!-- no bookmark saved -->
+  <div *ngIf="bookmarks.length===0">
+    <div class="mybookmark-title">{{'ver.bookmark.myfolder'|translate}}</div>
+    <input nz-input style="margin-top: 20px;" placeholder="{{'ver.bookmark.foldertitle'|translate}}"
+      [(ngModel)]="folder.title" />
+    <textarea rows="4" style="margin-top: 16px;" nz-input placeholder="{{'ver.bookmark.folderdesc'|translate}}"
+      [(ngModel)]="folder.desc"></textarea>
+    <div style="margin-top: 30px;display: flex;flex-direction: row-reverse;">
+      <button nz-button nzType="primary">{{'ver.bookmark.btncreate'|translate}}</button></div>
+  </div>
+  <!-- has at least 1 bookmark folder -->
+  <div *ngIf="bookmarks.length>0">
+    nnnnnnnnnnnnnnnnnnnnnnn
+  </div>
+</div>

@@ -1,0 +1,200 @@
+.search-div {
+  background: rgba(245, 245, 240, 0.30);
+  border: 1px solid #EBECEC;
+  height: 270px;
+}
+
+div.search-div.place-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+div.search-div.place-left {
+  display: flex;
+  align-items: center;
+  padding-left: 160px;
+}
+
+
+.search-input-field {
+  background: #FFFFFF;
+  border: 1px solid #5BB9C7;
+  border-radius: 18px;
+  width: 280px;
+  height: 36px;
+  font-family: SiemensSansGlobal-Regular;
+  font-size: 14px;
+  color: #555555;
+  letter-spacing: -0.28px;
+}
+
+.search-dropdown {
+  display: flex;
+  align-items: center;
+  padding-right: 10px;
+}
+
+.search-dropdown .search-dropdown-icon {
+  margin-left: auto;
+
+}
+
+.search-dropdown .search-dropdown-hint {
+  font-family: SiemensSansGlobal-Regular;
+  font-size: 14px;
+  color: #ADBECB;
+  letter-spacing: -0.28px;
+}
+
+.req-add-icon {
+  margin-left: 14px;
+  color: #5BB9C7;
+  font-size: 1.5em;
+  font-weight: lighter;
+}
+
+.tag-title {
+  font-family: SiemensSansGlobal-Regular;
+  font-size: 14px;
+  color: #555555;
+  letter-spacing: -0.28px;
+}
+
+.search-button {
+  background-image: linear-gradient(134deg, #7BE8E8 0%, #00C1E6 98%);
+  box-shadow: 0 1px 24px 0 rgba(221, 221, 221, 0.40);
+  border-radius: 18px;
+  width: 280px;
+  height: 36px;
+}
+
+.condition-tag-panel {
+  align-self: start;
+  padding: 40px 100px;
+}
+
+.condition-tag {
+  background: #F7F9FB;
+  border: 1px solid #DFE6ED;
+  border-radius: 2px;
+  margin: 20px;
+  font-family: SiemensSansGlobal-Regular;
+  font-size: 12px;
+  color: #879BAA;
+  letter-spacing: -0.24px;
+}
+
+.result-div {
+  padding: 30px 160px;
+  display: flex;
+}
+
+.filter-div {
+  display: flex;
+  flex-direction: column;
+  width: 240px;
+}
+
+.filter-head {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.exact-search {
+  font-family: SiemensSansGlobal-Bold;
+  font-size: 18px;
+  color: #6A6A6A;
+  letter-spacing: 0;
+}
+
+.exact-search-btn {
+  background: #D2D2D2;
+  border-radius: 2px;
+  font-family: SiemensSansGlobal-Regular;
+  font-size: 12px;
+  color: #FFFFFF;
+  letter-spacing: -0.24px;
+  text-align: center;
+  width: 100px;
+  height: 30px;
+}
+
+.filter-list-title {
+  font-family: SiemensSansGlobal-Bold;
+  font-size: 16px;
+  color: #6A6A6A;
+  letter-spacing: 0;
+  margin-top: 30px;
+}
+
+.add-existing-tag {
+  font-family: SiemensSansGlobal-Bold;
+  font-size: 16px;
+  color: #757575;
+  letter-spacing: 0;
+}
+
+.result-div .result-content-div {
+  padding-left: 80px;
+}
+
+.result-normal-text {
+  font-family: SiemensSansGlobal-Bold;
+  font-size: 14px;
+  color: #6A6A6A;
+  letter-spacing: 0;
+}
+
+.result-category {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  font-family: SiemensSansGlobal-Regular;
+  font-size: 14px;
+  color: #999999;
+  letter-spacing: 0;
+}
+
+.result-content-head {
+  display: flex;
+  justify-content: space-between;
+}
+
+.star-icon-unchecked {
+  font-size: 1em;
+  font-weight: lighter;
+}
+
+.star-icon-checked {
+  color: yellow;
+  font-size: 1em;
+  font-weight: lighter;
+}
+
+.bookmark-iconbox {
+  content: url(../../assets/prod/icon-bookmark-uncheck.png);
+  width: 16px;
+  height: 16px;
+}
+
+label[ng-reflect-model=true].bookmark-iconbox {
+  content: url(../../assets/prod/icon-bookmark-checked.png);
+  width: 16px;
+  height: 16px;
+}
+
+img.case-img-holder {
+  content: url(../../assets/caseholder.png);
+}
+
+[nz-row] {
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+}
+
+i[nz-icon] {
+  font-size: 2em;
+}
