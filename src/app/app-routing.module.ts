@@ -6,6 +6,10 @@ import { KgraphComponent } from './kgraph/kgraph.component';
 import { RequirementComponent } from './requirement/requirement.component';
 import { IndustryComponent } from './industry/industry.component';
 import { SearchComponent } from './search/search.component';
+import { SecondlevelComponent } from './secondlevel/secondlevel.component';
+import { CaseComponent } from './case/case.component';
+import { BookmarklistComponent } from './bookmarklist/bookmarklist.component';
+import { BookmarkfolderComponent } from './bookmarkfolder/bookmarkfolder.component';
 
 const routes: Routes = [
   {
@@ -23,11 +27,27 @@ const routes: Routes = [
   },
   {
     path: 'industry',
-    component: IndustryComponent
+    component: SecondlevelComponent
+  },
+  {
+    path: 'technology',
+    component: SecondlevelComponent
   },
   {
     path: 'result',
     component: ResultComponent
+  },
+  {
+    path: 'case',
+    component: CaseComponent
+  },
+  {
+    path: 'bookmarklist',
+    component: BookmarklistComponent
+  },
+  {
+    path: 'bookmarkfolder',
+    component: BookmarkfolderComponent
   },
   {
     path: 'kgraph',

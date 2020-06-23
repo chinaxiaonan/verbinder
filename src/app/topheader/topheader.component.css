@@ -24,6 +24,14 @@
     content: url('../../assets/prod/icon-logo@1x.png')
   }
 
+  img.icon-search {
+    width: 18px;
+    height: 18px;
+    margin-right: 45px;
+    content: url('../../assets/prod/icon-search-white.png');
+    cursor: pointer;
+  }
+
   .user-menu {
     float: right;
   }

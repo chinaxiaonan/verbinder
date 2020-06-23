@@ -1,0 +1,80 @@
+.bookmark-head {
+  padding: 40px 160px;
+  width: 100%;
+  background: rgba(245, 245, 240, 0.30);
+  border: 1px solid #EBECEC;
+  display: flex;
+  justify-content: space-between;
+}
+
+.folder-name {
+  font-family: SiemensSansGlobal-Bold;
+  font-size: 20px;
+  color: #6A6A6A;
+  letter-spacing: 0;
+}
+
+.folder-desc {
+  font-family: SiemensSansGlobal-Regular;
+  font-size: 14px;
+  color: #999999;
+  letter-spacing: 0;
+  margin-top: 10px;
+}
+
+.folder-owner {
+  font-family: SiemensSansGlobal-Regular;
+  font-size: 12px;
+  color: #999999;
+  letter-spacing: 0;
+  margin-top: 10px;
+}
+
+.edit-folder {
+  font-family: SiemensSansGlobal-Regular;
+  font-size: 14px;
+  color: #4BB2C2;
+  letter-spacing: -0.28px;
+  text-align: center;
+}
+
+.bookmark-content {
+  padding: 20px 160px;
+}
+
+.bookmarks-count {
+  font-family: SiemensSansGlobal-Regular;
+  font-size: 14px;
+  color: #6A6A6A;
+  letter-spacing: 0;
+}
+
+.case-thumb-img {
+  max-width: 256px;
+  max-height: 144px;
+}
+
+.case-item-cust {
+  font-family: SiemensSansGlobal-Bold;
+  font-size: 14px;
+  color: #6A6A6A;
+  letter-spacing: 0;
+}
+
+.case-item-desc {
+  font-family: SiemensSansGlobal-Regular;
+  font-size: 14px;
+  color: #999999;
+  letter-spacing: 0;
+  margin-top: 10px;
+  padding: 0px 20px;
+}
+
+.card-item-content {
+  background: #FFFFFF;
+  border: 1px solid #EBECEC;
+  box-shadow: 2px 2px 36px 0 #EEEEEE;
+  border-radius: 6px;
+  height: 290px;
+  width: 260px;
+}

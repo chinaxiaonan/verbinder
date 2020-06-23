@@ -3,21 +3,26 @@
     <a href="javascript:void(0);" (click)="toMain()"><img class="siemens-logo"></a>
     <img class="icon-logo">
   </div>
-  <div style="z-index: 9999; align-items: center; display: flex;">
-    <button nz-button *ngIf="!curUser.username" class="btn-login"
-      (click)="initlogin()">{{'ver.main.login.login'|translate}}</button>
-    <div style="margin-right: 200px;" *ngIf="curUser.username">
-      <a nz-dropdown [nzDropdownMenu]="menu" nzTrigger="click" class="username-font">
-        <span style="margin-right: 10px;">{{curUser.username}}</span>
-        <i nz-icon nzType="down"></i>
-      </a>
-      <nz-dropdown-menu #menu="nzDropdownMenu">
-        <ul nz-menu>
-          <li nz-menu-item>{{'ver.bookmark.mybookmark'|translate}}</li>
-          <li nz-menu-item>{{'ver.case.create'|translate}}</li>
-          <li nz-menu-item (click)="logout()">{{'ver.main.login.logout'|translate}}</li>
-        </ul>
-      </nz-dropdown-menu>
+  <div style="display: flex;align-items: center;">
+    <img class="icon-search" (click)="toSearch()">
+    <div style="margin-right: 200px;z-index: 9999; align-items: center; display: flex;">
+      <button nz-button *ngIf="!curUser" class="btn-login"
+        (click)="initlogin()">{{'ver.main.login.login'|translate}}</button>
+      <div *ngIf="curUser">
+        <a nz-dropdown [nzDropdownMenu]="menu" nzTrigger="click" class="username-font">
+          <span style="margin-right: 10px;">{{curUser.username}}</span>
+          <i nz-icon nzType="down"></i>
+        </a>
+        <nz-dropdown-menu #menu="nzDropdownMenu">
+          <ul nz-menu>
+            <li nz-menu-item (click)="toMyBookmarks()">{{'ver.bookmark.mybookmark'|translate}}</li>
+            <li nz-menu-item>{{'ver.case.create'|translate}}</li>
+            <li nz-menu-item (click)="logout()">{{'ver.main.login.logout'|translate}}</li>
+          </ul>
+        </nz-dropdown-menu>
+      </div>
     </div>
+
   </div>
+
 </div>

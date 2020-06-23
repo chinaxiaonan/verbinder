@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { LoginComponent } from '../login/login.component';
+import { HttprequestService } from '../httprequest.service';
 
 @Component({
   selector: 'app-topheader',
@@ -12,13 +13,18 @@ export class TopheaderComponent implements OnInit {
   @ViewChild('topdiv', {static:false}) topdiv: ElementRef;
   bsModalRef: BsModalRef;
   curUser={
-    username:'',
-    userpwd:''
+    uid: '',
+    username:''
   };
-  constructor(private router: Router, private bsModalService:BsModalService) { }
+  constructor(private router: Router, private bsModalService:BsModalService, private httpRequest:HttprequestService) { }
 
   ngOnInit() {
-    this.curUser.username = sessionStorage.getItem('username');
+    var struser = sessionStorage.getItem('loginuser');
+    this.curUser = JSON.parse(struser);
+    console.log(this.curUser);
+    if(this.curUser){
+      this.loadBookMarks(this.curUser.uid);
+    }
   }
 
   changeBg(isHome:boolean){
@@ -34,6 +40,10 @@ export class TopheaderComponent implements OnInit {
     this.router.navigate([""]);
   }
 
+  toSearch(): void {
+    this.router.navigate(["search"]);
+  }
+
   initlogin(): void {
     this.bsModalRef = this.bsModalService.show(LoginComponent, {
       class: 'modal-dialog-centered'
@@ -41,8 +51,21 @@ export class TopheaderComponent implements OnInit {
   }
 
   logout(): void {
-    sessionStorage.removeItem("username");
+    sessionStorage.removeItem("loginuser");
+    sessionStorage.removeItem("bookmarkfolders");
     window.location.reload();
+  }
+
+  loadBookMarks(uid){
+    this.httpRequest.loadBookmarks(uid, result=>{
+      if(result.status===1){
+        sessionStorage.setItem('bookmarkfolders', JSON.stringify(result.folders));
+      }
+    });
+  }
+
+  toMyBookmarks():void{
+    this.router.navigate(["bookmarklist"]);
   }
 
 }

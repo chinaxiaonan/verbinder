@@ -1,0 +1,39 @@
+<div>
+  <div class="bookmark-head">
+    <div>
+      <div class="folder-name">{{bookmarkfolder.fname}}</div>
+      <div class="folder-desc">{{bookmarkfolder.fdesc}}</div>
+      <div class="folder-owner">{{'ver.bookmark.creator'|translate}}: {{username}}</div>
+    </div>
+    <div class="edit-folder">
+      <i nz-icon nzType="edit" nzTheme="twotone"></i>
+      <a href="javascript:void(0);" style="margin-left: 5px;" (click)="editfolder()">{{'ver.bookmark.editfolder'|translate}}</a>
+    </div>
+  </div>
+  <div class="bookmark-content">
+    <div class="bookmarks-count">{{cases.length}} {{'ver.bookmark.casenumtext'|translate}}</div>
+    <div style="margin-top: 20px;">
+      <nz-list [nzDataSource]="cases" [nzRenderItem]="itemlayout" [nzGrid]="{gutter: 16, span: 6}">
+        <ng-template #itemlayout let-item>
+          <nz-list-item [nzContent]="itemcontent" style="cursor: point;" (click)="toCaseDetail(item)">
+            <ng-template #itemcontent>
+              <div class="card-item-content">
+                <div>
+                  <img class="case-thumb-img" [src]="item.imgpath">
+                </div>
+                <div style="padding: 0px 20px;margin-top: 25px;display: flex;justify-content: space-between;align-items: center;">
+                  <div class="case-item-cust">{{'ver.case.cust'|translate}}: {{item.customer}}</div>
+                  <i nz-icon nzType="delete" nzTheme="twotone" nz-popconfirm nzTitle="{{'ver.case.removeconfirm'|translate}}" (click)="handleClick($event)"
+                  (nzOnConfirm)="confirmRemove(item)"></i>
+                </div>
+                
+                <div class="case-item-desc">{{'ver.case.custval'|translate}}: {{(item.pvalue.length>26)?(item.pvalue|slice:0:26)+'...':(item.pvalue)}}</div>
+                <div class="case-item-desc">{{item.techfields&&item.techfields.length>0?item.techfields[0].name:" "}} | {{item.indfields&&item.indfields.length>0?item.indfields[0].name:" "}}</div>
+              </div>
+            </ng-template>
+          </nz-list-item>
+        </ng-template>
+      </nz-list>
+    </div>
+  </div>
+</div>

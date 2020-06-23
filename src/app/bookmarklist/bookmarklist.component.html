@@ -1,0 +1,42 @@
+<div>
+  <div class="bookmark-head">
+    <div style="display: flex;">
+      <nz-avatar nzIcon="user" class="user-icon"></nz-avatar>
+      <div style="margin-left: 24px; align-items: center;">
+        <div class="user-name">{{curUser.username}}</div>
+        <div class="bookmark-number">{{'ver.bookmark.totalcreated'|translate}}{{folders.length}}{{'ver.bookmark.foldernumbers'|translate}}</div>
+      </div>
+    </div>
+    <div class="create-new-folder">
+      <i nz-icon nzType="plus-circle" nzTheme="outline"></i>
+      <a href="javascript:void(0);" style="margin-left: 5px;" (click)="createnewfolder()">{{'ver.bookmark.createnewfolder'|translate}}</a>
+    </div>
+  </div>
+  <div class="bookmark-content">
+    <div class="my-bookmarks">{{'ver.bookmark.mybookmark'|translate}}</div>
+    <div style="margin-top: 30px;">
+      <nz-list [nzDataSource]="folders" [nzRenderItem]="itemlayout" [nzGrid]="{gutter: 16, span: 6}">
+        <ng-template #itemlayout let-item>
+          <nz-list-item [nzContent]="itemcontent">
+            <ng-template #itemcontent>
+              <nz-card style="height: 222px; width: 260px;" (click)="toBookmarkFolder($event, item)">
+                <div style="display: flex;justify-content: space-between; width: 100%;align-items: center;">
+                  <div class="folder-item-title">{{item.fname}}</div>
+                  <i nz-icon nzType="edit" nzTheme="twotone" (click)="editfolder($event, item)"></i>
+                </div>
+                <div style="display: flex; margin-top: 16px;">
+                  <img class="folder-thumb-img" [src]="caseholderimg" *ngIf="item.cases.length===0">
+                  <img class="folder-thumb-img" [src]="item.cases[0].cimg" *ngIf="item.cases.length>=1">
+                  <img class="folder-thumb-img" [src]="item.cases[1].cimg" *ngIf="item.cases.length>=2" style="margin-left: 6.1px;margin-right: 6.1px;">
+                  <img class="folder-thumb-img" [src]="item.cases[2].cimg" *ngIf="item.cases.length>=3">
+                </div>
+                <div class="folder-item-desc">{{(item.fdesc.length>26)?(item.fdesc|slice:0:26)+'...':(item.fdesc)}}</div>
+                <div class="folder-item-desc">{{item.cases.length}}{{'ver.bookmark.casenumtext'|translate}}</div>
+              </nz-card>
+            </ng-template>
+          </nz-list-item>
+        </ng-template>
+      </nz-list>
+    </div>
+  </div>
+</div>

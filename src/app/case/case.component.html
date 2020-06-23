@@ -1,3 +1,67 @@
-<p>
-  case works!
-</p>
+<div style="position: relative;">
+  <div class="target-section-top top-height">
+  </div>
+  <div class="case-top-flow">
+    <div>
+      <img class="case-top-image" [src]="caseitem.imgpath">
+    </div>
+    <div style="width: 650px;">
+      <div style="display: flex; flex-direction: row;align-items: center; justify-content: space-between;">
+        <div class="case-title">{{caseitem.name}}</div>
+        <div>
+          <i style="cursor: pointer;font-size: 16px;" [class]="caseitem.bookmarked?'bookmark-iconbox-checked':'bookmark-iconbox-unchecked'" (click)="toggleBookmark(caseitem)"></i>
+        </div>
+      </div>
+      <nz-divider></nz-divider>
+      <div style="display: flex;">
+        <img class="industry-small-icon">
+        <div class="case-category-text">
+          {{caseitem.indfields&&caseitem.indfields.length>0?caseitem.indfields[0].name:" "}}</div>
+        <img class="technology-small-icon">
+        <div class="case-category-text">
+          {{caseitem.techfields&&caseitem.techfields.length>0?caseitem.techfields[0].name:" "}}</div>
+      </div>
+      <div class="case-intro-text">{{caseitem.desctext}}</div>
+    </div>
+  </div>
+  <div style="padding: 160px 160px; display: flex; justify-content: space-between; width: 100%;">
+    <div style="padding-right: 40px;">
+      <ul class="case-intro-items">
+        <li class="item-title">{{'ver.case.requirements'|translate}}
+          <div class="item-text" [innerHTML]="caseitem.requirement"></div>
+        </li>
+        <li class="item-title">{{'ver.case.custval2'|translate}}
+          <div class="item-text" [innerHTML]="caseitem.custval"></div>
+        </li>
+        <li class="item-title">{{'ver.case.techsol'|translate}}
+          <div class="item-text" [innerHTML]="caseitem.techdesc"></div>
+        </li>
+      </ul>
+    </div>
+    <div>
+      <div class="contact-box">
+        <div class="contact-title-text">{{'ver.case.contactus'|translate}}</div>
+        <div class="contact-hint-text">{{'ver.case.contacthint'|translate}}</div>
+        <div *ngIf="!contactshowed">
+          <button nz-button class="contact-button" (click)="showContact()">{{'ver.case.btngetcontact'|translate}}</button>
+        </div>
+        <div *ngIf="contactshowed" class="contact-succ-div">{{'ver.case.contactsucc'|translate}}</div>
+      </div>
+      <div *ngIf="contactshowed">
+        <div class="contact-dep" style="margin-top: 32px;">{{'ver.case.contact'|translate}}</div>
+        <div class="contact-item-box">
+          <div style="width: 60px;">
+            <nz-avatar nzIcon="user" style="background-color:#87d068; width: 60px;height: 60px;font-size: 2.5em;">
+            </nz-avatar>
+            <div class="contact-dep" style="margin-top: 15px; width: 60px; text-align: center;">
+              {{'ver.case.contact'|translate}}</div>
+          </div>
+          <div style="width: 170px;">
+            <div class="contact-dep">{{caseitem.contact}}</div>
+            <div class="contact-desc" style="margin-top: 40px;">联系人信息待完善</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

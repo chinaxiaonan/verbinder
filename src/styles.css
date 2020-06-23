@@ -93,4 +93,12 @@ body {
   src: url(./assets/font/SiemensSans_Global_Bold.ttf);
 }
 
+.target-section-top {
+  background-image: url(./assets/prod/second-top-bg.png);
+  background-repeat: no-repeat;
+  height: 360px;
+  padding: 68px 160px;
+  display: flex;
+}
+
 

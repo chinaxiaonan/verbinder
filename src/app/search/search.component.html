@@ -2,46 +2,50 @@
   <div #searchdiv class="search-div">
     <div class="condition-input-panel">
       <div nz-row style="display:flex;align-items: center;">
-        <div class="btn-group" dropdown>
-          <button id="button-basic" dropdownToggle type="button" class="dropdown-toggle search-input-field search-dropdown"
-                  aria-controls="dropdown-basic">
-            <div #selectedIndustryText class="search-dropdown-hint">{{selectedIndustry.tag|translate}}</div> <img class="search-dropdown-icon">
-          </button>
-          <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu" style="width: 270px;"
-              role="menu" aria-labelledby="button-basic">
+        <div class="btn-group test-class" dropdown>
+          <a id="button-basic" dropdownToggle class="dropdown-toggle search-input-field search-dropdown"
+            aria-controls="dropdown-basic">
+            <div #selectedIndustryText class="search-dropdown-hint">{{selectedIndustry.tag}}</div> <img
+              class="search-dropdown-icon">
+          </a>
+          <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu" style="width: 270px;" role="menu"
+            aria-labelledby="button-basic">
             <li role="menuitem" *ngFor="let industry of industrieslist">
-              <a class="dropdown-item" (click)="onselect(industry)">{{industry.tag|translate}}</a>
+              <a class="dropdown-item" (click)="onselect(industry)">{{industry.tag}}</a>
             </li>
           </ul>
         </div>
         <i nz-icon nzType="plus-circle" nzTheme="outline" class="req-add-icon" (click)="addIndustry()"></i>
       </div>
       <div nz-row style="display:flex;align-items: center;">
-        <input nz-input class="search-input-field" placeholder="{{'ver.search.requirementhint'|translate}}" [(ngModel)]="inputReq">
+        <input nz-input class="search-input-field" placeholder="{{'ver.search.requirementhint'|translate}}"
+          [(ngModel)]="inputReq">
         <i nz-icon nzType="plus-circle" nzTheme="outline" class="req-add-icon" (click)="addTag()"></i>
       </div>
       <div nz-row>
-        <button nz-button class="search-button">{{'ver.search.btnsearch'|translate}}</button>
+        <button nz-button class="search-button" (click)="search()">{{'ver.search.btnsearch'|translate}}</button>
       </div>
     </div>
     <div class="condition-tag-panel" *ngIf="showTagPanel">
       <div style="display: flex; flex-direction: column;">
         <div class="tag-title">{{'ver.search.industrytag'|translate}}</div>
         <div>
+          <nz-tag *ngIf="inputIndustries.size===0" style="visibility: hidden;" class="condition-tag">holder</nz-tag>
           <nz-tag nzMode="closeable" (nzOnClose)="removeIndustry(indu)" *ngFor="let indu of inputIndustries"
-          class="condition-tag">{{indu.tag|translate}}</nz-tag>
+            class="condition-tag">{{indu.tag|translate}}</nz-tag>
         </div>
         <div class="tag-title">{{'ver.search.requirementtag'|translate}}</div>
         <div>
-          <nz-tag nzMode="closeable" (nzOnClose)="removeTag(tag)" *ngFor="let tag of inputTags" 
-          class="condition-tag" nz-tooltip [nzTitle]="'ver.search.changetaghint'|translate" (dblclick)="modifyTag(tag, modifyTagPanel)">{{tag}}</nz-tag>
+          <nz-tag nzMode="closeable" (nzOnClose)="removeTag(tag)" *ngFor="let tag of inputTags" class="condition-tag"
+            nz-tooltip [nzTitle]="'ver.search.changetaghint'|translate" (dblclick)="modifyTag(tag, modifyTagPanel)">
+            {{tag}}</nz-tag>
           <ng-template #modifyTagPanel>
             <div class="modal-body">
-            <input nz-input [(ngModel)]="modifyingTag">
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" (click)="modifyTagOK()">OK</button>
-          </div>
+              <input nz-input [(ngModel)]="modifyingTag">
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" (click)="modifyTagOK()">OK</button>
+            </div>
           </ng-template>
         </div>
       </div>
@@ -49,71 +53,114 @@
     </div>
   </div>
   <div class="result-div">
-    <div class="filter-div">
-      <div class="filter-head">
-        <div class="exact-search">{{'ver.search.exactsearch'|translate}}</div>
-        <button nz-button class="exact-search-btn">{{'ver.search.btnexactsearch'|translate}}</button>
+    <div *ngIf="caseslist.length>0" style="display: flex;">
+      <div class="filter-div">
+        <div class="filter-head">
+          <div class="exact-search">{{'ver.search.exactsearch'|translate}}</div>
+          <button nz-button class="exact-search-btn">{{'ver.search.btnexactsearch'|translate}}</button>
+        </div>
+        <div class="filter-list-title">{{'ver.search.filterlisttitle'|translate}}</div>
+        <nz-divider></nz-divider>
+        <nz-list [nzDataSource]="technologieslist" [nzRenderItem]="techItem" [nzSplit]="'false'">
+          <ng-template #techItem let-tech>
+            <nz-list-item [nzContent]="techContent">
+              <ng-template #techContent>
+                <label nz-checkbox [(ngModel)]="tech.selected">{{tech.name|translate}}</label>
+              </ng-template>
+            </nz-list-item>
+          </ng-template>
+        </nz-list>
+        <div class="filter-head" style="margin-top: 40px;">
+          <div class="add-existing-tag">{{'ver.search.addexisttag'|translate}}</div>
+          <nz-switch [(ngModel)]="showdatalabelfilter"></nz-switch>
+        </div>
+        <nz-divider></nz-divider>
+        <div *ngIf="showdatalabelfilter">
+        <div class="filter-tips">
+          {{'ver.search.filtertips1'|translate}}
+          <i nz-icon nzType="question-circle" nzTheme="outline" style="font-size: 1.2em;" nz-tooltip nzTitle="{{'ver.search.filtertippopup'|translate}}"></i>
+          {{'ver.search.filtertips2'|translate}}       
+        </div>
+        <input nz-input [(ngModel)]="inputLabel" style="margin-top: 15px;">
+        <div style="margin-top: 20px;border: 1px solid #EBF0F5; border-radius: 3px;">
+          <div class="label-panel-header">
+            <i nz-icon nzType="tag" nzTheme="fill" style="font-size: 16px;"></i>
+            <span style="margin-left: 8px;">{{'ver.search.labeltype'|translate}}</span>
+          </div>
+          <div class="label-panel-body">
+            <div class="btn-group" dropdown style="width: 150px;">
+              <button id="button-basic" dropdownToggle type="button" class="btn dropdown-toggle"
+                      aria-controls="dropdown-basic">
+                <span class="select-label-type-font">{{'ver.search.selectlabeltype'|translate}}</span> <span class="caret"></span>
+              </button>
+              <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu"
+                  role="menu" aria-labelledby="button-basic">
+                <li role="menuitem"><a class="dropdown-item" href="javascript:void(0)" (click)="changeOptions(1)">数据实效</a></li>
+                <li role="menuitem"><a class="dropdown-item" href="javascript:void(0)" (click)="changeOptions(2)">数据来源</a></li>
+                <li role="menuitem"><a class="dropdown-item" href="javascript:void(0)" (click)="changeOptions(3)">数据格式</a></li>
+                <li role="menuitem"><a class="dropdown-item" href="javascript:void(0)" (click)="changeOptions(4)">知识类别</a></li>
+              </ul>
+            </div>
+            <div class="data-option-div">
+              <nz-checkbox-group [(ngModel)]="dataoptions1" *ngIf="showoptions===1"></nz-checkbox-group>
+              <nz-checkbox-group [(ngModel)]="dataoptions2" *ngIf="showoptions===2"></nz-checkbox-group>
+              <nz-checkbox-group [(ngModel)]="dataoptions3" *ngIf="showoptions===3"></nz-checkbox-group>
+              <nz-checkbox-group [(ngModel)]="dataoptions4" *ngIf="showoptions===4"></nz-checkbox-group>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="filter-list-title">{{'ver.search.filterlisttitle'|translate}}</div>
-      <nz-divider></nz-divider>
-      <nz-list [nzDataSource]="technologieslist" [nzRenderItem]="techItem" [nzSplit]="'false'">
-        <ng-template #techItem let-tech>
-          <nz-list-item [nzContent]="techContent">
-            <ng-template #techContent>
-              <label nz-checkbox [(ngModel)]="tech.selected">{{tech.name|translate}}</label>
-            </ng-template>
-          </nz-list-item>
-        </ng-template>
-      </nz-list>
-      <div class="filter-head" style="margin-top: 40px;">
-        <div class="add-existing-tag">{{'ver.search.addexisttag'|translate}}</div>
-        <nz-switch></nz-switch>
       </div>
+      <div class="result-content-div">
+        <div class="search-result-title-text">{{'ver.search.result'|translate}}</div>
+        <div style="display: flex;">
+          <label nz-checkbox [(ngModel)]="displayrelevantdomain" (ngModelChange)="togglerelevantdomain()" class="ind-filter-check">{{'ver.search.displayrelavent'|translate}}</label>
+          <label nz-checkbox [(ngModel)]="displayotherdomain" (ngModelChange)="toggleotherdomain()" class="ind-filter-check">{{'ver.search.displayothers'|translate}}</label>
+        </div>
+        <nz-list *ngIf="caseslist.length>0&&caseslist[0].id!==-1" [nzDataSource]="caseslist" [nzRenderItem]="caseItem" [nzSplit]="'false'"
+          [nzPagination]="casePagination" style="margin-top: 20px;width: 800px;">
+          <ng-template #caseItem let-case>
+            <nz-list-item *ngIf="case.isShow" (click)="toCaseDetail(case)" style="cursor: pointer;">
+              <nz-list-item-meta [nzTitle]="nzTitle" [nzAvatar]="caseimgRender" [nzDescription]="casevalueRender">
+                <ng-template #nzTitle>
+                  <div class="result-content-head">
+                    <div class="result-normal-text">{{'ver.search.customerfield'|translate}} : {{case.customer}}</div>
+                    <i id="icon_bookmark_{{case.id}}" style="cursor: pointer;" [class]="case.bookmarked?'bookmark-iconbox-checked':'bookmark-iconbox-unchecked'" (click)="toggleBookmark($event,case)"></i>
+                  </div>
+                </ng-template>
+                <ng-template #caseimgRender>
+                  <img class="case-img-holder" [src]="case.imgpath">
+                </ng-template>
+                <ng-template #casevalueRender>
+                  <div nz-row class="result-normal-text">
+                    {{'ver.search.valuefield'|translate}} : {{(case.pval.length>35)?(case.pval|slice:0:35)+'...':(case.pval)}}
+                  </div>
+                  <div nz-row class="result-category">
+                    <div>{{case.techfields.length>0?case.techfields[0].name:"UNKNOWN"}}</div>
+                    <nz-divider nzType="vertical"></nz-divider>
+                    <div>{{case.indfields.length>0?case.indfields[0].name:"UNKNOWN"}}</div>
+                  </div>
+                </ng-template>
+              </nz-list-item-meta>
+            </nz-list-item>
+          </ng-template>
+          <ng-template #casePagination>
+            <nz-pagination [nzPageIndex]="1" [nzTotal]="50" (nzPageIndexChange)="loadCasesData($event)"></nz-pagination>
+          </ng-template>
+        </nz-list>
+        <div *ngIf="caseslist.length>0&&caseslist[0].id===-1" >
+          <img class="search-no-result">
+        </div>
+      </div>
+      <nz-modal [(nzVisible)]="showBookmarkPanel" (nzOnOk)="bookmarkOk()" [nzContent]="bookmarkContent"
+        [nzFooter]="bookmarkFooter"></nz-modal>
+      <ng-template #bookmarkContent>
+        <app-bookmark></app-bookmark>
+      </ng-template>
+      <ng-template #bookmarkFooter>
+        <button nz-button nzType="primary" (nzOnOk)="bookmarkOk()">创建</button>
+      </ng-template>
     </div>
-    <div class="result-content-div">
-      <nz-list [nzDataSource]="caseslist" [nzRenderItem]="caseItem" [nzSplit]="'false'" [nzPagination]="casePagination">
-        <ng-template #caseItem let-case>
-          <nz-list-item>
-            <nz-list-item-meta
-            [nzTitle]="nzTitle"
-            [nzAvatar]="caseimgRender"
-            [nzDescription]="casevalueRender"
-          >
-            <ng-template #nzTitle>
-              <div class="result-content-head">
-                <div class="result-normal-text">{{'ver.search.customerfield'|translate}} : {{case.customer}}</div>
-                <label nz-checkbox [(ngModel)]="case.bookmarked" class="bookmark-iconbox" (ngModelChange)="toggleBookmark(case)"></label>
-              </div>
-            </ng-template>
-            <ng-template #caseimgRender>
-              <img class="case-img-holder">
-            </ng-template>
-            <ng-template #casevalueRender>
-              <div nz-row class="result-normal-text">
-                {{'ver.search.valuefield'|translate}} : {{case.value}}
-              </div>
-              <div nz-row class="result-category">
-                <div>{{case.technology}}</div>
-                <nz-divider nzType="vertical"></nz-divider>
-                <div>{{case.industry}}</div>
-              </div>
-            </ng-template>
-          </nz-list-item-meta>
-          </nz-list-item>
-        </ng-template>
-        <ng-template #casePagination>
-          <nz-pagination [nzPageIndex]="1" [nzTotal]="50" (nzPageIndexChange)="loadCasesData($event)"></nz-pagination>
-        </ng-template>
-      </nz-list>
-      
-    </div>
-    <nz-modal [(nzVisible)]="showBookmarkPanel" (nzOnOk)="bookmarkOk()" [nzContent]="bookmarkContent" [nzFooter]="bookmarkFooter"></nz-modal>
-    <ng-template #bookmarkContent>
-      <app-bookmark></app-bookmark>
-    </ng-template>
-    <ng-template #bookmarkFooter>
-      <button nz-button nzType="primary" (nzOnOk)="bookmarkOk()">创建</button>
-    </ng-template>
+    <div class="no-result-div" *ngIf="caseslist.length===0"></div>
   </div>
 </div>
-

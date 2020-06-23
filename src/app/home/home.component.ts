@@ -27,12 +27,20 @@ export class HomeComponent implements OnInit {
   step: number;  // 0: initial stage; 1: add deliverable stage; 2: add resource stage; 3: add technology stage
   btnstatus: boolean;
   project: any = {};
+  selectedCase={
+    id: -1,
+    name:"",
+    desctext:"",
+    indfields:[],//{id:-1,name:""},
+    techfields:[],//{id:-1,name:""},
+    shortvalue:""
+  };
   public nextAvi: boolean;
   listOfIndustry: Array<{ label: string; value: string }> = [];
   resourceBasePath = "./assets/prod/";
 
   constructor(private httprequest: HttprequestService, private msg: NzMessageService, private router: Router,
-    private comm: CommunicationService, private translate: TranslateService, private render2: Renderer2) { }
+    private comm: CommunicationService, private translate: TranslateService, private el: ElementRef) { }
 
   redirect() {
     this.router.navigate(["result"]);
@@ -41,28 +49,31 @@ export class HomeComponent implements OnInit {
   toSearch(): void {
     this.router.navigate(["search"]);
   }
-  toIndustry(id) {
+  toIndustry(id):void {
     this.router.navigate(["industry"], {queryParams:{id:id}});
+  }
+  toTechnology(id):void {
+    this.router.navigate(["technology"], {queryParams:{id:id}});
+  }
+  toCaseDetail():void {
+    if(this.selectedCase.id>0){
+      this.router.navigate(["case"],{queryParams:{id:this.selectedCase.id}});
+    }
+    
   }
   ngOnInit() {
     this.nextAvi = true;
     this.step = 0;
     this.btnstatus = false;
+    this.loadIndustries();
+    this.loadMainCases();
     
-    this.caseslist = [
-      { id: 0, name: "case 1" },
-      { id: 1, name: "case 2" },
-      { id: 2, name: "case 3ssssssssssss" },
-      { id: 3, name: "case 4" },
-      { id: 4, name: "case 5" },
-      { id: 5, name: "case 6" }
-    ];
+    
   }
 
   ngAfterViewInit() {
     
-    this.loadIndustries();
-    this.loadMainTechnologies();
+    
     this.swiper = new Swiper('.tech-container', {
       direction: 'horizontal',
       //loop: true,
@@ -73,6 +84,8 @@ export class HomeComponent implements OnInit {
       spaceBetween: 90
 
     });
+
+    this.loadMainTechnologies();
     
   }
 
@@ -83,7 +96,7 @@ export class HomeComponent implements OnInit {
       results.forEach(result => {
         var hoverimg = this.resourceBasePath + result.iconpath.replace(".png", "-hover.png");
         var tag = result.iconpath.replace("icon-","").replace(".png", "");
-        tmp.push({ id: result.id, name: result.namekey, img: this.resourceBasePath + result.iconpath, hoverimg: hoverimg, tag:tag});
+        tmp.push({ id: result.id, name: result.name, img: this.resourceBasePath + result.iconpath, hoverimg: hoverimg, tag:tag});
       });
       this.industrieslist = tmp;
     });
@@ -93,9 +106,9 @@ export class HomeComponent implements OnInit {
     this.httprequest.loadMainTechnologies(datas=>{
       var results = datas['result'];
       results.forEach(result => {
-        var hoverimg = this.resourceBasePath + result.imagepath.replace(".png", "-hover.png");
-        var tag = result.imagepath.replace("icon-","").replace(".png", "");
-        this.technologieslist.push({ id: result.id, name: result.namekey, desciption:result.desciption, img: this.resourceBasePath + result.imagepath, hoverimg: hoverimg, tag:tag, displayinmain:result.displayinmain});
+        var hoverimg = this.resourceBasePath + result.iconpath.replace(".png", "-hover.png");
+        var tag = result.iconpath.replace("icon-","").replace(".png", "");
+        this.technologieslist.push({ id: result.id, name: result.name, desciption:result.desciption, img: this.resourceBasePath + result.iconpath, hoverimg: hoverimg, tag:tag});
         if(this.technologieslist.length >=3 ){
           this.swiper.slideTo(2);
         }
@@ -191,33 +204,26 @@ export class HomeComponent implements OnInit {
   }
 
   changemenuselect($event) {
-    this.resetMenuStyles();
-    console.log($event.elementRef.nativeElement.id);
     var index = $event.elementRef.nativeElement.id.substr('item_'.length);
-    this.render2.selectRootElement('#caseicon_' + index).classList.remove('element-hide');
-    this.render2.selectRootElement('#casearrow_' + index).classList.add('element-hide');
-    this.render2.selectRootElement('#casebigarrow_' + index).classList.remove('element-hide');
-    this.render2.selectRootElement('#casetext_' + index).classList.remove('case-menu-item-text');
-    this.render2.selectRootElement('#casetext_' + index).classList.add('case-menu-item-text-selected');
-    this.render2.selectRootElement('#casetext_' + index).innerHTML = this.caseslist[index].name;
-    //obj.
+    this.setMenuSelection(index);
+  }
+
+  setMenuSelection(index){
+    this.resetMenuStyles();
+    this.caseslist[index].selected = true;
+    this.selectedCase = this.caseslist[index];
   }
 
   resetMenuStyles(): void {
     for (var i = 0; i < this.caseslist.length; i++) {
-      this.render2.selectRootElement('#caseicon_' + i).classList.add('element-hide');
-      this.render2.selectRootElement('#casearrow_' + i).classList.remove('element-hide');
-      this.render2.selectRootElement('#casebigarrow_' + i).classList.add('element-hide');
-      this.render2.selectRootElement('#casetext_' + i).classList.add('case-menu-item-text');
-      this.render2.selectRootElement('#casetext_' + i).classList.remove('case-menu-item-text-selected');
-      this.render2.selectRootElement('#casetext_' + i).innerHTML = this.caseslist[i].name;
+      this.caseslist[i].selected = false;
     }
   }
 
   onhover($event): void {
-    this.industrieslist.forEach(item=>{
+    for(let item of this.industrieslist){
       this.setIndustryStyle(item.tag, false);
-    });
+    }
     var targetTag = $event.srcElement.id.replace('cad_','').replace('img_','').replace('lbl_','');
     this.setIndustryStyle(targetTag, true);
   }
@@ -230,12 +236,31 @@ export class HomeComponent implements OnInit {
   setIndustryStyle(tag, selected){
     if(selected){
       var img = this.resourceBasePath + "icon-" + tag + "-hover.png";
-      this.render2.selectRootElement('#img_'+tag).src=img;
+      this.el.nativeElement.querySelector("#img_"+tag).src=img;
     }
     else {
       var img = this.resourceBasePath + "icon-" + tag + ".png";
-      this.render2.selectRootElement('#img_'+tag).src=img;
+      this.el.nativeElement.querySelector("#img_"+tag).src=img;
     }
     
+  }
+
+  loadMainCases():void{
+    this.httprequest.loadMainCases(datas=>{
+      if(datas.status===1){
+        console.log(datas.result);
+        this.caseslist = datas.result;
+        for(var i=0; i<this.caseslist.length; i++){
+          if(i===0){
+            this.caseslist[i].selected = true;
+          }
+          else {
+            this.caseslist[i].selected = false;
+          }
+          this.caseslist[i].shortname = this.caseslist[i].name.length>8?this.caseslist[i].name.substr(0,7)+"...":this.caseslist[i].name;
+        }
+        this.setMenuSelection(0);
+      }
+    });
   }
 }

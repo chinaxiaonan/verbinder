@@ -1,0 +1,76 @@
+.bookmark-head {
+  padding: 40px 160px;
+  width: 100%;
+  background: rgba(245, 245, 240, 0.30);
+  border: 1px solid #EBECEC;
+  display: flex;
+  justify-content: space-between;
+}
+
+.bookmark-content {
+  padding: 40px 160px;
+}
+
+.user-icon {
+  background-color: #87d068;
+  font-size: 4em;
+  width: 90px;
+  height: 90px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.user-name {
+  font-family: SiemensSansGlobal-Bold;
+  font-size: 20px;
+  color: #6A6A6A;
+  letter-spacing: 0;
+  margin-top: 5px;
+}
+
+.bookmark-number {
+  font-family: SiemensSansGlobal-Regular;
+  font-size: 12px;
+  color: #999999;
+  letter-spacing: 0;
+  margin-top: 30px;
+}
+
+.create-new-folder {
+  display: flex;
+  font-family: SiemensSansGlobal-Regular;
+  font-size: 14px;
+  color: #4BB2C2;
+  letter-spacing: -0.28px;
+  text-align: center;
+}
+
+.my-bookmarks {
+  font-family: SiemensSansGlobal-Bold;
+  font-size: 18px;
+  color: #757575;
+  letter-spacing: 0;
+}
+
+
+.folder-item-title {
+  font-family: SiemensSansGlobal-Bold;
+  font-size: 16px;
+  color: #757575;
+  letter-spacing: 0;
+}
+
+.folder-thumb-img {
+  max-width: 67.9px;
+  max-height: 68px;
+}
+
+.folder-item-desc {
+  font-family: SiemensSansGlobal-Regular;
+  font-size: 14px;
+  color: #999999;
+  letter-spacing: 0;
+  line-height: 20px;
+  margin-top: 10px;
+}

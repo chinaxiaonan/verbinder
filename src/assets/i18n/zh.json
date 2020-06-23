@@ -14,7 +14,8 @@
                 "erroruserpwd":"请输入密码",
                 "loginfail":"用户名或密码错误",
                 "errornotsame":"输入密码不匹配！",
-                "userexist":"用户名已存在！"
+                "userexist":"用户名已存在！",
+                "notlogin":"请登录后操作！"
             } ,
             "apptitle":"Verbinder - Vertical Business Finder",
             "searchlabel":"如果您想直接搜索匹配您需求的技术案例",
@@ -23,6 +24,8 @@
             "btnsearch":"请点击  ->",
             "industrylabel":"了解我们涉足的行业",
             "industry":"行业",
+            "technology":"技术",
+            "profit":"效益",
             "techlabel":"了解我们精研的技术",
             "caselabel":"了解我们的成熟案例",
             "casetype":"案例类别",
@@ -44,7 +47,18 @@
         "case":{
             "home":"< 首页",
             "contacttitle":"可联系的CT同事介绍",
-            "create":"创建案例"
+            "create":"创建案例",
+            "custval":"价值",
+            "cust": "客户",
+            "requirements":"项目痛点及挑战",
+            "custval2":"客户价值",
+            "techsol":"技术解决方案",
+            "contactus":"联系我们，取得进一步沟通",
+            "contacthint":"点击按钮，获取联系人介绍及联系信息，同时可下载更多相关资料",
+            "btngetcontact":"获取联系方式",
+            "contact":"联系人",
+            "contactsucc":"已成功获取联系人信息！",
+            "removeconfirm":"确定移除该案例收藏吗？"
         },
         "search":{
             "industryhint":"所属行业",
@@ -58,37 +72,38 @@
             "valuefield":"价值",
             "changetaghint":"双击标签可修改文字",
             "industrytag":"行业标签",
-            "requirementtag":"痛点及要求"
+            "requirementtag":"痛点及要求",
+            "errornoreqinput":"请至少输入一条检索条件！",
+            "errorshortreq":"检索条件不能少于4个字！",
+            "result":"搜索结果",
+            "displayrelavent":"显示相关行业案例",
+            "displayothers":"显示其他行业案例",
+            "filtertips1":"为了更准确的获取相关案例，您可以添加已知数据标签",
+            "filtertips2":"数据标签可以是：设备或环境产生的数据，历史经验数据",
+            "labeltype":"标签类别",
+            "selectlabeltype":"请选择标签的类别",
+            "filtertippopup":"请您根据您方案中具体数据需求的内在性质，添加数据标签。例如：关于形式（数值/文本/图像）、时效（历史/实时/静态）等。系统会通过这些标签将您的数据需求抽象化，进而提高您的方案被潜在的跨领域客户检索到的可能性。"
         },
         "bookmark":{
             "myfolder":"我的收藏夹",
             "foldertitle":"收藏夹标题",
             "folderdesc":"收藏夹描述",
             "btncreate":"创建",
-            "mybookmark":"我的收藏"
-        }
-    },
-    "industry":{
-        "name": {
-            "equip":"设备制造",
-            "fire":"火力发电",
-            "car":"汽车制造",
-            "city":"数字城市",
-            "build":"楼宇暖风",
-            "ass":"资产管理",
-            "env":"环境保护",
-            "soft":"软件开发",
-            "powerprovide":"供能网络",
-            "mold":"模具浇铸"
-        }
-    },
-    "technology":{
-        "name": {
-            "robo":"工业机器人",
-            "savepow":"节能优化",
-            "fact":"数字化工厂",
-            "diagnostic":"故障诊断",
-            "dataplatform":"数据中台"
+            "btnsave":"保存",
+            "mybookmark":"我的收藏",
+            "casenumtext":"个案例",
+            "tomybookmarks":"查看我的收藏",
+            "createnewfolder":"新建收藏夹",
+            "errorfoldername":"收藏夹标题不能为空！",
+            "createfoldersucc":"已成功创建收藏夹！",
+            "updatefoldersucc":"已成功修改收藏夹！",
+            "savebookmarksucc":"已成功收藏到收藏夹！",
+            "deletebookmarksucc":"已成功删除收藏夹！",
+            "creator":"创建者",
+            "editfolder":"编辑收藏夹",
+            "totalcreated":"共创建",
+            "foldernumbers":"个收藏夹",
+            "deletefolder":"删除收藏夹"
         }
     }
 }

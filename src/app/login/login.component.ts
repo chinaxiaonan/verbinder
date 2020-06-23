@@ -87,7 +87,11 @@ export class LoginComponent implements OnInit {
       this.httpRequest.login(user, result=>{
         if(result.uid!=-1){
           this.loginfail = false;
-          sessionStorage.setItem("username", user.username);
+          var loginuser = {
+            uid: result.uid,
+            username: user.username
+          }
+          sessionStorage.setItem("loginuser", JSON.stringify(loginuser));
           this.bsModalRef.hide();
           window.location.reload();
         }

@@ -21,6 +21,9 @@ import { CaseComponent } from './case/case.component';
 import { IndustryComponent } from './industry/industry.component';
 import { BookmarkComponent } from './bookmark/bookmark.component';
 import { LoginComponent } from './login/login.component';
+import { SecondlevelComponent } from './secondlevel/secondlevel.component';
+import { BookmarklistComponent } from './bookmarklist/bookmarklist.component';
+import { BookmarkfolderComponent } from './bookmarkfolder/bookmarkfolder.component';
 
 export function createTranslateLoader(http: HttpClient){
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -39,7 +42,10 @@ export function createTranslateLoader(http: HttpClient){
     CaseComponent,
     IndustryComponent,
     BookmarkComponent,
-    LoginComponent
+    LoginComponent,
+    SecondlevelComponent,
+    BookmarklistComponent,
+    BookmarkfolderComponent
     // CorrelationComponent,
     // LinechartComponent
   ],

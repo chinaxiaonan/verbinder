@@ -1,0 +1,76 @@
+.top-intro {
+  flex-direction: column;
+  width: 720px;
+  padding-right: 79px;
+}
+
+.top-thumb {
+  max-width: 400px;
+  max-height: 225px;
+}
+
+.top-intro-title {
+  font-family: SiemensSansGlobal-Bold;
+  font-size: 24px;
+  color: #FFFFFF;
+  letter-spacing: 0;
+}
+
+.top-intro-desc {
+  font-family: SiemensSansGlobal-Regular;
+  font-size: 14px;
+  color: #FFFFFF;
+  letter-spacing: 0;
+  line-height: 24px;
+}
+
+.cases-section {
+  padding: 30px 160px;
+}
+
+.cases-section-title {
+  font-family: SiemensSansGlobal-Bold;
+  font-size: 16px;
+  color: #6A6A6A;
+  letter-spacing: 0;
+  margin-bottom: 20px;
+}
+
+.case-img {
+  max-width: 256px;
+  max-height: 144px;
+}
+
+.case-cust {
+  font-family: SiemensSansGlobal-Bold;
+  font-size: 14px;
+  color: #6A6A6A;
+  letter-spacing: 0;
+  margin: 25px 0px 0px 20px;
+}
+
+.case-intro {
+  font-family: SiemensSansGlobal-Regular;
+  font-size: 14px;
+  color: #999999;
+  letter-spacing: 0;
+  width: 216px;
+  margin: 10px 20px 0px 20px;
+}
+
+.case-category {
+  font-family: SiemensSansGlobal-Regular;
+  font-size: 12px;
+  color: #999999;
+  letter-spacing: 0;
+  margin: 20px 20px;
+}
+
+.card-item-content {
+  background: #FFFFFF;
+  border: 1px solid #EBECEC;
+  box-shadow: 2px 2px 36px 0 #EEEEEE;
+  border-radius: 6px;
+  height: 290px;
+  width: 260px;
+}

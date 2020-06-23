@@ -1,16 +1,48 @@
 <div style="padding: 30px;">
+  <div class="mybookmark-title">{{'ver.bookmark.myfolder'|translate}}</div>
   <!-- no bookmark saved -->
-  <div *ngIf="bookmarks.length===0">
-    <div class="mybookmark-title">{{'ver.bookmark.myfolder'|translate}}</div>
-    <input nz-input style="margin-top: 20px;" placeholder="{{'ver.bookmark.foldertitle'|translate}}"
-      [(ngModel)]="folder.title" />
-    <textarea rows="4" style="margin-top: 16px;" nz-input placeholder="{{'ver.bookmark.folderdesc'|translate}}"
-      [(ngModel)]="folder.desc"></textarea>
-    <div style="margin-top: 30px;display: flex;flex-direction: row-reverse;">
-      <button nz-button nzType="primary">{{'ver.bookmark.btncreate'|translate}}</button></div>
+  <div *ngIf="folderslist.length===0||innewfolder||ineditfolder">
+    <form nz-form [formGroup]="validateFolderForm" class="login-form" (ngSubmit)="submitCreate()">
+      <nz-form-item>
+        <nz-form-control nzErrorTip="{{'ver.bookmark.errorfoldername'|translate}}">
+          <input nz-input style="margin-top: 20px;" placeholder="{{'ver.bookmark.foldertitle'|translate}}"
+            formControlName="controlFoldername"/>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-control>
+          <textarea rows="4" nz-input placeholder="{{'ver.bookmark.folderdesc'|translate}}"
+            formControlName="controlFolderdesc"></textarea>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-control>
+          <div style="margin-top: 30px;display: flex;justify-content: space-between;">
+            <a href="javascript:void(0);" (click)="deleteFolder()" *ngIf="ineditfolder">{{'ver.bookmark.deletefolder'|translate}}</a>
+            <button nz-button nzType="primary">{{(ineditfolder?'ver.bookmark.btnsave':'ver.bookmark.btncreate')|translate}}</button>
+          </div>
+        </nz-form-control>
+      </nz-form-item>
+    </form>
   </div>
   <!-- has at least 1 bookmark folder -->
-  <div *ngIf="bookmarks.length>0">
-    nnnnnnnnnnnnnnnnnnnnnnn
+  <div *ngIf="folderslist.length>0&&!innewfolder&&!ineditfolder">
+    <nz-list [nzDataSource]="folderslist" [nzRenderItem]="renderitem">
+      <ng-template #renderitem let-folder>
+        <nz-list-item id="folderitem_{{folder.fid}}" class="folder-list-item" (click)="saveToFolder(folder)">
+          <div class="folder-list-item-div">
+            <div>
+              <img [src]="folder.fimg" class="folder-list-img">
+              <label class="folder-list-name">{{folder.fname}}</label>
+            </div>
+            <div class="folder-list-name">{{folder.cases.length}}{{'ver.bookmark.casenumtext'|translate}}</div>
+          </div>
+        </nz-list-item>
+      </ng-template>
+    </nz-list>
+    <div style="display: flex; justify-content: space-between;width: 100%;margin-top: 100px;">
+      <a href="javascript:void(0);" (click)="toMyBookmarks()">{{'ver.bookmark.tomybookmarks'|translate}} >></a>
+      <button nz-button (click)="createnewfolder()">{{'ver.bookmark.createnewfolder'|translate}}</button>
+    </div>
   </div>
 </div>
